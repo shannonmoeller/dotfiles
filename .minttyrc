@@ -7,3 +7,4 @@ BackspaceSendsBS=yes
 CopyAsRTF=no
 Scrollbar=none
 Term=xterm-256color
+ClicksTargetApp=no

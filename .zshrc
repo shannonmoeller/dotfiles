@@ -12,6 +12,11 @@ export PS1='%{%148K%22F%} %n@%M %{%236K%188F%} %~ %{%161F%}$ %{%k%f%} '
 export SAVEHIST=10000
 export VIMINIT="so $DOTFILES/.vimrc"
 
+# Multiplexer
+if [[ -n $STY || -n $TMUX ]]; then
+	export PS1="${PS1/@%M/}"
+fi
+
 # Settings
 setopt AUTO_LIST
 setopt AUTO_MENU
