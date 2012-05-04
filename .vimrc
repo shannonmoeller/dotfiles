@@ -2,7 +2,7 @@
 " vim: set filetype=vim:
 
 " Runtime
-set runtimepath^=$DOTFILES/.vim
+set runtimepath^=$ZDOTDIR/.vim
 
 " Pathogen
 filetype off
