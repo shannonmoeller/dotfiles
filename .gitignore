@@ -1,0 +1,17 @@
+*.diff
+*.err
+*.log
+*.orig
+*.swo
+*.swp
+*.vi
+*~
+.CVS
+.DS_Store
+.cache
+.netrwhist
+.nfs*
+.svn
+.zcompdump
+.zhistory
+Thumbs.db

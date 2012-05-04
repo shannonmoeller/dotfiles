@@ -1,0 +1,37 @@
+[user]
+	name = Shannon Moeller
+	email = me@shannonmoeller.com
+[color]
+	ui = auto
+[core]
+	excludesfile = /home/smoeller/.gitignore
+[diff]
+	tool = vimdiff
+[pager]
+	difftool =
+[alias]
+	ba = !git branch | ack
+	bc = !git branch | sed -n '/^*/s/^* //gp'
+	br = branch
+	bv = branch -avv
+	cm = commit -am
+	co = checkout
+	df = diff --ignore-space-change
+	dn = diff --name-only
+	dt = difftool --ignore-space-change
+	lc = log ORIG_HEAD.. --stat --no-merges
+	lg = log --graph --pretty=format:'%C(yellow bold)%h%Creset %s %C(green bold)(%cr)%Creset %an'
+	la = !git log --oneline | ack -i
+	pl = pull
+	pom = push origin master
+	rv = remote -v
+	sh = stash
+	sha = stash apply
+	shl = stash list
+	shp = stash pop
+	shs = !sh -c 'git show stash@{$1}' -
+	ss = status -s
+	st = status
+	sw = show --ignore-space-change
+	up = !git pull && git submodule update --init --recursive
+	wc = whatchanged
