@@ -33,7 +33,7 @@ zstyle ':completion:*' special-dirs true
 
 # Aliases
 alias cp='cp -i'
-alias g='git'
+alias g="HOME=$DOTFILES git"
 alias gb='bulk -1 git'
 alias git="HOME=$DOTFILES git"
 alias ll='ls -FAl --color'
@@ -50,5 +50,6 @@ alias xr='tmux attach -d || tmux'
 fd() { find . -type d -iregex ".*\($@\)[^/]*" -not -iregex "\.git$" -print; }
 ff() { find . -type f -iregex ".*\($@\)[^/]*" -not -iregex "\.swp$" -print; }
 md() { mkdir "$@"; cd "$@"; }
+ta()  { tree -a -I ".git|*.swp|node_modules" -L "${@:-"100"}" | less; }
 up() { local a; a="$PWD"; for i in {1..$1}; do a="${a%/*}"; done; cd "${a:-/}"; }
 xv() { tmux neww "$EDITOR $*"; }
