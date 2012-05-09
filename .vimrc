@@ -16,6 +16,7 @@ set cursorline
 set hlsearch
 set incsearch
 set laststatus=2
+set linebreak
 set noexpandtab
 set nowrap
 set number
@@ -54,6 +55,7 @@ vnoremap <Leader>p :!perl -e "`cat`"<CR>
 " Theme
 syntax on
 color monokai256
+let &showbreak='└ '
 let g:indent_guides_guide_size = 1
 let g:indent_guides_auto_colors = 0
 autocmd BufNewFile,BufRead * :IndentGuidesEnable
