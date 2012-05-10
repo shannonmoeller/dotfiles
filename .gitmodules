@@ -1,12 +1,6 @@
-[submodule "bin/bundle/bulk"]
-	path = bin/bundle/bulk
-	url = git://github.com/shannonmoeller/bulk.git
 [submodule "bin/bundle/hosts"]
 	path = bin/bundle/hosts
 	url = git://github.com/shannonmoeller/hosts.git
-[submodule "bin/bundle/up"]
-	path = bin/bundle/up
-	url = git://github.com/shannonmoeller/up.git
 [submodule ".vim/bundle/coffee-script"]
 	path = .vim/bundle/coffee-script
 	url = git://github.com/vim-scripts/vim-coffee-script.git

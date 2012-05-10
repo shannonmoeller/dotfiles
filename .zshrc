@@ -47,13 +47,13 @@ fd () { find -L . -type d -iregex ".*\($@\)[^/]*" -not -iregex "\.git$" }
 ff () { find -L . -type f -iregex ".*\($@\)[^/]*" -not -iregex "\.swp$" }
 md () { mkdir "$@" && cd "$@" }
 ta () { tree -a -I ".git|*.swp|node_modules" -L "${@:-"100"}" | less -RF }
-up () { local a="$PWD"; for i in {1..$1}; do a="${a%/*}"; done; cd "${a:-/}/$2" }
+up () { local a="$PWD"; for i in {1..$1}; do a="${a%/*}"; done; cd "$a/$2" }
 xv () { tmux neww "$EDITOR $*" }
 
 # Completion
 autoload -U compinit && compinit -i
-compdef _git gb
-compdef _vim xv
+compdef gb=git
+compdef xv=vim
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' menu select=2
 zstyle ':completion:*' special-dirs true
