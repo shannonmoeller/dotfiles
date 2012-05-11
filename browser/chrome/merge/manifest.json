@@ -1,0 +1,11 @@
+{
+  "background_page": "background.html",
+  "content_scripts": [{
+    "js": ["content.js"],
+    "matches": ["*://*/*"],
+    "run_at": "document_start"
+   }],
+  "name": "Merge",
+  "permissions": ["tabs"],
+  "version": "1.0.0"
+}
