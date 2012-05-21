@@ -14,9 +14,11 @@ set backspace=2
 set colorcolumn=80
 set cursorline
 set hlsearch
+set ignorecase
 set incsearch
 set laststatus=2
 set linebreak
+set mouse=a
 set noexpandtab
 set nowrap
 set number
@@ -26,6 +28,7 @@ set smartindent
 set splitbelow
 set splitright
 set tabstop=4
+set ttymouse=xterm2
 set viminfo=
 set wildmenu
 set wildmode=longest:full
@@ -49,8 +52,10 @@ nnoremap <silent> <Leader><Space> :sil %s/\s\+$//<CR>
 nnoremap <silent> <Leader>w :set wrap!<CR>
 nnoremap Y y$
 noremap <Nul> <Nop>
-vnoremap <Leader>n :!node -e "`cat`"<CR>
-vnoremap <Leader>p :!perl -e "`cat`"<CR>
+vnoremap <Leader>c :!csslint <(cat)<CR>
+vnoremap <Leader>j :!jslint <(cat)<CR>
+vnoremap <Leader>n :!node <(cat)<CR>
+vnoremap <Leader>p :!perl <(cat)<CR>
 
 " Theme
 syntax on
