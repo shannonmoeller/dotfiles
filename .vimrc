@@ -36,6 +36,7 @@ set wildmode=longest:full
 " Filetypes
 autocmd BufNewFile,BufRead *.confluence setl ft=confluencewiki
 autocmd BufNewFile,BufRead *.json setl ft=javascript
+autocmd BufNewFile,BufRead *.tt2h setl ft=tt2html
 autocmd FileType coffee,confluencewiki,jade,stylus,yaml setl et sw=2 ts=2
 autocmd FileType css setl omnifunc=csscomplete#CompleteCSS
 autocmd FileType html setl omnifunc=htmlcomplete#CompleteTags

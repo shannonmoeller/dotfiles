@@ -20,6 +20,7 @@ fi
 # Settings
 setopt AUTO_LIST
 setopt AUTO_MENU
+setopt CORRECTALL
 setopt HIST_IGNORE_ALL_DUPS
 setopt INC_APPEND_HISTORY
 setopt INTERACTIVE_COMMENTS
@@ -27,11 +28,12 @@ setopt INTERACTIVE_COMMENTS
 # Aliases
 alias -g LR='| less -RF'
 alias -g NUL='> /dev/null 2>&1'
+alias ack='ack --smart-case'
 alias cp='cp -i'
 alias g="HOME=$ZDOTDIR git"
 alias gb='bulk git'
 alias git="HOME=$ZDOTDIR git"
-alias ll='ls -FAl --color'
+alias ll='ls -FAXl --color'
 alias mv='mv -i'
 alias rm='rm -i'
 alias tmux="tmux -2 -f $ZDOTDIR/.tmux.conf"
