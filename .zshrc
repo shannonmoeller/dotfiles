@@ -25,6 +25,15 @@ setopt HIST_IGNORE_ALL_DUPS
 setopt INC_APPEND_HISTORY
 setopt INTERACTIVE_COMMENTS
 
+# Keys
+bindkey -e
+bindkey 'e[1~' beginning-of-line
+bindkey 'e[H'  beginning-of-line
+bindkey 'eOH'  beginning-of-line
+bindkey 'e[4~' end-of-line
+bindkey 'eOF'  end-of-line
+bindkey 'e[F'  end-of-line
+
 # Aliases
 alias -g LR='| less -RF'
 alias -g NUL='> /dev/null 2>&1'
