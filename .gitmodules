@@ -1,3 +1,0 @@
-[submodule "bin/bundle/hosts"]
-	path = bin/bundle/hosts
-	url = git://github.com/shannonmoeller/hosts.git

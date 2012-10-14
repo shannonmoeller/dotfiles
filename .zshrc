@@ -7,7 +7,6 @@ export EDITOR='vim -O'
 export HISTFILE="$ZDOTDIR/.zhistory"
 export HISTSIZE=10000
 export LESSHISTFILE='/dev/null'
-export PATH="$ZDOTDIR/bin:$PATH"
 export PS1=$'%{%148K%22F%} %n@%M %{%236K%252F%} %3. %{%161F%}$ %{%k%f%} '
 export SAVEHIST=10000
 export VIMINIT="so $ZDOTDIR/.vimrc"
