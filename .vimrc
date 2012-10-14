@@ -3,10 +3,20 @@
 
 " Runtime
 set runtimepath^=$ZDOTDIR/.vim
+set runtimepath+=$ZDOTDIR/.vim/bundle/vundle
 
-" Pathogen
+" Bundles
 filetype off
-call pathogen#infect()
+call vundle#rc()
+Bundle 'gmarik/vundle'
+Bundle 'vim-scripts/vim-coffee-script.git'
+Bundle 'othree/html5.vim.git'
+Bundle 'nathanaelkane/vim-indent-guides.git'
+Bundle 'digitaltoad/vim-jade.git'
+Bundle 'shannonmoeller/vim-javascript.git'
+Bundle 'shannonmoeller/vim-monokai256.git'
+Bundle 'Lokaltog/vim-powerline.git'
+Bundle 'wavded/vim-stylus.git'
 filetype plugin indent on
 
 " Settings
@@ -34,10 +44,9 @@ set wildmenu
 set wildmode=longest:full
 
 " Filetypes
-autocmd BufNewFile,BufRead *.confluence setl ft=confluencewiki
 autocmd BufNewFile,BufRead *.json setl ft=javascript
-autocmd BufNewFile,BufRead *.tt2h setl ft=tt2html
-autocmd FileType coffee,confluencewiki,jade,stylus,yaml setl et sw=2 ts=2
+autocmd BufNewFile,BufRead *.master setl ft=html
+autocmd FileType coffee,jade,stylus,yaml setl et sw=2 ts=2
 autocmd FileType css setl omnifunc=csscomplete#CompleteCSS
 autocmd FileType html setl omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setl omnifunc=javascriptcomplete#CompleteJS
