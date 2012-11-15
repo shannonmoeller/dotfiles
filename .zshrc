@@ -2,11 +2,12 @@
 # vim: set filetype=zsh:
 
 # Environment
-export ZDOTDIR="$HOME/Documents/git/hub/shannonmoeller/dotfiles"
+export ZDOTDIR="$HOME/git/hub/shannonmoeller/dotfiles"
 export EDITOR='vim -O'
 export HISTFILE="$ZDOTDIR/.zhistory"
 export HISTSIZE=10000
 export LESSHISTFILE='/dev/null'
+export PATH="/usr/local/heroku/bin:/usr/local/share/python:/usr/local/bin:/usr/local/sbin:$PATH"
 export PS1=$'%{%148K%22F%} %n@%M %{%236K%252F%} %3. %{%161F%}$ %{%k%f%} '
 export SAVEHIST=10000
 export VIMINIT="so $ZDOTDIR/.vimrc"
@@ -57,6 +58,7 @@ bulk () { for d in *; do [[ -d $d ]] || continue; printf "\e[48;5;236;38;5;252m$
 fd () { find -L . -type d -iregex ".*\($@\)[^/]*" -not -iregex "\.git$" }
 ff () { find -L . -type f -iregex ".*\($@\)[^/]*" -not -iregex "\.swp$" }
 md () { mkdir -p "$@" && cd "$@" }
+rn () { a="$1"; shift; b="$1"; shift; for i in "$@"; do mv "$i" "${i//$a/$b}"; done }
 xv () { tmux neww "$EDITOR $*" }
 
 # OS
