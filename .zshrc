@@ -2,7 +2,7 @@
 # vim: set filetype=zsh:
 
 # Home away from home
-export DOTDIR="$( (readlink -f .zshrc || readlink .zshrc) 2> /dev/null | xargs dirname )"
+export DOTDIR="$( (readlink -f .zshrc || greadlink -f .zshrc) 2> /dev/null | xargs dirname )"
 
 # Environment
 export EDITOR='vim -O'
