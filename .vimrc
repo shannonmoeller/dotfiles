@@ -2,12 +2,12 @@
 " vim: set filetype=vim:
 
 " Runtime
-set runtimepath^=$ZDOTDIR/.vim
-set runtimepath+=$ZDOTDIR/.vim/bundle/vundle
+set runtimepath^=$DOTDIR/.vim
+set runtimepath+=$DOTDIR/.vim/bundle/vundle
 
 " Bundles
 filetype off
-call vundle#rc()
+call vundle#rc('$DOTDIR/.vim/bundle')
 Bundle 'gmarik/vundle'
 Bundle 'vim-scripts/vim-coffee-script.git'
 Bundle 'othree/html5.vim.git'

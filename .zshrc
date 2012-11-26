@@ -1,20 +1,22 @@
 # ~/.zshrc
 # vim: set filetype=zsh:
 
+# Home away from home
+export DOTDIR="$(readlink .zshrc | xargs dirname)"
+
 # Environment
-export ZDOTDIR="$HOME/git/hub/shannonmoeller/dotfiles"
 export EDITOR='vim -O'
-export HISTFILE="$ZDOTDIR/.zhistory"
-export HISTSIZE=10000
+export HISTFILE="$DOTDIR/.zhistory"
+export HISTSIZE=80
 export LESSHISTFILE='/dev/null'
 export PATH="/usr/local/heroku/bin:/usr/local/share/python:/usr/local/bin:/usr/local/sbin:$PATH"
 export PS1=$'%{%148K%22F%} %n@%M %{%236K%252F%} %3. %{%161F%}$ %{%k%f%} '
 export SAVEHIST=10000
-export VIMINIT="so $ZDOTDIR/.vimrc"
+export VIMINIT="so $DOTDIR/.vimrc"
 
 # Multiplexer
 if [[ -n $STY || -n $TMUX ]]; then
-	export PS1="${PS1/@%M/}"
+	export PS1="${PS1##*%M }"
 fi
 
 # Settings
@@ -39,13 +41,13 @@ alias -g LR='| less -RF'
 alias -g NUL='> /dev/null 2>&1'
 alias ack='ack --smart-case'
 alias cp='cp -i'
-alias g="HOME=$ZDOTDIR git"
+alias g="HOME=$DOTDIR git"
 alias gb='bulk git'
-alias git="HOME=$ZDOTDIR git"
+alias git="HOME=$DOTDIR git"
 alias mkdir="mkdir -p"
 alias mv='mv -i'
 alias rm='rm -i'
-alias tmux="tmux -2 -f $ZDOTDIR/.tmux.conf"
+alias tmux="tmux -2 -f $DOTDIR/.tmux.conf"
 alias tree='tree -alI "node_*|.git*"'
 alias vi="$EDITOR"
 alias vim="$EDITOR"

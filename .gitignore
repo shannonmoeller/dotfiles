@@ -15,4 +15,6 @@
 .svn
 .zcompdump
 .zhistory
+bundle/
+!vundle/
 Thumbs.db
