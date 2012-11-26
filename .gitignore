@@ -13,8 +13,7 @@
 .nfs*
 .subversion
 .svn
+.vim/bundle/
 .zcompdump
 .zhistory
-bundle/
-!vundle/
 Thumbs.db
