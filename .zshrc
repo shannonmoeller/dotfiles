@@ -95,3 +95,6 @@ _up () {
 	done
 }
 compctl -/ -q -S/ -K _up up
+
+# Syntax
+source "$DOTDIR/.zsh/bundle/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
