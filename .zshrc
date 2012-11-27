@@ -17,6 +17,7 @@ export VIMINIT="so $DOTDIR/.vimrc"
 # Multiplexer
 if [[ -n $STY || -n $TMUX ]]; then
 	export PS1="${PS1##*%M }"
+	export PS1="${PS1/\%3c/%~}"
 fi
 
 # Settings
