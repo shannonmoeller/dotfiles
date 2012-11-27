@@ -10,7 +10,7 @@ export HISTFILE="$DOTDIR/.zhistory"
 export HISTSIZE=80
 export LESSHISTFILE='/dev/null'
 export PATH="/usr/local/heroku/bin:/usr/local/share/python:/usr/local/bin:/usr/local/sbin:$PATH"
-export PS1=$'%{%148K%22F%} %n@%M %{%236K%252F%} %3. %{%161F%}$ %{%k%f%} '
+export PS1=$'%{%148K%22F%} %n@%M %{%236K%148F%}⮀%{%252F%} %3c %{%k%236F%}⮀%{%f%} '
 export SAVEHIST=10000
 export VIMINIT="so $DOTDIR/.vimrc"
 

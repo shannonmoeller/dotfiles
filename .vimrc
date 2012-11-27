@@ -73,6 +73,7 @@ color monokai256
 let &showbreak='└ '
 let g:indent_guides_guide_size = 1
 let g:indent_guides_auto_colors = 0
+let g:Powerline_symbols = 'fancy'
 autocmd BufNewFile,BufRead * :IndentGuidesEnable
 autocmd InsertEnter * match TrailingSpace /\s\+\%#\@<!$/
 autocmd InsertLeave * match TrailingSpace /\s\+$/
