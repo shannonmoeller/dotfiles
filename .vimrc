@@ -21,15 +21,14 @@ filetype plugin indent on
 
 " Settings
 set backspace=2
-set colorcolumn=80
 set cursorline
+set expandtab
 set hlsearch
 set ignorecase
 set incsearch
 set laststatus=2
 set linebreak
 set mouse=a
-set noexpandtab
 set nowrap
 set number
 set shiftwidth=4
@@ -43,10 +42,15 @@ set viminfo=
 set wildmenu
 set wildmode=longest:full
 
+if exists('+colorcolumn')
+	set colorcolumn=120
+else
+	au BufWinEnter * match TrailingSpace /\%>120v.\+/
+endif
+
 " Filetypes
 autocmd BufNewFile,BufRead *.json setl ft=javascript
-autocmd BufNewFile,BufRead *.master setl ft=html
-autocmd FileType coffee,jade,stylus,yaml setl et sw=2 ts=2
+autocmd FileType coffee,jade,stylus,yaml setl sw=2 ts=2
 autocmd FileType css setl omnifunc=csscomplete#CompleteCSS
 autocmd FileType html setl omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setl omnifunc=javascriptcomplete#CompleteJS

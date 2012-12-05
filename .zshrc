@@ -66,8 +66,8 @@ xv () { tmux neww "$EDITOR $*" }
 
 # OS
 case $(uname) in
-	Darwin) alias ll='ls -AFGl';;
-	Linux) alias ll='ls -AFXl --color';;
+	Darwin) alias ll='CLICOLOR_FORCE=1 ls -FAGl | grep "^d\|total" && CLICOLOR_FORCE=1 ls -FAGl | grep -v "^d\|total"';;
+	Linux) alias ll='ls -AFl --color --group-directories-first';;
 esac
 
 # Completion
