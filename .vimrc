@@ -9,14 +9,15 @@ set runtimepath+=$DOTDIR/.vim/bundle/vundle
 filetype off
 call vundle#rc('$DOTDIR/.vim/bundle')
 Bundle 'gmarik/vundle'
-Bundle 'vim-scripts/vim-coffee-script.git'
-Bundle 'othree/html5.vim.git'
-Bundle 'nathanaelkane/vim-indent-guides.git'
-Bundle 'digitaltoad/vim-jade.git'
-Bundle 'shannonmoeller/vim-javascript.git'
-Bundle 'shannonmoeller/vim-monokai256.git'
-Bundle 'Lokaltog/vim-powerline.git'
-Bundle 'wavded/vim-stylus.git'
+Bundle 'Lokaltog/vim-powerline'
+Bundle 'digitaltoad/vim-jade'
+Bundle 'nathanaelkane/vim-indent-guides'
+Bundle 'othree/html5.vim'
+Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+Bundle 'shannonmoeller/vim-javascript'
+Bundle 'shannonmoeller/vim-monokai256'
+Bundle 'vim-scripts/vim-coffee-script'
+Bundle 'wavded/vim-stylus'
 filetype plugin indent on
 
 " Settings
