@@ -3,6 +3,7 @@
 
 # Home away from home
 export DOTDIR="$( (readlink -f ~/.zshrc || greadlink -f ~/.zshrc) 2> /dev/null | xargs dirname )"
+export ZDOTDIR="$DOTDIR"
 
 # Environment
 export EDITOR='vim -O'
@@ -49,7 +50,7 @@ alias mkdir="mkdir -p"
 alias mv='mv -i'
 alias rm='rm -i'
 alias tmux="tmux -2 -f $DOTDIR/.tmux.conf"
-alias tree='tree -alI "node_*|.git*"'
+alias tree='tree -alI "node_*|.git*|.svn"'
 alias vi="$EDITOR"
 alias vim="$EDITOR"
 alias xd='tmux detach'
