@@ -15,7 +15,7 @@ export PS1=$'%{%148K%22F%} %n@%M %{%236K%148F%}⮀%{%252F%} %3c %{%k%236F%}⮀%{
 export SAVEHIST=10000
 export VIMINIT="so $DOTDIR/.vimrc"
 
-# Multiplexer
+# Multiplexer?
 if [[ -n $STY || -n $TMUX ]]; then
 	export PS1="${PS1##*%M }"
 	export PS1="${PS1/\%3c/%~}"
@@ -46,6 +46,7 @@ alias cp='cp -i'
 alias g="HOME=$DOTDIR git"
 alias gb='bulk git'
 alias git="HOME=$DOTDIR git"
+alias jshint="HOME=$DOTDIR jshint"
 alias mkdir="mkdir -p"
 alias mv='mv -i'
 alias rm='rm -i'
@@ -59,8 +60,9 @@ alias xr='tmux attach -d || tmux'
 
 # Functions
 bulk () { for d in *; do [[ -d $d ]] || continue; printf "\e[48;5;236;38;5;252m$d \e[38;5;161m\$ \e[0m $*\n"; ( cd $d; eval $* ); done }
-fd () { find -L . -type d -iregex ".*\($@\)[^/]*" -not -iregex "\.git$" }
-ff () { find -L . -type f -iregex ".*\($@\)[^/]*" -not -iregex "\.swp$" }
+cf () { cd $(dirname $(readlink $1)) }
+fd () { find -L . -type d -iregex ".*\($@\)[^/]*" | ack -v "(.git/|.svn/)" }
+ff () { find -L . -type f -iregex ".*\($@\)[^/]*" | ack -v "(.svn/|.swp$)" }
 md () { mkdir -p "$@" && cd "$@" }
 rn () { a="$1"; shift; b="$1"; shift; for i in "$@"; do mv "$i" "${i//$a/$b}"; done }
 xv () { tmux neww "$EDITOR $*" }
@@ -80,22 +82,48 @@ zstyle ':completion:*' menu select=2
 zstyle ':completion:*' special-dirs true
 
 # DotDot
-up () {
-	[[ -d $1 ]] && cd $@ && return
-	local a="$PWD"
-	for i in {1..$1}
-		do a="${a%/*}"
-	done
-	cd "$a/$2"
+__up() {
+    # Present working directory
+    top=$PWD
+
+    # Desired path, starting with a depth
+    dir=${1:-1}
+
+    # Assume depth was given
+    depth=${dir%%/*}
+
+    # Check if depth was given
+    if [ $depth -eq $depth 2> /dev/null ]; then
+        # Check if path contains more than a depth
+        if [[ $dir == */* ]]; then
+            # Strip leading depth
+            dir="${dir#*/}"
+        else
+            # Path was only a depth
+            dir=''
+        fi
+    else
+        # Depth wasn't given
+        depth=1
+    fi
+
+    # For each depth level
+    for ((; depth > 0; depth--)); do
+        # Strip trailing basename
+        top="${top%/*}"
+    done
+
+    # Print resulting path
+    echo "$top/$dir"
 }
-_up () {
-	local a="${PWD%/*}"
-	while [[ -n $a ]]; do
-		reply+=("$a")
-		a="${a%/*}"
-	done
+_up() {
+    reply=($(__up $*))
 }
-compctl -/ -q -S/ -K _up up
+up() {
+    [[ -d $1 ]] && cd $* && return
+    cd `__up $*`
+}
+compctl -K _up up
 
 # Syntax
 source "$DOTDIR/.zsh/bundle/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"

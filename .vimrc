@@ -10,13 +10,21 @@ filetype off
 call vundle#rc('$DOTDIR/.vim/bundle')
 Bundle 'gmarik/vundle'
 Bundle 'Lokaltog/vim-powerline'
+Bundle 'MarcWeber/vim-addon-mw-utils'
+Bundle 'Shougo/neocomplcache'
 Bundle 'digitaltoad/vim-jade'
+Bundle 'garbas/vim-snipmate'
+Bundle 'honza/snipmate-snippets'
+Bundle 'kchmck/vim-coffee-script'
 Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'othree/html5.vim'
 Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+Bundle 'scrooloose/syntastic'
 Bundle 'shannonmoeller/vim-javascript'
 Bundle 'shannonmoeller/vim-monokai256'
-Bundle 'vim-scripts/vim-coffee-script'
+Bundle 'tomtom/tlib_vim'
+Bundle 'tpope/vim-repeat'
+Bundle 'tpope/vim-surround'
 Bundle 'wavded/vim-stylus'
 filetype plugin indent on
 
@@ -46,16 +54,13 @@ set wildmode=longest:full
 if exists('+colorcolumn')
 	set colorcolumn=120
 else
-	au BufWinEnter * match TrailingSpace /\%>120v.\+/
+	au BufWinEnter * match ColorColumn /\%>120v.\+/
 endif
 
 " Filetypes
+autocmd BufNewFile,BufRead *.cson setl ft=coffee
 autocmd BufNewFile,BufRead *.json setl ft=javascript
 autocmd FileType coffee,jade,stylus,yaml setl sw=2 ts=2
-autocmd FileType css setl omnifunc=csscomplete#CompleteCSS
-autocmd FileType html setl omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setl omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType php setl omnifunc=phpcomplete#CompletePHP
 
 " Mapping
 inoremap <Nul> <C-X><C-O>
@@ -82,3 +87,14 @@ let g:Powerline_symbols = 'fancy'
 autocmd BufNewFile,BufRead * :IndentGuidesEnable
 autocmd InsertEnter * match TrailingSpace /\s\+\%#\@<!$/
 autocmd InsertLeave * match TrailingSpace /\s\+$/
+
+" Completion
+let g:neocomplcache_enable_at_startup = 1
+let g:neocomplcache_enable_auto_select = 1
+let g:neocomplcache_enable_camel_case_completion = 1
+let g:neocomplcache_enable_smart_case = 1
+let g:neocomplcache_enable_underbar_completion = 1
+autocmd FileType css setl omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setl omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setl omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType php setl omnifunc=phpcomplete#CompletePHP
