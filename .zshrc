@@ -2,8 +2,8 @@
 # vim: set filetype=zsh:
 
 # Home away from home
-export DOTDIR="$( (readlink -f ~/.zshrc || greadlink -f ~/.zshrc) 2> /dev/null | xargs dirname )"
-export ZDOTDIR="$DOTDIR"
+export ZDOTDIR="$( (readlink -f ~/.zshrc || greadlink -f ~/.zshrc) 2> /dev/null | xargs dirname )"
+export DOTDIR="$ZDOTDIR"
 
 # Environment
 export EDITOR='vim -O'
@@ -14,6 +14,7 @@ export PATH="/usr/local/heroku/bin:/usr/local/share/npm/bin:/usr/local/share/pyt
 export PS1=$'%{%148K%22F%} %n@%M %{%236K%148F%}⮀%{%252F%} %3c %{%k%236F%}⮀%{%f%} '
 export SAVEHIST=10000
 export VIMINIT="so $DOTDIR/.vimrc"
+export VISUAL='vim -O'
 
 # Multiplexer?
 if [[ -n $STY || -n $TMUX ]]; then
@@ -22,12 +23,16 @@ if [[ -n $STY || -n $TMUX ]]; then
 fi
 
 # Settings
-setopt AUTO_LIST
-setopt AUTO_MENU
-setopt CORRECTALL
-setopt HIST_IGNORE_ALL_DUPS
-setopt INC_APPEND_HISTORY
-setopt INTERACTIVE_COMMENTS
+setopt autocd
+setopt autolist
+setopt automenu
+setopt correctall
+setopt extendedglob
+setopt histignorealldups
+setopt incappendhistory
+setopt interactivecomments
+setopt nocheckjobs
+setopt nohup
 
 # Keys
 bindkey -e
