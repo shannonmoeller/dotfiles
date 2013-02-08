@@ -5,22 +5,31 @@
 export ZDOTDIR="$( (readlink -f ~/.zshrc || greadlink -f ~/.zshrc) 2> /dev/null | xargs dirname )"
 export DOTDIR="$ZDOTDIR"
 
+# Path
+PATH="$HOME/bin:$HOME/sbin"
+PATH="$PATH:/usr/local/share/npm/bin"
+PATH="$PATH:/usr/local/share/python"
+PATH="$PATH:/usr/local/heroku/bin"
+PATH="$PATH:/usr/local/bin:/usr/bin:/bin"
+PATH="$PATH:/usr/local/sbin:/usr/sbin:/sbin"
+export PATH
+
+# Prompt
+PS1=$'%{%148K%22F%} %n@%M %{%236K%148F%}⮀%{%252F%} %3c %{%k%236F%}⮀%{%f%} '
+if [[ -n $STY || -n $TMUX ]]; then
+	PS1="${PS1##*%M }"
+	PS1="${PS1/\%3c/%~}"
+fi
+export PS1
+
 # Environment
-export EDITOR='vim -O'
+export EDITOR="$(which vim) -O"
 export HISTFILE="$DOTDIR/.zhistory"
 export HISTSIZE=80
 export LESSHISTFILE='/dev/null'
-export PATH="/usr/local/heroku/bin:/usr/local/share/npm/bin:/usr/local/share/python:/usr/local/bin:/usr/local/sbin:$HOME/bin:$PATH"
-export PS1=$'%{%148K%22F%} %n@%M %{%236K%148F%}⮀%{%252F%} %3c %{%k%236F%}⮀%{%f%} '
 export SAVEHIST=10000
 export VIMINIT="so $DOTDIR/.vimrc"
 export VISUAL='vim -O'
-
-# Multiplexer?
-if [[ -n $STY || -n $TMUX ]]; then
-	export PS1="${PS1##*%M }"
-	export PS1="${PS1/\%3c/%~}"
-fi
 
 # Settings
 setopt autocd
@@ -31,6 +40,9 @@ setopt extendedglob
 setopt histignorealldups
 setopt incappendhistory
 setopt interactivecomments
+setopt listambiguous
+setopt markdirs
+setopt nocaseglob
 setopt nocheckjobs
 setopt nohup
 
@@ -70,12 +82,18 @@ fd () { find -L . -type d -iregex ".*\($@\)[^/]*" | ack -v "(.git/|.svn/)" }
 ff () { find -L . -type f -iregex ".*\($@\)[^/]*" | ack -v "(.svn/|.swp$)" }
 md () { mkdir -p "$@" && cd "$@" }
 rn () { a="$1"; shift; b="$1"; shift; for i in "$@"; do mv "$i" "${i//$a/$b}"; done }
+rl () { for i in "$@"; do mv "$i" "${i:l}"; done }
 xv () { tmux neww "$EDITOR $*" }
 
 # OS
 case $(uname) in
-	Darwin) alias ll='CLICOLOR_FORCE=1 ls -FAGl | grep "^d\|total" && CLICOLOR_FORCE=1 ls -FAGl | grep -v "^d\|total"';;
-	Linux) alias ll='ls -AFl --color --group-directories-first';;
+    Darwin)
+        alias ll='CLICOLOR_FORCE=1 ls -FAGl | grep "^d\|total" && CLICOLOR_FORCE=1 ls -FAGl | grep -v "^d\|total"'
+        ;;
+
+    Linux)
+        alias ll='ls -AFl --color --group-directories-first'
+        ;;
 esac
 
 # Completion
@@ -83,6 +101,7 @@ autoload -U compinit && compinit -i
 compdef gb=git
 compdef xv=vim
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 zstyle ':completion:*' menu select=2
 zstyle ':completion:*' special-dirs true
 
@@ -128,7 +147,7 @@ up() {
     [[ -d $1 ]] && cd $* && return
     cd `__up $*`
 }
-compctl -K _up up
+compctl -/ -K _up up
 
 # Syntax
 source "$DOTDIR/.zsh/bundle/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"

@@ -7,25 +7,29 @@ set runtimepath+=$DOTDIR/.vim/bundle/vundle
 
 " Bundles
 filetype off
-call vundle#rc('$DOTDIR/.vim/bundle')
-Bundle 'gmarik/vundle'
-Bundle 'Lokaltog/vim-powerline'
-Bundle 'MarcWeber/vim-addon-mw-utils'
-Bundle 'Shougo/neocomplcache'
-Bundle 'digitaltoad/vim-jade'
-Bundle 'garbas/vim-snipmate'
-Bundle 'honza/snipmate-snippets'
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'nathanaelkane/vim-indent-guides'
-Bundle 'othree/html5.vim'
-Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
-Bundle 'scrooloose/syntastic'
-Bundle 'shannonmoeller/vim-javascript'
-Bundle 'shannonmoeller/vim-monokai256'
-Bundle 'tomtom/tlib_vim'
-Bundle 'tpope/vim-repeat'
-Bundle 'tpope/vim-surround'
-Bundle 'wavded/vim-stylus'
+    call vundle#rc('$DOTDIR/.vim/bundle')
+    Bundle 'gmarik/vundle'
+
+    " Interface
+    Bundle 'Lokaltog/vim-powerline'
+    Bundle 'nathanaelkane/vim-indent-guides'
+    Bundle 'shannonmoeller/vim-monokai256'
+
+    " Editing
+    Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+    Bundle 'scrooloose/syntastic'
+    Bundle 'tpope/vim-repeat'
+    Bundle 'tpope/vim-surround'
+    Bundle 'Valloric/YouCompleteMe'
+
+    " Utilities
+    Bundle 'tpope/vim-fugitive'
+
+    " Language
+    Bundle 'digitaltoad/vim-jade'
+    Bundle 'kchmck/vim-coffee-script'
+    Bundle 'shannonmoeller/vim-javascript'
+    Bundle 'wavded/vim-stylus'
 filetype plugin indent on
 
 " Settings
