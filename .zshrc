@@ -7,9 +7,10 @@ export DOTDIR="$ZDOTDIR"
 
 # Path
 PATH="$HOME/bin:$HOME/sbin"
+PATH="$PATH:/usr/local/heroku/bin"
+PATH="$PATH:/usr/local/mysql/bin"
 PATH="$PATH:/usr/local/share/npm/bin"
 PATH="$PATH:/usr/local/share/python"
-PATH="$PATH:/usr/local/heroku/bin"
 PATH="$PATH:/usr/local/bin:/usr/bin:/bin"
 PATH="$PATH:/usr/local/sbin:/usr/sbin:/sbin"
 export PATH
@@ -71,6 +72,7 @@ alias tmux="tmux -2 -f $DOTDIR/.tmux.conf"
 alias tree='tree -alI "node_*|.git*|.svn"'
 alias vi="$EDITOR"
 alias vim="$EDITOR"
+alias viml="$EDITOR"' $(eval ${$(fc -l -1)[2,-1]} -l)'
 alias xd='tmux detach'
 alias xn='tmux neww'
 alias xr='tmux attach -d || tmux'
@@ -87,13 +89,8 @@ xv () { tmux neww "$EDITOR $*" }
 
 # OS
 case $(uname) in
-    Darwin)
-        alias ll='CLICOLOR_FORCE=1 ls -FAGl | grep "^d\|total" && CLICOLOR_FORCE=1 ls -FAGl | grep -v "^d\|total"'
-        ;;
-
-    Linux)
-        alias ll='ls -AFl --color --group-directories-first'
-        ;;
+    Darwin) alias ll='CLICOLOR_FORCE=1 ls -AFGhl | grep "^d\|total" && CLICOLOR_FORCE=1 ls -AFGl | grep -v "^d\|total"';;
+    Linux)  alias ll='ls -AFhl --color --group-directories-first' ;;
 esac
 
 # Completion

@@ -105,3 +105,6 @@ autocmd FileType css setl omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setl omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setl omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType php setl omnifunc=phpcomplete#CompletePHP
+
+" Macros
+runtime macros/matchit.vim

@@ -1,36 +1,43 @@
+[alias]
+    ba = !git branch | ack
+    bc = !git branch | sed -n '/^*/s/^* //gp'
+    br = branch
+    bv = branch -avv
+    cm = commit -am
+    co = checkout
+    df = diff --ignore-space-change
+    dn = diff --name-only
+    dt = difftool --ignore-space-change
+    la = !git log --oneline | ack -i
+    lc = log ORIG_HEAD.. --stat --no-merges
+    lg = log --pretty=format:'%C(yellow bold)%h%Creset %s %C(green bold)(%cr)%Creset %an <%ae>' --graph
+    ll = log --pretty=format:'%C(yellow bold)%h%Creset %C(green bold)(%cd)%Creset <%ae> %s' --author=smoeller --date=local --no-merges
+    pl = pull
+    pom = push origin master
+    rv = remote -v
+    sh = stash
+    sha = stash apply
+    shl = stash list
+    shp = stash pop
+    shs = !sh -c 'git show stash@{$1}' -
+    ss = status -s
+    st = status
+    sw = show --ignore-space-change
+    up = !git pull && git submodule update --init --recursive
+    wc = whatchanged
+[color]
+    ui = auto
+[core]
+    excludesfile = .gitignore
+[credential]
+    helper = osxkeychain
+[diff]
+    tool = vimdiff
+[pager]
+    difftool =
+[push]
+    default = simple
+[svn]
+    rmdir = true
 [user]
     name = Shannon Moeller
-[color]
-	ui = auto
-[core]
-	excludesfile = .gitignore
-[diff]
-	tool = vimdiff
-[pager]
-	difftool =
-[alias]
-	ba = !git branch | ack
-	bc = !git branch | sed -n '/^*/s/^* //gp'
-	br = branch
-	bv = branch -avv
-	cm = commit -am
-	co = checkout
-	df = diff --ignore-space-change
-	dn = diff --name-only
-	dt = difftool --ignore-space-change
-	lc = log ORIG_HEAD.. --stat --no-merges
-	lg = log --graph --pretty=format:'%C(yellow bold)%h%Creset %s %C(green bold)(%cr)%Creset %an'
-	la = !git log --oneline | ack -i
-	pl = pull
-	pom = push origin master
-	rv = remote -v
-	sh = stash
-	sha = stash apply
-	shl = stash list
-	shp = stash pop
-	shs = !sh -c 'git show stash@{$1}' -
-	ss = status -s
-	st = status
-	sw = show --ignore-space-change
-	up = !git pull && git submodule update --init --recursive
-	wc = whatchanged
