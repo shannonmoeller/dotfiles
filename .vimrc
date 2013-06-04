@@ -16,6 +16,7 @@ filetype off
     Bundle 'shannonmoeller/vim-monokai256'
 
     " Editing
+    Bundle 'editorconfig/editorconfig-vim'
     Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
     Bundle 'scrooloose/syntastic'
     Bundle 'tpope/vim-repeat'
