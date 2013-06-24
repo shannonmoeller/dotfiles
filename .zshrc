@@ -7,12 +7,14 @@ export DOTDIR="$ZDOTDIR"
 
 # Path
 PATH="$HOME/bin:$HOME/sbin"
+PATH="$PATH:$DOTDIR/bin"
 PATH="$PATH:/usr/local/heroku/bin"
 PATH="$PATH:/usr/local/mysql/bin"
 PATH="$PATH:/usr/local/share/npm/bin"
 PATH="$PATH:/usr/local/share/python"
 PATH="$PATH:/usr/local/bin:/usr/bin:/bin"
 PATH="$PATH:/usr/local/sbin:/usr/sbin:/sbin"
+PATH="$PATH:/usr/local/Cellar/ruby/2.0.0-p195/bin"
 export PATH
 
 # Prompt
@@ -80,8 +82,8 @@ alias xr='tmux attach -d || tmux'
 # Functions
 bulk () { for d in *; do [[ -d $d ]] || continue; printf "\e[48;5;236;38;5;252m$d \e[38;5;161m\$ \e[0m $*\n"; ( cd $d; eval $* ); done }
 cf () { cd $(dirname $(readlink $1)) }
-fd () { find -L . -type d -iregex ".*\($@\)[^/]*" | ack -v "(.git/|.svn/)" }
-ff () { find -L . -type f -iregex ".*\($@\)[^/]*" | ack -v "(.svn/|.swp$)" }
+fd () { find -L ${2:-.} -type d -iregex ".*\($1\)[^/]*" | ack -v "(.git/|.svn/)" }
+ff () { find -L ${2:-.} -type f -iregex ".*\($1\)[^/]*" | ack -v "(.svn/|.swp$)" }
 md () { mkdir -p "$@" && cd "$@" }
 rn () { a="$1"; shift; b="$1"; shift; for i in "$@"; do mv "$i" "${i//$a/$b}"; done }
 rl () { for i in "$@"; do mv "$i" "${i:l}"; done }

@@ -13,6 +13,7 @@
     lg = log --pretty=format:'%C(yellow bold)%h%Creset %s %C(green bold)(%cr)%Creset %an <%ae>' --graph
     ll = log --pretty=format:'%C(yellow bold)%h%Creset %C(green bold)(%cd)%Creset <%ae> %s' --author=smoeller --date=local --no-merges
     pl = pull
+    po = push origin
     pom = push origin master
     rv = remote -v
     sh = stash
