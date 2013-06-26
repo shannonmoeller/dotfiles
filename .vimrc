@@ -12,6 +12,7 @@ filetype off
 
     " Plugins
     Bundle 'godlygeek/tabular'
+    Bundle 'jistr/vim-nerdtree-tabs'
     Bundle 'Lokaltog/vim-powerline'
     Bundle 'Lokaltog/vim-easymotion'
     Bundle 'majutsushi/tagbar'
@@ -47,10 +48,10 @@ filetype off
     let g:tern_show_argument_hints='on_hold'
     let g:indent_guides_auto_colors=0
     let g:indent_guides_guide_size=1
+    let g:nerdtree_tabs_open_on_console_startup=1
     let g:ycm_cache_omnifunc=0
     let g:ycm_key_list_previous_completion = ['<Up>']
     let g:ycm_key_list_select_completion = ['<Down>']
-    autocmd vimenter * NERDTree
 filetype plugin indent on
 
 " Settings
@@ -97,7 +98,7 @@ autocmd FileType php setl omnifunc=phpcomplete#CompletePHP
 
 " Mapping
 inoremap <Nul> <C-X><C-O>
-nnoremap <Leader>n :NERDTreeToggle<CR>
+nnoremap <Leader>n <Plug>NERDTreeTabsToggle<CR>
 nnoremap <silent> <Leader>/ :nohlsearch<CR>
 nnoremap <silent> <Leader><Space> :sil %s/\s\+$//<CR>
 nnoremap <silent> <Leader>w :set wrap!<CR>

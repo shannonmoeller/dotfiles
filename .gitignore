@@ -53,6 +53,7 @@ ehthumbs.db
 *.vi
 *~
 .netrwhist
+.tern-p*
 .viminfo
 .zcompdump
 .zhistory
