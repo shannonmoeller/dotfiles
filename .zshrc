@@ -10,27 +10,19 @@ PATH="$HOME/bin:$HOME/sbin"
 PATH="$PATH:$DOTDIR/bin"
 PATH="$PATH:/usr/local/heroku/bin"
 PATH="$PATH:/usr/local/mysql/bin"
+PATH="$PATH:/usr/local/opt/ruby/bin"
 PATH="$PATH:/usr/local/share/npm/bin"
-PATH="$PATH:/usr/local/share/python"
 PATH="$PATH:/usr/local/bin:/usr/bin:/bin"
 PATH="$PATH:/usr/local/sbin:/usr/sbin:/sbin"
-PATH="$PATH:/usr/local/Cellar/ruby/2.0.0-p247/bin"
 export PATH
 
-# Prompt
-PS1=$'%{%148K%22F%} %n@%M %{%236K%148F%}%{%252F%} %3c %{%k%236F%}%{%f%} '
-if [[ -n $STY || -n $TMUX ]]; then
-    PS1="${PS1/\%n@\%M /}"
-    PS1="${PS1/\%3c/%~}"
-fi
-export PS1
-
 # Environment
-export EDITOR="$(which vim) -O"
+export EDITOR="vim -O"
 export HISTFILE="$DOTDIR/.zhistory"
 export HISTSIZE=80
 export LESSHISTFILE='/dev/null'
 export SAVEHIST=10000
+export TERM='screen-256color-bce'
 export VIMINIT="so $DOTDIR/.vimrc"
 export VISUAL='vim -O'
 
@@ -97,12 +89,33 @@ esac
 
 # Completion
 autoload -U compinit && compinit -i
-compdef gb=git
-compdef xv=vim
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 zstyle ':completion:*' menu select=2
 zstyle ':completion:*' special-dirs true
+
+function _grunt_completion() {
+  local completions
+  # The currently-being-completed word.
+  local cur="${words[@]}"
+  # The current grunt version, available tasks, options, etc.
+  local gruntinfo="$(grunt --version --verbose 2>/dev/null)"
+  # Options and tasks.
+  local opts="$(echo "$gruntinfo" | awk '/Available options: / {$1=$2=""; print $0}')"
+  local compls="$(echo "$gruntinfo" | awk '/Available tasks: / {$1=$2=""; print $0}')"
+  # Only add -- or - options if the user has started typing -
+  [[ "$cur" == -* ]] && compls="$compls $opts"
+  # Trim whitespace.
+  compls=$(echo "$compls" | sed -e 's/^ *//g' -e 's/ *$//g')
+  # Turn compls into an array to of completions.
+  completions=(${=compls})
+  # Tell complete what stuff to show.
+  compadd -- $completions
+}
+
+compdef _grunt_completion grunt
+compdef gb=git
+compdef xv=vim
 
 # DotDot
 __up() {
@@ -148,5 +161,6 @@ up() {
 }
 compctl -/ -K _up up
 
-# Syntax
+# Plugins
+source "/usr/local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh"
 source "$DOTDIR/.zsh/bundle/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
