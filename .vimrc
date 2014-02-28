@@ -15,6 +15,7 @@ filetype off
     Bundle 'JazzCore/ctrlp-cmatcher'
     Bundle 'Lokaltog/vim-easymotion'
     Bundle 'Valloric/YouCompleteMe'
+    Bundle 'airblade/vim-gitgutter'
     Bundle 'godlygeek/tabular'
     Bundle 'jistr/vim-nerdtree-tabs'
     Bundle 'kien/ctrlp.vim'
@@ -43,15 +44,25 @@ filetype off
     Bundle 'kchmck/vim-coffee-script'
     Bundle 'mustache/vim-mustache-handlebars'
     Bundle 'shannonmoeller/vim-javascript'
+    Bundle 'tpope/vim-haml'
     Bundle 'wavded/vim-stylus'
 filetype plugin indent on
 
 " Bundle Settings
 let g:NERDTreeIgnore = ['\.swp$', '\.swo$']
 let g:NERDTreeShowHidden = 1
+let g:NERDTreeWinSize = 24
+let g:gitgutter_eager = 0
+let g:gitgutter_realtime = 0
+let g:gitgutter_sign_column_always = 1
 let g:indent_guides_auto_colors = 0
 let g:indent_guides_guide_size = 1
 let g:javascript_doc = 'yuidoc'
+let g:markdown_fenced_languages = ['css', 'html', 'less', 'javascript', 'js=javascript', 'json=javascript', 'sass', 'scss', 'xml']
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_enable_signs = 0
+let g:tagbar_compact = 1
+let g:tagbar_width = 24
 let g:tern#arguments = ['--no-port-file']
 let g:tern_map_keys = 1
 let g:tern_show_argument_hints = 'on_hold'
@@ -84,6 +95,8 @@ set smartindent
 set splitbelow
 set splitright
 set tabstop=4
+set timeoutlen=1000
+set ttimeoutlen=0
 set ttyfast
 set ttymouse=xterm2
 set ttyscroll=3
@@ -101,7 +114,7 @@ endif
 " Filetypes
 autocmd BufNewFile,BufRead *.css,*.scss setl fdm=manual
 autocmd BufNewFile,BufRead *.json setl ft=json
-autocmd BufNewFile,BufRead *.hbr,*.hbs,*.hbt setl ft=handlebars
+autocmd BufNewFile,BufRead *.hbr,*.hbs,*.hbt setl ft=mustache
 autocmd FileType coffee,jade,stylus,yaml setl sw=2 ts=2
 autocmd FileType css setl omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setl omnifunc=htmlcomplete#CompleteTags

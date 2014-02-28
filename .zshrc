@@ -17,8 +17,8 @@ PATH="$PATH:/usr/local/sbin:/usr/sbin:/sbin"
 export PATH
 
 # Environment
-export EDITOR="vim -O"
-export HISTFILE="$DOTDIR/.zhistory"
+export EDITOR='vim -O'
+export HISTFILE="$DOTDIR"'/.zhistory'
 export HISTSIZE=80
 export LESSHISTFILE='/dev/null'
 export SAVEHIST=10000
@@ -59,7 +59,7 @@ alias g="HOME=$DOTDIR git"
 alias gb='bulk git'
 alias git="HOME=$DOTDIR git"
 alias jshint="HOME=$DOTDIR jshint"
-alias mkdir="mkdir -p"
+alias mkdir='mkdir -p'
 alias mv='mv -i'
 alias rm='rm -i'
 alias tmux="tmux -2 -f $DOTDIR/.tmux.conf"
@@ -67,6 +67,7 @@ alias tree='tree --dirsfirst -alI "node_*|.git*|.svn"'
 alias vi="$EDITOR"
 alias vim="$EDITOR"
 alias viml="$EDITOR"' $(eval ${$(fc -l -1)[2,-1]} -l)'
+alias vimi="$EDITOR"' $(eval ${$(fc -l -1)[2,-1]})'
 alias xd='tmux detach'
 alias xn='tmux neww'
 alias xr='tmux attach -d || tmux'
@@ -74,8 +75,8 @@ alias xr='tmux attach -d || tmux'
 # Functions
 bulk () { for d in *; do [[ -d $d ]] || continue; printf "\e[48;5;236;38;5;252m$d \e[38;5;161m\$ \e[0m $*\n"; ( cd $d; eval $* ); done }
 cf () { cd $(dirname $(readlink $1)) }
-fd () { find -L ${2:-.} -type d -iregex ".*\($1\)[^/]*" | ack -v "(.git/|.svn/)" }
-ff () { find -L ${2:-.} -type f -iregex ".*\($1\)[^/]*" | ack -v "(.svn/|.swp$)" }
+fd () { find -L ${2:-.} -type d -iregex ".*\($1\)[^/]*" | ack -v '(.git/|.svn/)' }
+ff () { find -L ${2:-.} -type f -iregex ".*\($1\)[^/]*" | ack -v '(.svn/|.swp$)' }
 md () { mkdir -p $@ && cd $_ }
 rn () { a="$1"; shift; b="$1"; shift; for i in "$@"; do mv -R $i ${i//$a/$b}; done }
 rl () { for i in "$@"; do mv "$i" "${i:l}"; done }
@@ -84,7 +85,7 @@ xv () { tmux neww "$EDITOR $*" }
 # OS
 case $(uname) in
     Darwin) alias ll='CLICOLOR_FORCE=1 ls -AFGhl | grep "^d\|total" && CLICOLOR_FORCE=1 ls -AFGl | grep -v "^d\|total"';;
-    Linux)  alias ll='ls -AFhl --color --group-directories-first' ;;
+    Linux)  alias ll='ls -AFhl --color --group-directories-first';;
 esac
 
 # Completion
@@ -162,5 +163,11 @@ up() {
 compctl -/ -K _up up
 
 # Plugins
-source "/usr/local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh"
-source "$DOTDIR/.zsh/bundle/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+[ -f '/usr/local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh' ] && \
+    source '/usr/local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh'
+
+[ -f "$DOTDIR"'/.zsh/bundle/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh' ] && \
+    source "$DOTDIR"'/.zsh/bundle/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh'
+
+[ -f '/Users/smoeller/.travis/travis.sh' ] && \
+    source '/Users/smoeller/.travis/travis.sh'
