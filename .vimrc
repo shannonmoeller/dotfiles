@@ -12,25 +12,28 @@ filetype off
     Bundle 'gmarik/vundle'
 
     " Plugins
-    Bundle 'JazzCore/ctrlp-cmatcher'
-    Bundle 'Lokaltog/vim-easymotion'
+    " Bundle 'JazzCore/ctrlp-cmatcher'
+    " Bundle 'Lokaltog/vim-easymotion'
     Bundle 'Valloric/YouCompleteMe'
     Bundle 'airblade/vim-gitgutter'
-    Bundle 'godlygeek/tabular'
+    " Bundle 'craigemery/vim-autotag'
+    Bundle 'editorconfig/editorconfig-vim'
+    " Bundle 'godlygeek/tabular'
     Bundle 'jistr/vim-nerdtree-tabs'
-    Bundle 'kien/ctrlp.vim'
-    Bundle 'majutsushi/tagbar'
+    " Bundle 'kien/ctrlp.vim'
+    " Bundle 'majutsushi/tagbar'
     Bundle 'marijnh/tern_for_vim'
     Bundle 'nathanaelkane/vim-indent-guides'
-    Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+    Bundle 'rking/ag.vim'
+    " Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
     Bundle 'scrooloose/nerdtree'
     Bundle 'scrooloose/syntastic'
-    Bundle 'sjl/gundo.vim'
-    Bundle 'thinca/vim-textobj-function-javascript'
+    " Bundle 'sjl/gundo.vim'
+    Bundle 'terryma/vim-multiple-cursors'
+    " Bundle 'thinca/vim-textobj-function-javascript'
     Bundle 'tomtom/tcomment_vim'
-    Bundle 'tpope/vim-abolish'
-    Bundle 'tpope/vim-fugitive'
-    Bundle 'tpope/vim-markdown'
+    " Bundle 'tpope/vim-abolish'
+    " Bundle 'tpope/vim-fugitive'
     Bundle 'tpope/vim-repeat'
     Bundle 'tpope/vim-surround'
 
@@ -38,20 +41,21 @@ filetype off
     Bundle 'shannonmoeller/vim-monokai256'
 
     " Languages
-    Bundle 'digitaltoad/vim-jade'
+    " Bundle 'digitaltoad/vim-jade'
     Bundle 'groenewege/vim-less'
     Bundle 'jakar/vim-json'
-    Bundle 'kchmck/vim-coffee-script'
+    " Bundle 'kchmck/vim-coffee-script'
     Bundle 'mustache/vim-mustache-handlebars'
     Bundle 'shannonmoeller/vim-javascript'
-    Bundle 'tpope/vim-haml'
-    Bundle 'wavded/vim-stylus'
+    " Bundle 'tpope/vim-haml'
+    Bundle 'tpope/vim-markdown'
+    " Bundle 'wavded/vim-stylus'
 filetype plugin indent on
 
 " Bundle Settings
 let g:NERDTreeIgnore = ['\.swp$', '\.swo$']
 let g:NERDTreeShowHidden = 1
-let g:NERDTreeWinSize = 24
+let g:NERDTreeWinSize = 20
 let g:gitgutter_eager = 0
 let g:gitgutter_realtime = 0
 let g:gitgutter_sign_column_always = 1
@@ -61,8 +65,8 @@ let g:javascript_doc = 'yuidoc'
 let g:markdown_fenced_languages = ['css', 'html', 'less', 'javascript', 'js=javascript', 'json=javascript', 'sass', 'scss', 'xml']
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_enable_signs = 0
-let g:tagbar_compact = 1
-let g:tagbar_width = 24
+" let g:tagbar_compact = 1
+" let g:tagbar_width = 24
 let g:tern#arguments = ['--no-port-file']
 let g:tern_map_keys = 1
 let g:tern_show_argument_hints = 'on_hold'
@@ -112,10 +116,9 @@ else
 endif
 
 " Filetypes
-autocmd BufNewFile,BufRead *.css,*.scss setl fdm=manual
-autocmd BufNewFile,BufRead *.json setl ft=json
-autocmd BufNewFile,BufRead *.hbr,*.hbs,*.hbt setl ft=mustache
-autocmd FileType coffee,jade,stylus,yaml setl sw=2 ts=2
+autocmd BufNewFile,BufRead *.json setl ft=json sw=2 ts=2
+autocmd BufNewFile,BufRead *.handlebars,*.hbr,*.hbs,*.hbt setl ft=mustache
+" autocmd FileType coffee,jade,stylus,yaml setl sw=2 ts=2
 autocmd FileType css setl omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setl omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setl omnifunc=javascriptcomplete#CompleteJS
@@ -124,6 +127,7 @@ autocmd FileType php setl omnifunc=phpcomplete#CompletePHP
 " Mapping
 cmap w!! w !sudo tee > /dev/null %
 inoremap <Nul> <C-X><C-O>
+inoremap <Leader>g <C-R>=expand('%:t:r')<CR>
 nnoremap <Leader>u :GundoToggle<CR>
 nnoremap <Leader>n :NERDTreeTabsToggle<CR>
 nnoremap <Leader>t :TagbarToggle<CR>

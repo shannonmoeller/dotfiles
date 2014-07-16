@@ -11,7 +11,6 @@ PATH="$PATH:$DOTDIR/bin"
 PATH="$PATH:/usr/local/heroku/bin"
 PATH="$PATH:/usr/local/mysql/bin"
 PATH="$PATH:/usr/local/opt/ruby/bin"
-PATH="$PATH:/usr/local/share/npm/bin"
 PATH="$PATH:/usr/local/bin:/usr/bin:/bin"
 PATH="$PATH:/usr/local/sbin:/usr/sbin:/sbin"
 export PATH
@@ -53,7 +52,7 @@ bindkey 'e[F'  end-of-line
 # Aliases
 alias -g LR='| less -RF'
 alias -g NUL='> /dev/null 2>&1'
-alias ack='ack --smart-case'
+alias ag='ag --smart-case'
 alias cp='cp -i'
 alias g="HOME=$DOTDIR git"
 alias gb='bulk git'
@@ -63,7 +62,7 @@ alias mkdir='mkdir -p'
 alias mv='mv -i'
 alias rm='rm -i'
 alias tmux="tmux -2 -f $DOTDIR/.tmux.conf"
-alias tree='tree --dirsfirst -alI "node_*|.git*|.svn"'
+alias tree='tree --dirsfirst -alACFI "node_*|.git*|.svn"'
 alias vi="$EDITOR"
 alias vim="$EDITOR"
 alias viml="$EDITOR"' $(eval ${$(fc -l -1)[2,-1]} -l)'
@@ -75,17 +74,25 @@ alias xr='tmux attach -d || tmux'
 # Functions
 bulk () { for d in *; do [[ -d $d ]] || continue; printf "\e[48;5;236;38;5;252m$d \e[38;5;161m\$ \e[0m $*\n"; ( cd $d; eval $* ); done }
 cf () { cd $(dirname $(readlink $1)) }
-fd () { find -L ${2:-.} -type d -iregex ".*\($1\)[^/]*" | ack -v '(.git/|.svn/)' }
-ff () { find -L ${2:-.} -type f -iregex ".*\($1\)[^/]*" | ack -v '(.svn/|.swp$)' }
+fd () { find -L ${2:-.} -type d -iregex ".*\($1\)[^/]*" | ag -v '(.git/|.svn/)' }
+ff () { find -L ${2:-.} -type f -iregex ".*\($1\)[^/]*" | ag -v '(.svn/|.swp$)' }
 md () { mkdir -p $@ && cd $_ }
-rn () { a="$1"; shift; b="$1"; shift; for i in "$@"; do mv -R $i ${i//$a/$b}; done }
+rn () { a="$1"; shift; b="$1"; shift; for i in "$@"; do mv $i ${i//$a/$b}; done }
 rl () { for i in "$@"; do mv "$i" "${i:l}"; done }
 xv () { tmux neww "$EDITOR $*" }
 
 # OS
 case $(uname) in
-    Darwin) alias ll='CLICOLOR_FORCE=1 ls -AFGhl | grep "^d\|total" && CLICOLOR_FORCE=1 ls -AFGl | grep -v "^d\|total"';;
-    Linux)  alias ll='ls -AFhl --color --group-directories-first';;
+    Darwin)
+        LSCOLORS="ExGxFxDxCxDxDxhbhdacEc";
+        export LSCOLORS
+        alias ll='CLICOLOR_FORCE=1 ls -AFGhl | grep "^d\|total" && CLICOLOR_FORCE=1 ls -AFGl | grep -v "^d\|total"'
+    ;;
+    Linux)
+        LS_COLORS="di=01;34:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=01;05;37;41:mi=01;05;37;41:su=37;41:sg=30;43:tw=30;42:ow=34;42:st=37;44:ex=01;32";
+        export LS_COLORS
+        alias ll='ls -AFhl --color --group-directories-first'
+    ;;
 esac
 
 # Completion
@@ -95,26 +102,6 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 zstyle ':completion:*' menu select=2
 zstyle ':completion:*' special-dirs true
 
-function _grunt_completion() {
-  local completions
-  # The currently-being-completed word.
-  local cur="${words[@]}"
-  # The current grunt version, available tasks, options, etc.
-  local gruntinfo="$(grunt --version --verbose 2>/dev/null)"
-  # Options and tasks.
-  local opts="$(echo "$gruntinfo" | awk '/Available options: / {$1=$2=""; print $0}')"
-  local compls="$(echo "$gruntinfo" | awk '/Available tasks: / {$1=$2=""; print $0}')"
-  # Only add -- or - options if the user has started typing -
-  [[ "$cur" == -* ]] && compls="$compls $opts"
-  # Trim whitespace.
-  compls=$(echo "$compls" | sed -e 's/^ *//g' -e 's/ *$//g')
-  # Turn compls into an array to of completions.
-  completions=(${=compls})
-  # Tell complete what stuff to show.
-  compadd -- $completions
-}
-
-compdef _grunt_completion grunt
 compdef gb=git
 compdef xv=vim
 
@@ -163,11 +150,12 @@ up() {
 compctl -/ -K _up up
 
 # Plugins
-[ -f '/usr/local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh' ] && \
-    source '/usr/local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh'
+[ -f '/usr/local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh' ] \
+    && source '/usr/local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh' \
+    || export PS1=$'%{%31K%255F%} %n@%M %{%240K%31F%}⮀%{%252F%} %3c %{%k%240F%}⮀%{%f%} '
 
-[ -f "$DOTDIR"'/.zsh/bundle/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh' ] && \
-    source "$DOTDIR"'/.zsh/bundle/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh'
+[ -f "$DOTDIR"'/.zsh/bundle/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh' ] \
+    && source "$DOTDIR"'/.zsh/bundle/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh'
 
-[ -f '/Users/smoeller/.travis/travis.sh' ] && \
-    source '/Users/smoeller/.travis/travis.sh'
+[ -f '/Users/smoeller/.travis/travis.sh' ] \
+    && source '/Users/smoeller/.travis/travis.sh'
