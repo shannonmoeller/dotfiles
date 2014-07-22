@@ -157,5 +157,8 @@ compctl -/ -K _up up
 [ -f "$DOTDIR"'/.zsh/bundle/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh' ] \
     && source "$DOTDIR"'/.zsh/bundle/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh'
 
-[ -f '/Users/smoeller/.travis/travis.sh' ] \
-    && source '/Users/smoeller/.travis/travis.sh'
+[ -f "$HOME"'/.nvm/nvm.sh' ] \
+    && source "$HOME"'/.nvm/nvm.sh'
+
+[ -f "$HOME"'/.travis/travis.sh' ] \
+    && source "$HOME"'/.travis/travis.sh'

@@ -3,59 +3,49 @@
 
 " Runtime
 set runtimepath^=$DOTDIR/.vim
-set runtimepath+=$DOTDIR/.vim/bundle/vundle
+set runtimepath+=$DOTDIR/.vim/bundle/vundle.vim
 
-" Bundles
+" Plugins
 filetype off
     " Vundle
     call vundle#rc('$DOTDIR/.vim/bundle')
-    Bundle 'gmarik/vundle'
+    Plugin 'gmarik/vundle.vim'
 
     " Plugins
-    " Bundle 'JazzCore/ctrlp-cmatcher'
-    " Bundle 'Lokaltog/vim-easymotion'
-    Bundle 'Valloric/YouCompleteMe'
-    Bundle 'airblade/vim-gitgutter'
-    " Bundle 'craigemery/vim-autotag'
-    Bundle 'editorconfig/editorconfig-vim'
-    " Bundle 'godlygeek/tabular'
-    Bundle 'jistr/vim-nerdtree-tabs'
-    " Bundle 'kien/ctrlp.vim'
-    " Bundle 'majutsushi/tagbar'
-    Bundle 'marijnh/tern_for_vim'
-    Bundle 'nathanaelkane/vim-indent-guides'
-    Bundle 'rking/ag.vim'
-    " Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
-    Bundle 'scrooloose/nerdtree'
-    Bundle 'scrooloose/syntastic'
-    " Bundle 'sjl/gundo.vim'
-    Bundle 'terryma/vim-multiple-cursors'
-    " Bundle 'thinca/vim-textobj-function-javascript'
-    Bundle 'tomtom/tcomment_vim'
-    " Bundle 'tpope/vim-abolish'
-    " Bundle 'tpope/vim-fugitive'
-    Bundle 'tpope/vim-repeat'
-    Bundle 'tpope/vim-surround'
+    Plugin 'JazzCore/ctrlp-cmatcher'
+    Plugin 'Valloric/YouCompleteMe'
+    Plugin 'airblade/vim-gitgutter'
+    Plugin 'editorconfig/editorconfig-vim'
+    Plugin 'jistr/vim-nerdtree-tabs'
+    Plugin 'kien/ctrlp.vim'
+    Plugin 'marijnh/tern_for_vim'
+    Plugin 'nathanaelkane/vim-indent-guides'
+    Plugin 'rking/ag.vim'
+    Plugin 'scrooloose/nerdtree'
+    Plugin 'scrooloose/syntastic'
+    Plugin 'terryma/vim-multiple-cursors'
+    Plugin 'tomtom/tcomment_vim'
+    Plugin 'tpope/vim-repeat'
+    Plugin 'tpope/vim-surround'
 
     " Themes
-    Bundle 'shannonmoeller/vim-monokai256'
+    Plugin 'shannonmoeller/vim-monokai256'
 
     " Languages
-    " Bundle 'digitaltoad/vim-jade'
-    Bundle 'groenewege/vim-less'
-    Bundle 'jakar/vim-json'
-    " Bundle 'kchmck/vim-coffee-script'
-    Bundle 'mustache/vim-mustache-handlebars'
-    Bundle 'shannonmoeller/vim-javascript'
-    " Bundle 'tpope/vim-haml'
-    Bundle 'tpope/vim-markdown'
-    " Bundle 'wavded/vim-stylus'
+    Plugin 'groenewege/vim-less'
+    Plugin 'jakar/vim-json'
+    Plugin 'kchmck/vim-coffee-script'
+    Plugin 'mustache/vim-mustache-handlebars'
+    Plugin 'shannonmoeller/vim-javascript'
+    Plugin 'tpope/vim-haml'
+    Plugin 'tpope/vim-markdown'
 filetype plugin indent on
 
-" Bundle Settings
+" Plugin Settings
 let g:NERDTreeIgnore = ['\.swp$', '\.swo$']
 let g:NERDTreeShowHidden = 1
 let g:NERDTreeWinSize = 20
+let g:ctrlp_match_func = { 'match': 'matcher#cmatch' }
 let g:gitgutter_eager = 0
 let g:gitgutter_realtime = 0
 let g:gitgutter_sign_column_always = 1
@@ -65,8 +55,6 @@ let g:javascript_doc = 'yuidoc'
 let g:markdown_fenced_languages = ['css', 'html', 'less', 'javascript', 'js=javascript', 'json=javascript', 'sass', 'scss', 'xml']
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_enable_signs = 0
-" let g:tagbar_compact = 1
-" let g:tagbar_width = 24
 let g:tern#arguments = ['--no-port-file']
 let g:tern_map_keys = 1
 let g:tern_show_argument_hints = 'on_hold'
@@ -74,7 +62,7 @@ let g:ycm_cache_omnifunc = 0
 let g:ycm_key_list_previous_completion = ['<Up>']
 let g:ycm_key_list_select_completion = ['<Down>']
 
-" Bundle Setup
+" Plugin Setup
 python from powerline.vim import setup as powerline_setup
 python powerline_setup()
 python del powerline_setup
