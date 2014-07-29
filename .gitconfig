@@ -31,7 +31,8 @@
 [core]
     excludesfile = .gitignore
 [credential]
-    helper = osxkeychain
+    helper = cache --timeout=72000
+    useHttpPath = true
 [diff]
     tool = vimdiff
 [pager]

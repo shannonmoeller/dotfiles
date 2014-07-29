@@ -106,11 +106,14 @@ endif
 " Filetypes
 autocmd BufNewFile,BufRead *.json setl ft=json sw=2 ts=2
 autocmd BufNewFile,BufRead *.handlebars,*.hbr,*.hbs,*.hbt setl ft=mustache
-" autocmd FileType coffee,jade,stylus,yaml setl sw=2 ts=2
-autocmd FileType css setl omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setl omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setl omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType php setl omnifunc=phpcomplete#CompletePHP
+autocmd FileType c set omnifunc=ccomplete#Complete
+autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+autocmd FileType html setl omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType markdown setl omnifunc=htmlcomplete#CompleteTags
+autocmd FileType php set omnifunc=phpcomplete#CompletePHP
+autocmd FileType python set omnifunc=pythoncomplete#Complete
+autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
 
 " Mapping
 cmap w!! w !sudo tee > /dev/null %
