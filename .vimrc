@@ -14,7 +14,6 @@ filetype off
     " Plugins
     Plugin 'JazzCore/ctrlp-cmatcher'
     Plugin 'Valloric/YouCompleteMe'
-    Plugin 'airblade/vim-gitgutter'
     Plugin 'editorconfig/editorconfig-vim'
     Plugin 'jistr/vim-nerdtree-tabs'
     Plugin 'kien/ctrlp.vim'
@@ -27,11 +26,13 @@ filetype off
     Plugin 'tomtom/tcomment_vim'
     Plugin 'tpope/vim-repeat'
     Plugin 'tpope/vim-surround'
+    Plugin 'joonty/vdebug'
 
     " Themes
     Plugin 'shannonmoeller/vim-monokai256'
 
     " Languages
+    Plugin 'evidens/vim-twig'
     Plugin 'groenewege/vim-less'
     Plugin 'jakar/vim-json'
     Plugin 'kchmck/vim-coffee-script'
@@ -53,11 +54,11 @@ let g:indent_guides_auto_colors = 0
 let g:indent_guides_guide_size = 1
 let g:javascript_doc = 'yuidoc'
 let g:markdown_fenced_languages = ['css', 'html', 'less', 'javascript', 'js=javascript', 'json=javascript', 'sass', 'scss', 'xml']
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_enable_signs = 0
+let g:syntastic_html_checkers = []
 let g:tern#arguments = ['--no-port-file']
 let g:tern_map_keys = 1
 let g:tern_show_argument_hints = 'on_hold'
+let g:vdebug_options = { 'break_on_open': 1, 'port': 9000, 'server': '' }
 let g:ycm_cache_omnifunc = 0
 let g:ycm_key_list_previous_completion = ['<Up>']
 let g:ycm_key_list_select_completion = ['<Down>']
@@ -140,4 +141,3 @@ autocmd InsertLeave * match TrailingSpace /\s\+$/
 
 " Macros
 runtime macros/matchit.vim
-
