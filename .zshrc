@@ -63,6 +63,10 @@ alias mv='mv -i'
 alias rm='rm -i'
 alias tmux="tmux -2 -f $DOTDIR/.tmux.conf"
 alias tree='tree --dirsfirst -alACFI "node_*|.git*|.svn"'
+alias va='vagrant'
+alias vh='vagrant halt'
+alias vs='vagrant ssh'
+alias vu='vagrant up'
 alias vi="$EDITOR"
 alias vim="$EDITOR"
 alias viml="$EDITOR"' $(eval ${$(fc -l -1)[2,-1]} -l)'
@@ -75,7 +79,7 @@ alias xr='tmux attach -d || tmux'
 bulk () { for d in *; do [[ -d $d ]] || continue; printf "\e[48;5;236;38;5;252m$d \e[38;5;161m\$ \e[0m $*\n"; ( cd $d; eval $* ); done }
 cf () { cd $(dirname $(readlink $1)) }
 fd () { find -L ${2:-.} -type d -iregex ".*\($1\)[^/]*" | ag -v '(.git/|.svn/)' }
-ff () { find -L ${2:-.} -type f -iregex ".*\($1\)[^/]*" | ag -v '(.svn/|.swp$)' }
+ff () { find -L ${2:-.} -type f -iregex ".*\($1\)[^/]*" | ag -v '(.git/|svn/$)' }
 md () { mkdir -p $@ && cd $_ }
 rn () { a="$1"; shift; b="$1"; shift; for i in "$@"; do mv $i ${i//$a/$b}; done }
 rl () { for i in "$@"; do mv "$i" "${i:l}"; done }

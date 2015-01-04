@@ -13,20 +13,20 @@ filetype off
 
     " Plugins
     Plugin 'JazzCore/ctrlp-cmatcher'
-    Plugin 'Valloric/YouCompleteMe'
+    " Plugin 'Valloric/YouCompleteMe'
     Plugin 'editorconfig/editorconfig-vim'
     Plugin 'jistr/vim-nerdtree-tabs'
     Plugin 'kien/ctrlp.vim'
-    Plugin 'marijnh/tern_for_vim'
+    " Plugin 'marijnh/tern_for_vim'
     Plugin 'nathanaelkane/vim-indent-guides'
-    Plugin 'rking/ag.vim'
+    " Plugin 'rking/ag.vim'
     Plugin 'scrooloose/nerdtree'
     Plugin 'scrooloose/syntastic'
     Plugin 'terryma/vim-multiple-cursors'
     Plugin 'tomtom/tcomment_vim'
     Plugin 'tpope/vim-repeat'
     Plugin 'tpope/vim-surround'
-    Plugin 'joonty/vdebug'
+    " Plugin 'joonty/vdebug'
 
     " Themes
     Plugin 'shannonmoeller/vim-monokai256'
@@ -43,18 +43,21 @@ filetype off
 filetype plugin indent on
 
 " Plugin Settings
+let g:NERDTreeChDirMode = 2
 let g:NERDTreeIgnore = ['\.swp$', '\.swo$']
 let g:NERDTreeShowHidden = 1
-let g:NERDTreeWinSize = 20
+let g:NERDTreeWinSize = 25
 let g:ctrlp_match_func = { 'match': 'matcher#cmatch' }
-let g:gitgutter_eager = 0
-let g:gitgutter_realtime = 0
-let g:gitgutter_sign_column_always = 1
+let g:ctrlp_custom_ignore = { 'dir': '\v[\/](\.git|\.hg|\.svn|docs|node_modules|puphpet|vendor)$', 'file': '\v\.(dll|exe|so|swp)$' }
 let g:indent_guides_auto_colors = 0
 let g:indent_guides_guide_size = 1
 let g:javascript_doc = 'yuidoc'
 let g:markdown_fenced_languages = ['css', 'html', 'less', 'javascript', 'js=javascript', 'json=javascript', 'sass', 'scss', 'xml']
+let g:syntastic_error_symbol = '✗'
 let g:syntastic_html_checkers = []
+let g:syntastic_style_error_symbol = '✗'
+let g:syntastic_style_warning_symbol = '⚠'
+let g:syntastic_warning_symbol = '⚠'
 let g:tern#arguments = ['--no-port-file']
 let g:tern_map_keys = 1
 let g:tern_show_argument_hints = 'on_hold'
@@ -105,24 +108,33 @@ else
 endif
 
 " Filetypes
-autocmd BufNewFile,BufRead *.json setl ft=json sw=2 ts=2
 autocmd BufNewFile,BufRead *.handlebars,*.hbr,*.hbs,*.hbt setl ft=mustache
+autocmd BufNewFile,BufRead *.json setl ft=json
+autocmd BufNewFile,BufRead Vagrantfile setl ft=ruby
 autocmd FileType c set omnifunc=ccomplete#Complete
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 autocmd FileType html setl omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType json set sw=2 ts=2
 autocmd FileType markdown setl omnifunc=htmlcomplete#CompleteTags
 autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 autocmd FileType python set omnifunc=pythoncomplete#Complete
+autocmd FileType ruby set sw=2 ts=2
 autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
 
 " Mapping
-cmap w!! w !sudo tee > /dev/null %
+cnoreabbrev Q q
+cnoreabbrev Q! q!
+cnoreabbrev W w
+cnoreabbrev W! w!
+cnoreabbrev Wa wa
+cnoreabbrev Windo windo
+cnoreabbrev Wq wq
+cnoreabbrev Wqa wqa
+cnoreabbrev w!! w !sudo tee > /dev/null %
 inoremap <Nul> <C-X><C-O>
 inoremap <Leader>g <C-R>=expand('%:t:r')<CR>
-nnoremap <Leader>u :GundoToggle<CR>
 nnoremap <Leader>n :NERDTreeTabsToggle<CR>
-nnoremap <Leader>t :TagbarToggle<CR>
 nnoremap <silent> <Leader>/ :nohlsearch<CR>
 nnoremap <silent> <Leader><Space> :sil %s/\s\+$//<CR>
 nnoremap <silent> <Leader>f :set foldenable!<CR>
@@ -130,6 +142,8 @@ nnoremap <silent> <Leader>p :set paste!<CR>
 nnoremap <silent> <Leader>w :set wrap!<CR>
 nnoremap Y y$
 noremap <Nul> <Nop>
+vmap < <gv
+vmap > >gv
 
 " Theme
 syntax on
