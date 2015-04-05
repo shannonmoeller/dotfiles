@@ -66,7 +66,7 @@ alias tree='tree --dirsfirst -alACFI "node_*|.git*|.svn"'
 alias va='vagrant'
 alias vh='vagrant halt'
 alias vs='vagrant ssh'
-alias vu='vagrant up'
+alias vu='VAGRANT_HTTP_PROXY="http://10.0.2.2:8888/" VAGRANT_HTTPS_PROXY="http://10.0.2.2:8888/" vagrant up'
 alias vi="$EDITOR"
 alias vim="$EDITOR"
 alias viml="$EDITOR"' $(eval ${$(fc -l -1)[2,-1]} -l)'
@@ -160,9 +160,6 @@ compctl -/ -K _up up
 
 [ -f "$DOTDIR"'/.zsh/bundle/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh' ] \
     && source "$DOTDIR"'/.zsh/bundle/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh'
-
-[ -f "$HOME"'/.nvm/nvm.sh' ] \
-    && source "$HOME"'/.nvm/nvm.sh'
 
 [ -f "$HOME"'/.travis/travis.sh' ] \
     && source "$HOME"'/.travis/travis.sh'

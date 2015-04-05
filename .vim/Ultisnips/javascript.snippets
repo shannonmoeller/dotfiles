@@ -1,0 +1,49 @@
+extends javascript
+
+snippet el "MyElement" b
+import MyElement from '../my-element/element';
+
+/**
+ * The \`${1}\` element definition.
+ *
+ * @class ${1/-?\b(\w)/\u$1/g}Element
+ * @extends MyElement
+ */
+class ${1/-?\b(\w)/\u$1/g}Element extends MyElement {
+	/**
+	 * @method createdCallback
+	 */
+	createdCallback() {
+		${0}
+	}
+
+	/**
+	 * @method attachedCallback
+	 */
+	attachedCallback() {
+	}
+
+	/**
+	 * @method detachedCallback
+	 */
+	detachedCallback() {
+	}
+
+	/**
+	 * @method attributeChangedCallback
+	 * @param {String} name
+	 * @param {String} oldValue
+	 * @param {String} newValue
+	 */
+	attributeChangedCallback(name, oldValue, newValue) {
+	}
+}
+
+export default document.registerElement('$1', {
+	prototype: ${1/-?\b(\w)/\u$1/g}Element.prototype
+});
+endsnippet
+
+snippet jh "jshint" b
+/*jshint ${1} */
+endsnippet

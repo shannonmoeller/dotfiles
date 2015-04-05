@@ -1,0 +1,46 @@
+extends html
+
+snippet html "Document" b
+<!doctype html>
+<html>
+<head>
+
+	<meta charset="utf-8" />
+	<title>${1}</title>
+
+</head>
+<body>
+
+	${0}
+
+</body>
+</html>
+endsnippet
+
+snippet js "Inline script" b
+<script>
+	${0}
+</script>
+endsnippet
+
+snippet jsi "Import script" b
+<script>System.import('${1}');</script>
+endsnippet
+
+snippet jss "External script" b
+<script src="${1}"></script>
+endsnippet
+
+snippet cs "Inline style" b
+<style>
+	${1}
+</style>
+endsnippet
+
+snippet csi "Import style" b
+<style>@import '${1}';</style>
+endsnippet
+
+snippet css "External style" b
+<link rel="stylesheet" href="${1}" />
+endsnippet

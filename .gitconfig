@@ -12,7 +12,7 @@
     la = !git log --oneline | ack -i
     lc = log ORIG_HEAD.. --stat --no-merges
     lg = log --pretty=format:'%C(yellow bold)%h%Creset %s %C(green bold)(%cr)%Creset %an <%ae>' --graph
-    ll = log --pretty=format:'%C(yellow bold)%h%Creset %C(green bold)(%cd)%Creset <%ae> %s' --author=moeller --date=local --no-merges --since='9 days ago'
+    ll = log --pretty=format:'%C(yellow bold)%h%Creset %C(green bold)(%cd)%Creset <%ae> %s' --author=moeller --date=local --no-merges --since='1 month ago'
     pl = pull
     po = push origin
     pom = push origin master
@@ -25,6 +25,7 @@
     ss = status -s
     st = status
     sw = show --ignore-space-change
+    ue = config user.email
     up = !git pull && git submodule update --init --recursive
     wc = whatchanged
 [color]

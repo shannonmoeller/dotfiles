@@ -13,31 +13,33 @@ filetype off
 
     " Plugins
     Plugin 'JazzCore/ctrlp-cmatcher'
-    " Plugin 'Valloric/YouCompleteMe'
+    Plugin 'SirVer/ultisnips'
+    Plugin 'Valloric/YouCompleteMe'
     Plugin 'editorconfig/editorconfig-vim'
+    Plugin 'honza/vim-snippets'
     Plugin 'jistr/vim-nerdtree-tabs'
     Plugin 'kien/ctrlp.vim'
-    " Plugin 'marijnh/tern_for_vim'
+    Plugin 'marijnh/tern_for_vim'
+    Plugin 'mattn/emmet-vim'
     Plugin 'nathanaelkane/vim-indent-guides'
-    " Plugin 'rking/ag.vim'
     Plugin 'scrooloose/nerdtree'
     Plugin 'scrooloose/syntastic'
     Plugin 'terryma/vim-multiple-cursors'
     Plugin 'tomtom/tcomment_vim'
     Plugin 'tpope/vim-repeat'
     Plugin 'tpope/vim-surround'
-    " Plugin 'joonty/vdebug'
 
     " Themes
     Plugin 'shannonmoeller/vim-monokai256'
 
     " Languages
+    Plugin 'csscomb/vim-csscomb'
     Plugin 'evidens/vim-twig'
     Plugin 'groenewege/vim-less'
     Plugin 'jakar/vim-json'
-    Plugin 'kchmck/vim-coffee-script'
     Plugin 'mustache/vim-mustache-handlebars'
-    Plugin 'shannonmoeller/vim-javascript'
+    Plugin 'pangloss/vim-javascript'
+    " Plugin 'shannonmoeller/vim-javascript'
     Plugin 'tpope/vim-haml'
     Plugin 'tpope/vim-markdown'
 filetype plugin indent on
@@ -47,8 +49,13 @@ let g:NERDTreeChDirMode = 2
 let g:NERDTreeIgnore = ['\.swp$', '\.swo$']
 let g:NERDTreeShowHidden = 1
 let g:NERDTreeWinSize = 25
-let g:ctrlp_match_func = { 'match': 'matcher#cmatch' }
+let g:UltiSnipsExpandTrigger='<tab>'
+let g:UltiSnipsJumpBackwardTrigger='<s-tab>'
+let g:UltiSnipsJumpForwardTrigger='<tab>'
+let g:UltiSnipsEnableSnipMate = 0
+let g:UltiSnipsSnippetDirectories = ['UltiSnips']
 let g:ctrlp_custom_ignore = { 'dir': '\v[\/](\.git|\.hg|\.svn|docs|node_modules|puphpet|vendor)$', 'file': '\v\.(dll|exe|so|swp)$' }
+let g:ctrlp_match_func = { 'match': 'matcher#cmatch' }
 let g:indent_guides_auto_colors = 0
 let g:indent_guides_guide_size = 1
 let g:javascript_doc = 'yuidoc'
@@ -87,6 +94,7 @@ set nowrap
 set number
 set shiftwidth=4
 set showcmd
+set showtabline=2
 set smartindent
 set splitbelow
 set splitright
