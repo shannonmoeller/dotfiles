@@ -24,7 +24,9 @@ snippet js "Inline script" b
 endsnippet
 
 snippet jsi "Import script" b
-<script>System.import('${1}');</script>
+<script src="${1:assets/}vendor/system.js"></script>
+<script src="$1js/config.js"></script>
+<script>System.import('${2}');</script>
 endsnippet
 
 snippet jss "External script" b

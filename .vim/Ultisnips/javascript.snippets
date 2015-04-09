@@ -1,6 +1,35 @@
 extends javascript
 
-snippet el "MyElement" b
+snippet class "ES6 Class" b
+/**
+ * @class ${1:Child}
+ */
+class $1 {
+	/**
+	 * @constructor
+	 */
+	constructor(${2:arguments}) {
+		${0}
+	}
+}
+endsnippet
+
+snippet classex "ES6 Extended Class" b
+/**
+ * @class ${1:Child}
+ * @extends ${2:Parent}
+ */
+class $1 extends $2 {
+	/**
+	 * @constructor
+	 */
+	constructor(${3:arguments}) {
+		${4:super($3);}${0}
+	}
+}
+endsnippet
+
+snippet el "Custom Element" b
 import MyElement from '../my-element/element';
 
 /**
@@ -44,6 +73,25 @@ export default document.registerElement('$1', {
 });
 endsnippet
 
+snippet forof "for...of loop"
+for (let ${1:item} of ${2:items}) {
+	${0}
+}
+endsnippet
+
+snippet im "Import" b
+import ${1:thing} from '${2:path}';
+endsnippet
+
 snippet jh "jshint" b
 /*jshint ${1} */
+endsnippet
+
+snippet method "Method" b
+/**
+ * @method ${1:name}
+ */
+$1(${2:arguments}) {
+	${3:super.$1($2);}${0}
+}
 endsnippet
