@@ -60,11 +60,13 @@ let g:indent_guides_auto_colors = 0
 let g:indent_guides_guide_size = 1
 let g:javascript_doc = 'yuidoc'
 let g:markdown_fenced_languages = ['css', 'html', 'less', 'javascript', 'js=javascript', 'json=javascript', 'sass', 'scss', 'xml']
+let g:powerline_config_overrides = { 'ext': { 'vim': { 'components': ['statusline'] } } }
 let g:syntastic_error_symbol = '✗'
 let g:syntastic_html_checkers = []
-let g:syntastic_style_error_symbol = '✗'
-let g:syntastic_style_warning_symbol = '⚠'
-let g:syntastic_warning_symbol = '⚠'
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_style_error_symbol = 'x'
+let g:syntastic_style_warning_symbol = '!'
+let g:syntastic_warning_symbol = '!'
 let g:tern#arguments = ['--no-port-file']
 let g:tern_map_keys = 1
 let g:tern_show_argument_hints = 'on_hold'
@@ -102,11 +104,16 @@ set tabstop=4
 set timeoutlen=1000
 set ttimeoutlen=0
 set ttyfast
-set ttymouse=xterm2
 set ttyscroll=3
 set viminfo='100,<100,s100,%,n$DOTDIR/.viminfo
 set wildmenu
 set wildmode=longest:full
+
+if has("mouse_sgr")
+    set ttymouse=sgr
+else
+    set ttymouse=xterm2
+end
 
 if exists('+colorcolumn')
     set colorcolumn=81
