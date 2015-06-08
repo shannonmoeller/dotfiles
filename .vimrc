@@ -19,7 +19,7 @@ filetype off
     Plugin 'honza/vim-snippets'
     Plugin 'jistr/vim-nerdtree-tabs'
     Plugin 'kien/ctrlp.vim'
-    Plugin 'marijnh/tern_for_vim'
+    " Plugin 'marijnh/tern_for_vim'
     Plugin 'mattn/emmet-vim'
     Plugin 'nathanaelkane/vim-indent-guides'
     Plugin 'scrooloose/nerdtree'
@@ -102,11 +102,16 @@ set tabstop=4
 set timeoutlen=1000
 set ttimeoutlen=0
 set ttyfast
-set ttymouse=xterm2
 set ttyscroll=3
 set viminfo='100,<100,s100,%,n$DOTDIR/.viminfo
 set wildmenu
 set wildmode=longest:full
+
+if has("mouse_sgr")
+    set ttymouse=sgr
+else
+    set ttymouse=xterm2
+end
 
 if exists('+colorcolumn')
     set colorcolumn=81
