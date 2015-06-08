@@ -6,10 +6,11 @@ export ZDOTDIR="$( (readlink -f ~/.zshrc || greadlink -f ~/.zshrc) 2> /dev/null 
 export DOTDIR="$ZDOTDIR"
 
 # Path
-PATH="$HOME/bin:$HOME/sbin"
-PATH="$PATH:$DOTDIR/bin"
+PATH="$DOTDIR/bin"
+PATH="$PATH:$HOME/bin:$HOME/sbin"
 PATH="$PATH:/usr/local/heroku/bin"
 PATH="$PATH:/usr/local/mysql/bin"
+PATH="$PATH:/usr/local/Cellar/php54/5.4.39/bin"
 PATH="$PATH:/usr/local/opt/ruby/bin"
 PATH="$PATH:/usr/local/bin:/usr/bin:/bin"
 PATH="$PATH:/usr/local/sbin:/usr/sbin:/sbin"
@@ -59,6 +60,7 @@ alias gb='bulk git'
 alias git="HOME=$DOTDIR git"
 alias jshint="HOME=$DOTDIR jshint"
 alias mkdir='mkdir -p'
+alias mosh='echo -e "\e[?1005h\e[?1002h" && mosh'
 alias mv='mv -i'
 alias rm='rm -i'
 alias tmux="tmux -2 -f $DOTDIR/.tmux.conf"

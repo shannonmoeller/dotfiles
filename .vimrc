@@ -19,7 +19,7 @@ filetype off
     Plugin 'honza/vim-snippets'
     Plugin 'jistr/vim-nerdtree-tabs'
     Plugin 'kien/ctrlp.vim'
-    Plugin 'marijnh/tern_for_vim'
+    " Plugin 'marijnh/tern_for_vim'
     Plugin 'mattn/emmet-vim'
     Plugin 'nathanaelkane/vim-indent-guides'
     Plugin 'scrooloose/nerdtree'
