@@ -15,7 +15,8 @@
     ll = log --pretty=format:'%C(yellow bold)%h%Creset %C(green bold)(%cd)%Creset <%ae> %s' --author=moeller --date=local --no-merges --since='1 month ago'
     pl = pull
     po = push origin
-    pom = push origin master
+    pot = !git push origin && git push origin --tags
+    ra = commit --amend --reset-author
     rv = remote -v
     sh = stash
     sha = stash apply
