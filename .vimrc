@@ -19,7 +19,8 @@ filetype off
     Plugin 'honza/vim-snippets'
     Plugin 'jistr/vim-nerdtree-tabs'
     Plugin 'kien/ctrlp.vim'
-    " Plugin 'marijnh/tern_for_vim'
+    Plugin 'majutsushi/tagbar'
+    Plugin 'marijnh/tern_for_vim'
     Plugin 'mattn/emmet-vim'
     Plugin 'nathanaelkane/vim-indent-guides'
     Plugin 'scrooloose/nerdtree'
@@ -39,7 +40,6 @@ filetype off
     Plugin 'jakar/vim-json'
     Plugin 'mustache/vim-mustache-handlebars'
     Plugin 'pangloss/vim-javascript'
-    " Plugin 'shannonmoeller/vim-javascript'
     Plugin 'tpope/vim-haml'
     Plugin 'tpope/vim-markdown'
 filetype plugin indent on
@@ -64,6 +64,7 @@ let g:powerline_config_overrides = { 'ext': { 'vim': { 'components': ['statuslin
 let g:syntastic_error_symbol = '✗'
 let g:syntastic_html_checkers = []
 let g:syntastic_javascript_checkers = ['eslint']
+" let g:syntastic_javascript_checkers = ['jshint', 'jscs']
 let g:syntastic_style_error_symbol = 'x'
 let g:syntastic_style_warning_symbol = '!'
 let g:syntastic_warning_symbol = '!'
@@ -149,7 +150,8 @@ cnoreabbrev Wqa wqa
 cnoreabbrev w!! w !sudo tee > /dev/null %
 inoremap <Nul> <C-X><C-O>
 inoremap <Leader>g <C-R>=expand('%:t:r')<CR>
-nnoremap <Leader>n :NERDTreeTabsToggle<CR>
+nnoremap <Leader>n :NERDTreeToggle<CR>
+nnoremap <Leader>t :TagbarToggle<CR>
 nnoremap <silent> <Leader>/ :nohlsearch<CR>
 nnoremap <silent> <Leader><Space> :sil %s/\s\+$//<CR>
 nnoremap <silent> <Leader>f :set foldenable!<CR>
