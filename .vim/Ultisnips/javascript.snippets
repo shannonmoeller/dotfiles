@@ -35,7 +35,8 @@ snippet bel "Base Element" b
  *
  * The base element from which all other ${1/^(\w)(.*)$/\u$1$2/} elements are
  * extended. Enables the use of the class syntax when creating and extending
- * elements as the HTMLElement cannot be directly subclassed in IE.
+ * elements as the HTMLElement cannot be directly subclassed in IE. Should not
+ * be used directly in markup.
  */
 
 import 'document-register-element';
