@@ -17,6 +17,7 @@ filetype off
     Plugin 'Valloric/YouCompleteMe'
     Plugin 'editorconfig/editorconfig-vim'
     Plugin 'honza/vim-snippets'
+    Plugin 'itchyny/lightline.vim'
     Plugin 'jistr/vim-nerdtree-tabs'
     Plugin 'kien/ctrlp.vim'
     Plugin 'majutsushi/tagbar'
@@ -34,12 +35,13 @@ filetype off
     Plugin 'shannonmoeller/vim-monokai256'
 
     " Languages
-    Plugin 'csscomb/vim-csscomb'
     Plugin 'evidens/vim-twig'
     Plugin 'groenewege/vim-less'
     Plugin 'jakar/vim-json'
     Plugin 'mustache/vim-mustache-handlebars'
-    Plugin 'pangloss/vim-javascript'
+    Plugin 'othree/yajs.vim'
+    Plugin 'othree/es.next.syntax.vim'
+    " Plugin 'pangloss/vim-javascript'
     Plugin 'tpope/vim-haml'
     Plugin 'tpope/vim-markdown'
 filetype plugin indent on
@@ -60,11 +62,9 @@ let g:indent_guides_auto_colors = 0
 let g:indent_guides_guide_size = 1
 let g:javascript_doc = 'yuidoc'
 let g:markdown_fenced_languages = ['css', 'html', 'less', 'javascript', 'js=javascript', 'json=javascript', 'sass', 'scss', 'xml']
-let g:powerline_config_overrides = { 'ext': { 'vim': { 'components': ['statusline'] } } }
 let g:syntastic_error_symbol = '✗'
 let g:syntastic_html_checkers = []
 let g:syntastic_javascript_checkers = ['eslint']
-" let g:syntastic_javascript_checkers = ['jshint', 'jscs']
 let g:syntastic_style_error_symbol = 'x'
 let g:syntastic_style_warning_symbol = '!'
 let g:syntastic_warning_symbol = '!'
@@ -75,11 +75,6 @@ let g:vdebug_options = { 'break_on_open': 1, 'port': 9000, 'server': '' }
 let g:ycm_cache_omnifunc = 0
 let g:ycm_key_list_previous_completion = ['<Up>']
 let g:ycm_key_list_select_completion = ['<Down>']
-
-" Plugin Setup
-python from powerline.vim import setup as powerline_setup
-python powerline_setup()
-python del powerline_setup
 
 " Settings
 set backspace=2
@@ -102,7 +97,7 @@ set smartindent
 set splitbelow
 set splitright
 set tabstop=4
-set timeoutlen=1000
+set timeoutlen=50
 set ttimeoutlen=0
 set ttyfast
 set ttyscroll=3
@@ -150,7 +145,7 @@ cnoreabbrev Wqa wqa
 cnoreabbrev w!! w !sudo tee > /dev/null %
 inoremap <Nul> <C-X><C-O>
 inoremap <Leader>g <C-R>=expand('%:t:r')<CR>
-nnoremap <Leader>n :NERDTreeToggle<CR>
+nnoremap <Leader>n :NERDTreeTabsToggle<CR>
 nnoremap <Leader>t :TagbarToggle<CR>
 nnoremap <silent> <Leader>/ :nohlsearch<CR>
 nnoremap <silent> <Leader><Space> :sil %s/\s\+$//<CR>

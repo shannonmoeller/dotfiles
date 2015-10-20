@@ -9,7 +9,7 @@ class $1 {
 	 * @constructor
 	 */
 	constructor(${2:arguments}) {
-		${0}
+		$0
 	}
 }
 endsnippet
@@ -24,36 +24,67 @@ class $1 extends $2 {
 	 * @constructor
 	 */
 	constructor(${3:arguments}) {
-		${4:super($3);}${0}
+		${4:super($3);}$0
 	}
 }
 endsnippet
 
-snippet el "Custom Element" b
-import MyElement from '../my-element/element';
+snippet bel "Base Element" b
+/**
+ * # Base \`$1-element\` Element
+ *
+ * The base element from which all other ${1/^(\w)(.*)$/\u$1$2/} elements are
+ * extended. Enables the use of the class syntax when creating and extending
+ * elements as the HTMLElement cannot be directly subclassed in IE.
+ */
+
+import 'document-register-element';
+
+const ELEMENT_TAGNAME = '$1-element';
 
 /**
- * The \`${1}\` element definition.
- *
- * @class ${1/-?\b(\w)/\u$1/g}Element
- * @extends MyElement
+ * @class ${1/^(\w)(.*)$/\u$1$2/}Element
  */
-class ${1/-?\b(\w)/\u$1/g}Element extends MyElement {
+export default document.registerElement(ELEMENT_TAGNAME, {
+	prototype: Object.create(HTMLElement.prototype)
+});
+endsnippet
+
+snippet el "Custom Element" b
+/**
+ * # \`$1\` Element
+ *
+ *     <$1>
+ *     </$1>
+ */
+
+import ${1/^(\w)([^-]*)-.*$/\u$1$2/}Element from '../${1/^([^-]+)-.*/$1/}-element/element';
+
+const ELEMENT_TAGNAME = '$1';
+
+/**
+ * @class ${1/-?\b(\w)/\u$1/g}Element
+ * @extends ${1/^(\w)([^-]*)-.*$/\u$1$2/}Element
+ */
+class ${1/-?\b(\w)/\u$1/g}Element extends ${1/^(\w)([^-]*)-.*$/\u$1$2/}Element {
 	/**
 	 * @method createdCallback
+	 * @callback
 	 */
 	createdCallback() {
-		${0}
+		$0
 	}
 
 	/**
 	 * @method attachedCallback
+	 * @callback
 	 */
 	attachedCallback() {
 	}
 
 	/**
 	 * @method detachedCallback
+	 * @callback
 	 */
 	detachedCallback() {
 	}
@@ -63,19 +94,20 @@ class ${1/-?\b(\w)/\u$1/g}Element extends MyElement {
 	 * @param {String} name
 	 * @param {String} oldValue
 	 * @param {String} newValue
+	 * @callback
 	 */
 	attributeChangedCallback(name, oldValue, newValue) {
 	}
 }
 
-export default document.registerElement('$1', {
+export default document.registerElement(ELEMENT_TAGNAME, {
 	prototype: ${1/-?\b(\w)/\u$1/g}Element.prototype
 });
 endsnippet
 
 snippet forof "for...of loop"
 for (let ${1:item} of ${2:items}) {
-	${0}
+	$0
 }
 endsnippet
 
@@ -84,7 +116,7 @@ import ${1:thing} from '${2:path}';
 endsnippet
 
 snippet jh "jshint" b
-/*jshint ${1} */
+/* jshint $1 */
 endsnippet
 
 snippet method "Method" b
@@ -92,6 +124,13 @@ snippet method "Method" b
  * @method ${1:name}
  */
 $1(${2:arguments}) {
-	${3:super.$1($2);}${0}
+	${3:super.$1($2);}$0
 }
+endsnippet
+
+snippet property "Property" b
+/**
+ * @property ${1:name}
+ */
+this.$1 = $2;$0
 endsnippet
