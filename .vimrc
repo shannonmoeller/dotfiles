@@ -150,7 +150,7 @@ cnoreabbrev Wqa wqa
 cnoreabbrev w!! w !sudo tee > /dev/null %
 inoremap <Nul> <C-X><C-O>
 inoremap <Leader>g <C-R>=expand('%:t:r')<CR>
-nnoremap <Leader>n :NERDTreeToggle<CR>
+nnoremap <Leader>n :NERDTreeTabsToggle<CR>
 nnoremap <Leader>t :TagbarToggle<CR>
 nnoremap <silent> <Leader>/ :nohlsearch<CR>
 nnoremap <silent> <Leader><Space> :sil %s/\s\+$//<CR>
