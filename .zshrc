@@ -26,6 +26,16 @@ export TERM='screen-256color-bce'
 export VIMINIT="so $DOTDIR/.vimrc"
 export VISUAL='vim -O'
 
+case $(uname) in
+    CYGWIN*) ;&
+    Linux)
+        export LS_COLORS="di=01;34:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=01;05;37;41:mi=01;05;37;41:su=37;41:sg=30;43:tw=30;42:ow=34;42:st=37;44:ex=01;32"
+    ;;
+    Darwin)
+        export LSCOLORS="ExGxFxDxCxDxDxhbhdacEc"
+    ;;
+esac
+
 # Settings
 setopt autocd
 setopt autolist
@@ -77,6 +87,16 @@ alias xd='tmux detach'
 alias xn='tmux neww'
 alias xr='tmux attach -d || tmux'
 
+case $(uname) in
+    CYGWIN*) ;&
+    Linux)
+        alias ll='ls -AFhl --color --group-directories-first'
+    ;;
+    Darwin)
+        alias ll='CLICOLOR_FORCE=1 ls -AFGhl | grep "^d\|total" && CLICOLOR_FORCE=1 ls -AFGl | grep -v "^d\|total"'
+    ;;
+esac
+
 # Functions
 bulk () { for d in *; do [[ -d $d ]] || continue; printf "\e[48;5;236;38;5;252m$d \e[38;5;161m\$ \e[0m $*\n"; ( cd $d; eval $* ); done }
 cf () { cd $(dirname $(readlink $1)) }
@@ -87,81 +107,34 @@ rn () { a="$1"; shift; b="$1"; shift; for i in "$@"; do mv $i ${i//$a/$b}; done 
 rl () { for i in "$@"; do mv "$i" "${i:l}"; done }
 xv () { tmux neww "$EDITOR $*" }
 
-# OS
-case $(uname) in
-    Darwin)
-        LSCOLORS="ExGxFxDxCxDxDxhbhdacEc";
-        export LSCOLORS
-        alias ll='CLICOLOR_FORCE=1 ls -AFGhl | grep "^d\|total" && CLICOLOR_FORCE=1 ls -AFGl | grep -v "^d\|total"'
-    ;;
-    Linux)
-        LS_COLORS="di=01;34:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=01;05;37;41:mi=01;05;37;41:su=37;41:sg=30;43:tw=30;42:ow=34;42:st=37;44:ex=01;32";
-        export LS_COLORS
-        alias ll='ls -AFhl --color --group-directories-first'
-    ;;
-esac
-
 # Completion
 autoload -U compinit && compinit -i
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 zstyle ':completion:*' menu select=2
 zstyle ':completion:*' special-dirs true
-
 compdef gb=git
 compdef xv=vim
 
-# DotDot
-__up() {
-    # Present working directory
-    top=$PWD
+# Prompt
+PS1_HOSTNAME='%{%K{154}%F{22}%} %M '
+PS1_USERNAME='%{%K{31}%F{255}%} %n '
+PS1_CURRPATH='%{%K{236}%F{252}%} %3c '
 
-    # Desired path, starting with a depth
-    dir=${1:-1}
+if [ -n "$TMUX" ]; then
+    PS1_HOSTNAME='%{%K{154}%F{22}%} '
+    PS1_USERNAME='%{%K{31}%F{255}%} '
+    PS1_CURRPATH='%{%K{236}%F{252}%} %5c '
+fi
 
-    # Assume depth was given
-    depth=${dir%%/*}
-
-    # Check if depth was given
-    if [ $depth -eq $depth 2> /dev/null ]; then
-        # Check if path contains more than a depth
-        if [[ $dir == */* ]]; then
-            # Strip leading depth
-            dir="${dir#*/}"
-        else
-            # Path was only a depth
-            dir=''
-        fi
-    else
-        # Depth wasn't given
-        depth=1
-    fi
-
-    # For each depth level
-    for ((; depth > 0; depth--)); do
-        # Strip trailing basename
-        top="${top%/*}"
-    done
-
-    # Print resulting path
-    echo "$top/$dir"
-}
-_up() {
-    reply=($(__up $*))
-}
-up() {
-    [[ -d $1 ]] && cd $* && return
-    cd `__up $*`
-}
-compctl -/ -K _up up
+export PS1="$PS1_HOSTNAME$PS1_USERNAME$PS1_CURRPATH%{%k%f%} "
 
 # Plugins
-[ -f '/usr/local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh' ] \
-    && source '/usr/local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh' \
-    || export PS1=$'%{%31K%255F%} %n@%M %{%240K%31F%}⮀%{%252F%} %3c %{%k%240F%}⮀%{%f%} '
+[ -f "$DOTDIR/.zsh/bundle/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ] \
+    && source "$DOTDIR/.zsh/bundle/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
-[ -f "$DOTDIR"'/.zsh/bundle/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh' ] \
-    && source "$DOTDIR"'/.zsh/bundle/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh'
+[ -f "$DOTDIR/.zsh/bundle/zsh-up/zsh-up.zsh" ] \
+    && source "$DOTDIR/.zsh/bundle/zsh-up/zsh-up.zsh"
 
-[ -f "$HOME"'/.travis/travis.sh' ] \
-    && source "$HOME"'/.travis/travis.sh'
+[ -f "$HOME/.travis/travis.sh" ] \
+    && source "$HOME/.travis/travis.sh"
