@@ -130,7 +130,7 @@ fi
 
 if [ -n "$TMUX" ]; then
     PS1_HOSTNAME=' '
-    PS1_USERNAME=' '
+    PS1_USERNAME=''
     PS1_CURRPATH=' %5c '
 fi
 
