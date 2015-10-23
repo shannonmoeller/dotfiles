@@ -39,9 +39,9 @@ filetype off
     Plugin 'groenewege/vim-less'
     Plugin 'jakar/vim-json'
     Plugin 'mustache/vim-mustache-handlebars'
-    Plugin 'othree/yajs.vim'
-    Plugin 'othree/es.next.syntax.vim'
-    " Plugin 'pangloss/vim-javascript'
+    " Plugin 'othree/yajs.vim'
+    " Plugin 'othree/es.next.syntax.vim'
+    Plugin 'pangloss/vim-javascript'
     Plugin 'tpope/vim-haml'
     Plugin 'tpope/vim-markdown'
 filetype plugin indent on
@@ -97,7 +97,7 @@ set smartindent
 set splitbelow
 set splitright
 set tabstop=4
-set timeoutlen=50
+set timeoutlen=500
 set ttimeoutlen=0
 set ttyfast
 set ttyscroll=3
