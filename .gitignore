@@ -45,6 +45,7 @@ ehthumbs.db
 .CVS
 .subversion
 .svn
+Library/
 
 # Application cruft
 

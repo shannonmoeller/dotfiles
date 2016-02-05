@@ -30,26 +30,31 @@ filetype off
     Plugin 'tomtom/tcomment_vim'
     Plugin 'tpope/vim-repeat'
     Plugin 'tpope/vim-surround'
-
+    
     " Themes
     Plugin 'shannonmoeller/vim-monokai256'
-
+    
     " Languages
-    Plugin 'evidens/vim-twig'
-    Plugin 'groenewege/vim-less'
-    Plugin 'jakar/vim-json'
+    " Plugin 'evidens/vim-twig'
+    " Plugin 'groenewege/vim-less'
+    " Plugin 'jakar/vim-json'
     Plugin 'mustache/vim-mustache-handlebars'
     " Plugin 'othree/yajs.vim'
     " Plugin 'othree/es.next.syntax.vim'
     Plugin 'pangloss/vim-javascript'
-    Plugin 'tpope/vim-haml'
+    " Plugin 'tpope/vim-haml'
     Plugin 'tpope/vim-markdown'
 filetype plugin indent on
 
 " Plugin Settings
+let g:EditorConfig_core_mode = 'external_command'
+let g:NERDTreeCascadeOpenSingleChildDir = 1
+let g:NERDTreeCaseSensitiveSort = 1
 let g:NERDTreeChDirMode = 2
 let g:NERDTreeIgnore = ['\.swp$', '\.swo$']
+let g:NERDTreeMinimalUI = 1
 let g:NERDTreeShowHidden = 1
+let g:NERDTreeSortHiddenFirst = 1
 let g:NERDTreeWinSize = 25
 let g:UltiSnipsExpandTrigger='<tab>'
 let g:UltiSnipsJumpBackwardTrigger='<s-tab>'
@@ -64,6 +69,9 @@ let g:javascript_doc = 'yuidoc'
 let g:markdown_fenced_languages = ['css', 'html', 'less', 'javascript', 'js=javascript', 'json=javascript', 'sass', 'scss', 'xml']
 let g:syntastic_error_symbol = '✗'
 let g:syntastic_html_checkers = []
+let g:syntastic_javascript_eslint_generic = 1
+let g:syntastic_javascript_eslint_exec = 'xo'
+let g:syntastic_javascript_eslint_args = '--compact'
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_style_error_symbol = 'x'
 let g:syntastic_style_warning_symbol = '!'
@@ -97,19 +105,29 @@ set smartindent
 set splitbelow
 set splitright
 set tabstop=4
-set timeoutlen=500
-set ttimeoutlen=0
-set ttyfast
-set ttyscroll=3
 set viminfo='100,<100,s100,%,n$DOTDIR/.viminfo
 set wildmenu
 set wildmode=longest:full
 
-if has("mouse_sgr")
-    set ttymouse=sgr
+if has("nvim")
+    set timeout
+    set ttimeout
+    set ttimeoutlen=0
 else
-    set ttymouse=xterm2
-end
+    set timeout
+    set timeoutlen=500
+    set ttimeout
+    set ttimeoutlen=0
+
+    set ttyfast
+    set ttyscroll=3
+
+    if has("mouse_sgr")
+        set ttymouse=sgr
+    else
+        set ttymouse=xterm2
+    endif
+endif
 
 if exists('+colorcolumn')
     set colorcolumn=81

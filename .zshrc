@@ -17,7 +17,7 @@ PATH="$PATH:/usr/local/sbin:/usr/sbin:/sbin"
 export PATH
 
 # Environment
-export EDITOR='vim -O'
+export EDITOR='nvim -O'
 export HISTFILE="$DOTDIR"'/.zhistory'
 export HISTSIZE=80
 export LESSHISTFILE='/dev/null'
