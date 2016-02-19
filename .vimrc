@@ -3,98 +3,75 @@
 
 " Runtime
 set runtimepath^=$DOTDIR/.vim
-set runtimepath+=$DOTDIR/.vim/bundle/vundle.vim
 
 " Plugins
-filetype off
-    " Vundle
-    call vundle#rc('$DOTDIR/.vim/bundle')
-    Plugin 'gmarik/vundle.vim'
-
+call plug#begin('$DOTDIR/.vim/plugins')
     " Plugins
-    Plugin 'JazzCore/ctrlp-cmatcher'
-    Plugin 'SirVer/ultisnips'
-    Plugin 'Valloric/YouCompleteMe'
-    Plugin 'editorconfig/editorconfig-vim'
-    Plugin 'honza/vim-snippets'
-    Plugin 'itchyny/lightline.vim'
-    Plugin 'jistr/vim-nerdtree-tabs'
-    Plugin 'kien/ctrlp.vim'
-    Plugin 'majutsushi/tagbar'
-    Plugin 'marijnh/tern_for_vim'
-    Plugin 'mattn/emmet-vim'
-    Plugin 'nathanaelkane/vim-indent-guides'
-    Plugin 'scrooloose/nerdtree'
-    Plugin 'scrooloose/syntastic'
-    Plugin 'terryma/vim-multiple-cursors'
-    Plugin 'tomtom/tcomment_vim'
-    Plugin 'tpope/vim-repeat'
-    Plugin 'tpope/vim-surround'
-    
+    Plug 'JazzCore/ctrlp-cmatcher'
+    Plug 'editorconfig/editorconfig-vim'
+    Plug 'itchyny/lightline.vim'
+    Plug 'jistr/vim-nerdtree-tabs'
+    Plug 'kien/ctrlp.vim'
+    Plug 'nathanaelkane/vim-indent-guides'
+    Plug 'scrooloose/nerdtree'
+    Plug 'terryma/vim-multiple-cursors'
+    Plug 'tomtom/tcomment_vim'
+    Plug 'tpope/vim-repeat'
+    Plug 'tpope/vim-surround'
+
     " Themes
-    Plugin 'shannonmoeller/vim-monokai256'
-    
+    Plug 'shannonmoeller/vim-monokai256'
+
     " Languages
-    " Plugin 'evidens/vim-twig'
-    " Plugin 'groenewege/vim-less'
-    " Plugin 'jakar/vim-json'
-    Plugin 'mustache/vim-mustache-handlebars'
-    " Plugin 'othree/yajs.vim'
-    " Plugin 'othree/es.next.syntax.vim'
-    Plugin 'pangloss/vim-javascript'
-    " Plugin 'tpope/vim-haml'
-    Plugin 'tpope/vim-markdown'
-filetype plugin indent on
+    Plug 'mustache/vim-mustache-handlebars'
+    Plug 'pangloss/vim-javascript'
+
+    if has('nvim')
+        Plug 'Shougo/deoplete.nvim'
+    else
+        Plug 'Valloric/YouCompleteMe'
+    endif
+call plug#end()
 
 " Plugin Settings
-let g:EditorConfig_core_mode = 'external_command'
-let g:NERDTreeCascadeOpenSingleChildDir = 1
-let g:NERDTreeCaseSensitiveSort = 1
-let g:NERDTreeChDirMode = 2
-let g:NERDTreeIgnore = ['\.swp$', '\.swo$']
-let g:NERDTreeMinimalUI = 1
-let g:NERDTreeShowHidden = 1
-let g:NERDTreeSortHiddenFirst = 1
-let g:NERDTreeWinSize = 25
+let g:EditorConfig_core_mode='external_command'
+let g:NERDTreeCascadeOpenSingleChildDir=1
+let g:NERDTreeCaseSensitiveSort=1
+let g:NERDTreeChDirMode=2
+let g:NERDTreeIgnore=['\.swp$', '\.swo$']
+let g:NERDTreeMinimalUI=1
+let g:NERDTreeShowHidden=1
+let g:NERDTreeSortHiddenFirst=1
+let g:NERDTreeWinSize=25
 let g:UltiSnipsExpandTrigger='<tab>'
 let g:UltiSnipsJumpBackwardTrigger='<s-tab>'
 let g:UltiSnipsJumpForwardTrigger='<tab>'
-let g:UltiSnipsEnableSnipMate = 0
-let g:UltiSnipsSnippetDirectories = ['UltiSnips']
-let g:ctrlp_custom_ignore = { 'dir': '\v[\/](\.git|\.hg|\.svn|docs|node_modules|puphpet|vendor)$', 'file': '\v\.(dll|exe|so|swp)$' }
-let g:ctrlp_match_func = { 'match': 'matcher#cmatch' }
-let g:indent_guides_auto_colors = 0
-let g:indent_guides_guide_size = 1
-let g:javascript_doc = 'yuidoc'
-let g:markdown_fenced_languages = ['css', 'html', 'less', 'javascript', 'js=javascript', 'json=javascript', 'sass', 'scss', 'xml']
-let g:syntastic_error_symbol = '✗'
-let g:syntastic_html_checkers = []
-let g:syntastic_javascript_eslint_generic = 1
-let g:syntastic_javascript_eslint_exec = 'xo'
-let g:syntastic_javascript_eslint_args = '--compact'
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_style_error_symbol = 'x'
-let g:syntastic_style_warning_symbol = '!'
-let g:syntastic_warning_symbol = '!'
-let g:tern#arguments = ['--no-port-file']
-let g:tern_map_keys = 1
-let g:tern_show_argument_hints = 'on_hold'
-let g:vdebug_options = { 'break_on_open': 1, 'port': 9000, 'server': '' }
-let g:ycm_cache_omnifunc = 0
-let g:ycm_key_list_previous_completion = ['<Up>']
-let g:ycm_key_list_select_completion = ['<Down>']
+let g:UltiSnipsEnableSnipMate=0
+let g:UltiSnipsSnippetDirectories=['UltiSnips']
+let g:ctrlp_custom_ignore={ 'dir': '\v[\/](\.git|\.hg|\.svn|docs|node_modules|puphpet|vendor)$', 'file': '\v\.(dll|exe|so|swp)$' }
+let g:ctrlp_match_func={ 'match': 'matcher#cmatch' }
+let g:indent_guides_auto_colors=0
+let g:indent_guides_guide_size=1
+
+if has('nvim')
+    let g:deoplete#enable_at_startup=1
+else
+endif
 
 " Settings
 set backspace=2
-set cursorline
 set expandtab
+set formatoptions+=j
 set hidden
 set hlsearch
 set ignorecase
 set incsearch
 set laststatus=2
+set lazyredraw
 set linebreak
 set mouse=a
+set nocursorcolumn
+set nocursorline
 set noshowmode
 set nowrap
 set number
@@ -104,56 +81,21 @@ set showtabline=2
 set smartindent
 set splitbelow
 set splitright
+set synmaxcol=128
 set tabstop=4
 set viminfo='100,<100,s100,%,n$DOTDIR/.viminfo
 set wildmenu
 set wildmode=longest:full
 
-if has("nvim")
-    set timeout
-    set ttimeout
-    set ttimeoutlen=0
+if has('nvim')
 else
-    set timeout
-    set timeoutlen=500
-    set ttimeout
-    set ttimeoutlen=0
-
-    set ttyfast
-    set ttyscroll=3
-
-    if has("mouse_sgr")
-        set ttymouse=sgr
-    else
-        set ttymouse=xterm2
-    endif
 endif
-
-if exists('+colorcolumn')
-    set colorcolumn=81
-else
-    au BufWinEnter * match ColorColumn /\%>81v.\+/
-    au BufWinEnter * match ColorColumn /\%>121v.\+/
-endif
-
-" Filetypes
-autocmd BufNewFile,BufRead *.handlebars,*.hbr,*.hbs,*.hbt setl ft=mustache
-autocmd BufNewFile,BufRead *.json setl ft=json
-autocmd BufNewFile,BufRead Vagrantfile setl ft=ruby
-autocmd FileType c set omnifunc=ccomplete#Complete
-autocmd FileType css set omnifunc=csscomplete#CompleteCSS
-autocmd FileType html setl omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType json set sw=2 ts=2
-autocmd FileType markdown setl omnifunc=htmlcomplete#CompleteTags
-autocmd FileType php set omnifunc=phpcomplete#CompletePHP
-autocmd FileType python set omnifunc=pythoncomplete#Complete
-autocmd FileType ruby set sw=2 ts=2
-autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
 
 " Mapping
 cnoreabbrev Q q
 cnoreabbrev Q! q!
+cnoreabbrev Sp sp
+cnoreabbrev Vs vs
 cnoreabbrev W w
 cnoreabbrev W! w!
 cnoreabbrev Wa wa
@@ -174,6 +116,10 @@ nnoremap Y y$
 noremap <Nul> <Nop>
 vmap < <gv
 vmap > >gv
+
+if has('nvim')
+else
+endif
 
 " Theme
 syntax on
