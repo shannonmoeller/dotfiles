@@ -144,8 +144,8 @@ export PS1
 [ -f "$DOTDIR/.zsh/bundle/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ] \
     && source "$DOTDIR/.zsh/bundle/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
-[ -f "$DOTDIR/.zsh/bundle/zsh-up/zsh-up.zsh" ] \
-    && source "$DOTDIR/.zsh/bundle/zsh-up/zsh-up.zsh"
+[ -f "$DOTDIR/.zsh/bundle/up/up.sh" ] \
+    && source "$DOTDIR/.zsh/bundle/up/up.sh"
 
 [ -f "$HOME/.travis/travis.sh" ] \
     && source "$HOME/.travis/travis.sh"
