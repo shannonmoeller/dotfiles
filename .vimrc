@@ -81,7 +81,7 @@ set showtabline=2
 set smartindent
 set splitbelow
 set splitright
-set synmaxcol=128
+set synmaxcol=1024
 set tabstop=4
 set viminfo='100,<100,s100,%,n$DOTDIR/.viminfo
 set wildmenu
