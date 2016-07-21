@@ -11,8 +11,10 @@
     dt = difftool --ignore-space-change
     la = !git log --oneline | ack -i
     lc = log ORIG_HEAD.. --stat --no-merges
+    la = log --pretty=format:'%C(yellow bold)%h%Creset %C(green bold)(%cd)%Creset <%ae> %s' --date=local --no-merges --since='1 month ago'
     lg = log --pretty=format:'%C(yellow bold)%h%Creset %s %C(green bold)(%cr)%Creset %an <%ae>' --graph
     ll = log --pretty=format:'%C(yellow bold)%h%Creset %C(green bold)(%cd)%Creset <%ae> %s' --author=moeller --date=local --no-merges --since='1 month ago'
+    ph = push heroku
     pl = pull
     po = push origin
     pot = !git push origin && git push origin --tags

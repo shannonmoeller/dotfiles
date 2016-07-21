@@ -4,6 +4,8 @@
 # Home away from home
 export ZDOTDIR="$( (readlink -f ~/.zshrc || greadlink -f ~/.zshrc) 2> /dev/null | xargs dirname )"
 export DOTDIR="$ZDOTDIR"
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
 
 # Path
 PATH="$DOTDIR/bin"
@@ -17,12 +19,12 @@ PATH="$PATH:/usr/local/sbin:/usr/sbin:/sbin"
 export PATH
 
 # Environment
-export EDITOR='nvim -O'
+export EDITOR='vim'
 export HISTFILE="$DOTDIR"'/.zhistory'
 export HISTSIZE=80
 export LESSHISTFILE='/dev/null'
 export SAVEHIST=10000
-export TERM='screen-256color-bce'
+export TERM='xterm-256color'
 export VIMINIT="so $DOTDIR/.vimrc"
 export VISUAL='vim -O'
 
@@ -79,10 +81,10 @@ alias va='vagrant'
 alias vh='vagrant halt'
 alias vs='vagrant ssh'
 alias vu='VAGRANT_HTTP_PROXY="http://10.0.2.2:8888/" VAGRANT_HTTPS_PROXY="http://10.0.2.2:8888/" vagrant up'
-alias vi="$EDITOR"
-alias vim="$EDITOR"
-alias viml="$EDITOR"' $(eval ${$(fc -l -1)[2,-1]} -l)'
-alias vimi="$EDITOR"' $(eval ${$(fc -l -1)[2,-1]})'
+alias vi='vim'
+alias vim='vim -O'
+alias viml='vim -O $(eval ${$(fc -l -1)[2,-1]} -l)'
+alias vimi='vim -O $(eval ${$(fc -l -1)[2,-1]})'
 alias xd='tmux detach'
 alias xn='tmux neww'
 alias xr='tmux attach -d || tmux'
@@ -149,3 +151,6 @@ export PS1
 
 [ -f "$HOME/.travis/travis.sh" ] \
     && source "$HOME/.travis/travis.sh"
+
+[ -f "$HOME/.profile" ] \
+    && source "$HOME/.profile"

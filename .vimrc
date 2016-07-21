@@ -3,15 +3,18 @@
 
 " Runtime
 set runtimepath^=$DOTDIR/.vim
+set directory=~/.vim/backup
+set backupdir=~/.vim/backup   " keep swap files here
+filetype off                  " required
 
 " Plugins
 call plug#begin('$DOTDIR/.vim/plugins')
     " Plugins
     Plug 'JazzCore/ctrlp-cmatcher'
+    Plug 'ctrlpvim/ctrlp.vim'
     Plug 'editorconfig/editorconfig-vim'
     Plug 'itchyny/lightline.vim'
     Plug 'jistr/vim-nerdtree-tabs'
-    Plug 'kien/ctrlp.vim'
     Plug 'nathanaelkane/vim-indent-guides'
     Plug 'scrooloose/nerdtree'
     Plug 'terryma/vim-multiple-cursors'
@@ -20,22 +23,19 @@ call plug#begin('$DOTDIR/.vim/plugins')
     Plug 'tpope/vim-surround'
 
     " Themes
+    Plug 'atelierbram/vim-colors_duotones'
     Plug 'shannonmoeller/vim-monokai256'
 
     " Languages
     Plug 'mustache/vim-mustache-handlebars'
+    Plug 'othree/html5.vim'
     Plug 'pangloss/vim-javascript'
-
-    if has('nvim')
-        Plug 'Shougo/deoplete.nvim'
-    else
-        Plug 'Valloric/YouCompleteMe'
-    endif
+    Plug 'Valloric/YouCompleteMe'
 call plug#end()
 
 " Plugin Settings
 let g:EditorConfig_core_mode='external_command'
-let g:NERDTreeCascadeOpenSingleChildDir=1
+let g:NERDTreeCascadeOpenSingleChildDir=0
 let g:NERDTreeCaseSensitiveSort=1
 let g:NERDTreeChDirMode=2
 let g:NERDTreeIgnore=['\.swp$', '\.swo$']
@@ -48,20 +48,17 @@ let g:UltiSnipsJumpBackwardTrigger='<s-tab>'
 let g:UltiSnipsJumpForwardTrigger='<tab>'
 let g:UltiSnipsEnableSnipMate=0
 let g:UltiSnipsSnippetDirectories=['UltiSnips']
-let g:ctrlp_custom_ignore={ 'dir': '\v[\/](\.git|\.hg|\.svn|docs|node_modules|puphpet|vendor)$', 'file': '\v\.(dll|exe|so|swp)$' }
+let g:ctrlp_custom_ignore={ 'dir': '\v[\/](\.git|\.hg|\.svn|dist|docs|node_modules|puphpet|vendor)$', 'file': '\v\.(dll|exe|so|swp)$' }
 let g:ctrlp_match_func={ 'match': 'matcher#cmatch' }
 let g:indent_guides_auto_colors=0
 let g:indent_guides_guide_size=1
 
-if has('nvim')
-    let g:deoplete#enable_at_startup=1
-else
-endif
-
 " Settings
 set backspace=2
+set colorcolumn=120
 set expandtab
 set formatoptions+=j
+set guioptions=
 set hidden
 set hlsearch
 set ignorecase
@@ -72,6 +69,8 @@ set linebreak
 set mouse=a
 set nocursorcolumn
 set nocursorline
+set noerrorbells
+set novisualbell
 set noshowmode
 set nowrap
 set number
@@ -83,13 +82,11 @@ set splitbelow
 set splitright
 set synmaxcol=1024
 set tabstop=4
+set ttymouse=sgr
 set viminfo='100,<100,s100,%,n$DOTDIR/.viminfo
 set wildmenu
 set wildmode=longest:full
 
-if has('nvim')
-else
-endif
 
 " Mapping
 cnoreabbrev Q q
@@ -117,17 +114,16 @@ noremap <Nul> <Nop>
 vmap < <gv
 vmap > >gv
 
-if has('nvim')
-else
-endif
-
 " Theme
 syntax on
 color monokai256
 let &showbreak='└ '
+hi TrailingSpace ctermbg=199
+autocmd BufRead,BufNewFile *.html set filetype=mustache
 autocmd BufNewFile,BufRead * :IndentGuidesEnable
 autocmd InsertEnter * match TrailingSpace /\s\+\%#\@<!$/
 autocmd InsertLeave * match TrailingSpace /\s\+$/
+autocmd! GUIEnter * set vb t_vb=
 
 " Macros
 runtime macros/matchit.vim
