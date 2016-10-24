@@ -10,6 +10,7 @@ export LANG=en_US.UTF-8
 # Path
 PATH="$DOTDIR/bin"
 PATH="$PATH:$HOME/bin:$HOME/sbin"
+PATH="$PATH:$HOME/.brew/bin"
 PATH="$PATH:/usr/local/heroku/bin"
 PATH="$PATH:/usr/local/mysql/bin"
 PATH="$PATH:/usr/local/Cellar/php54/5.4.39/bin"
@@ -154,3 +155,5 @@ export PS1
 
 [ -f "$HOME/.profile" ] \
     && source "$HOME/.profile"
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
