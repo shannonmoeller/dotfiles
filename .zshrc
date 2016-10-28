@@ -148,14 +148,14 @@ export PS1
 [ -f "$DOTDIR/.config/up/up.sh" ] \
     && source "$DOTDIR/.config/up/up.sh"
 
-[ -f "${HOME}/.iterm2_shell_integration.zsh"] \
+[ -f "$DOTDIR/.zsh/bundle/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ] \
+    && source "$DOTDIR/.zsh/bundle/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+
+[ -f "$HOME/.iterm2_shell_integration.zsh" ] \
     && source "${HOME}/.iterm2_shell_integration.zsh"
 
 [ -f "$HOME/.travis/travis.sh" ] \
     && source "$HOME/.travis/travis.sh"
-
-[ -f "$DOTDIR/.zsh/bundle/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ] \
-    && source "$DOTDIR/.zsh/bundle/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
 [ -f "$HOME/.profile" ] \
     && source "$HOME/.profile"
