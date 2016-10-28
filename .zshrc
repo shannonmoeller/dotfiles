@@ -75,7 +75,8 @@ alias jshint="HOME=$DOTDIR jshint"
 alias mkdir='mkdir -p'
 alias mosh='echo -e "\e[?1005h\e[?1002h" && mosh'
 alias mv='mv -i'
-alias rm='rm -i'
+alias nr='npm run'
+alias rm='trash'
 alias tmux="tmux -2 -f $DOTDIR/.tmux.conf"
 alias tree='tree --dirsfirst -alACFI "bower_*|jspm_*|node_*|.git*|.svn"'
 alias va='vagrant'
@@ -144,16 +145,17 @@ PS1="$PS1%{%k%f%} "
 export PS1
 
 # Plugins
-[ -f "$DOTDIR/.zsh/bundle/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ] \
-    && source "$DOTDIR/.zsh/bundle/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+[ -f "$DOTDIR/.config/up/up.sh" ] \
+    && source "$DOTDIR/.config/up/up.sh"
 
-[ -f "$DOTDIR/.zsh/bundle/up/up.sh" ] \
-    && source "$DOTDIR/.zsh/bundle/up/up.sh"
+[ -f "${HOME}/.iterm2_shell_integration.zsh"] \
+    && source "${HOME}/.iterm2_shell_integration.zsh"
 
 [ -f "$HOME/.travis/travis.sh" ] \
     && source "$HOME/.travis/travis.sh"
 
+[ -f "$DOTDIR/.zsh/bundle/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ] \
+    && source "$DOTDIR/.zsh/bundle/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+
 [ -f "$HOME/.profile" ] \
     && source "$HOME/.profile"
-
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
