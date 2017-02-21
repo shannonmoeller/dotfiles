@@ -6,7 +6,7 @@
     bv = branch -avv
     cm = commit -am
     co = checkout
-    df = diff --ignore-space-change
+    df = diff --color --ignore-space-change
     dn = diff --name-only
     dt = difftool --ignore-space-change
     la = !git log --oneline | ack -i
@@ -35,6 +35,7 @@
     ui = auto
 [core]
     excludesfile = .gitignore
+	pager = diff-so-fancy | less --tabs=4 -RFX
 [credential]
     helper = cache --timeout=72000
     useHttpPath = true
@@ -48,3 +49,8 @@
     rmdir = true
 [user]
     name = Shannon Moeller
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = green bold
+	newHighlight = green bold 22

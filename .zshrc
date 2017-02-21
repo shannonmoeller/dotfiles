@@ -12,8 +12,6 @@ PATH="$DOTDIR/bin"
 PATH="$PATH:$HOME/bin:$HOME/sbin"
 PATH="$PATH:$HOME/.brew/bin"
 PATH="$PATH:/usr/local/heroku/bin"
-PATH="$PATH:/usr/local/mysql/bin"
-PATH="$PATH:/usr/local/Cellar/php54/5.4.39/bin"
 PATH="$PATH:/usr/local/opt/ruby/bin"
 PATH="$PATH:/usr/local/bin:/usr/bin:/bin"
 PATH="$PATH:/usr/local/sbin:/usr/sbin:/sbin"
@@ -68,21 +66,20 @@ alias -g LR='| less -RF'
 alias -g NUL='> /dev/null 2>&1'
 alias ag='ag --smart-case'
 alias cp='cp -i'
+alias doco='docker-compose'
+alias doce='docker-compose exec'
+alias docr='docker-compose run'
+alias dorm='docker rm $(docker ps -a -q); docker rmi $(docker images -q)'
 alias g="HOME=$DOTDIR git"
 alias gb='bulk git'
 alias git="HOME=$DOTDIR git"
 alias jshint="HOME=$DOTDIR jshint"
 alias mkdir='mkdir -p'
-alias mosh='echo -e "\e[?1005h\e[?1002h" && mosh'
 alias mv='mv -i'
 alias nr='npm run'
 alias rm='trash'
 alias tmux="tmux -2 -f $DOTDIR/.tmux.conf"
 alias tree='tree --dirsfirst -alACFI "bower_*|jspm_*|node_*|.git*|.svn"'
-alias va='vagrant'
-alias vh='vagrant halt'
-alias vs='vagrant ssh'
-alias vu='VAGRANT_HTTP_PROXY="http://10.0.2.2:8888/" VAGRANT_HTTPS_PROXY="http://10.0.2.2:8888/" vagrant up'
 alias vi='vim'
 alias vim='vim -O'
 alias viml='vim -O $(eval ${$(fc -l -1)[2,-1]} -l)'
@@ -145,17 +142,17 @@ PS1="$PS1%{%k%f%} "
 export PS1
 
 # Plugins
-[ -f "$DOTDIR/.config/up/up.sh" ] \
-    && source "$DOTDIR/.config/up/up.sh"
-
 [ -f "$DOTDIR/.zsh/bundle/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ] \
     && source "$DOTDIR/.zsh/bundle/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+
+[ -f "${HOME}/.config/up/up.sh" ] \
+    && source "${HOME}/.config/up/up.sh"
 
 [ -f "$HOME/.iterm2_shell_integration.zsh" ] \
     && source "${HOME}/.iterm2_shell_integration.zsh"
 
 [ -f "$HOME/.travis/travis.sh" ] \
-    && source "$HOME/.travis/travis.sh"
+    && source "${HOME}/.travis/travis.sh"
 
 [ -f "$HOME/.profile" ] \
-    && source "$HOME/.profile"
+    && source "${HOME}/.profile"
