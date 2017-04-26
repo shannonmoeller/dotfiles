@@ -12,13 +12,13 @@ PATH="$DOTDIR/bin"
 PATH="$PATH:$HOME/bin:$HOME/sbin"
 PATH="$PATH:$HOME/.brew/bin"
 PATH="$PATH:/usr/local/heroku/bin"
-PATH="$PATH:/usr/local/opt/ruby/bin"
 PATH="$PATH:/usr/local/bin:/usr/bin:/bin"
 PATH="$PATH:/usr/local/sbin:/usr/sbin:/sbin"
 export PATH
 
 # Environment
 export EDITOR='vim'
+export FZF_DEFAULT_COMMAND='ag -g ""'
 export HISTFILE="$DOTDIR"'/.zhistory'
 export HISTSIZE=80
 export LESSHISTFILE='/dev/null'
@@ -64,12 +64,13 @@ bindkey 'e[F'  end-of-line
 # Aliases
 alias -g LR='| less -RF'
 alias -g NUL='> /dev/null 2>&1'
-alias ag='ag --smart-case'
+alias ag="ag --smart-case"
 alias cp='cp -i'
 alias doco='docker-compose'
 alias doce='docker-compose exec'
-alias docr='docker-compose run'
-alias dorm='docker rm $(docker ps -a -q); docker rmi $(docker images -q)'
+alias docl='docker-compose logs -f'
+alias docr='docker-compose restart'
+alias dorm='docker rm $(docker ps -aq); docker rmi $(docker images -q); docker volume rm $(docker volume ls -qf dangling=true)'
 alias g="HOME=$DOTDIR git"
 alias gb='bulk git'
 alias git="HOME=$DOTDIR git"
@@ -156,3 +157,5 @@ export PS1
 
 [ -f "$HOME/.profile" ] \
     && source "${HOME}/.profile"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
