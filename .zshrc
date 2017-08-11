@@ -67,9 +67,10 @@ alias -g NUL='> /dev/null 2>&1'
 alias ag="ag --smart-case"
 alias cp='cp -i'
 alias doco='docker-compose'
+alias dodn='docker-compose down --volumes --remove-orphans'
+alias doup='docker-compose up --build --force-recreate'
 alias doce='docker-compose exec'
 alias docl='docker-compose logs -f'
-alias docr='docker-compose restart'
 alias dorm='docker rm $(docker ps -aq); docker rmi $(docker images -q); docker volume rm $(docker volume ls -qf dangling=true)'
 alias g="HOME=$DOTDIR git"
 alias gb='bulk git'

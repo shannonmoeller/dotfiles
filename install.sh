@@ -27,7 +27,7 @@ n lts
 npm install -g diff-so-fancy
 npm install -g eslint_d
 npm install -g editorconfig
-npm install -g http-server
+npm install -g serve
 npm install -g stylelint_d
 
 # vim
