@@ -2,14 +2,11 @@
 
 set -ex
 
-# zsh
-
-ln -s "$(dirname "$(realpath "$0")")/.zshrc" "$HOME/.zshrc"
-source "$HOME/.zshrc"
-
 # homebrew
 
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+if ! [[ -x "$(command -v brew 2>/dev/null)" ]]; then
+	/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+fi
 
 brew install cmake
 brew install coreutils
@@ -27,8 +24,13 @@ n lts
 npm install -g diff-so-fancy
 npm install -g eslint_d
 npm install -g editorconfig
-npm install -g http-server
+npm install -g serve
 npm install -g stylelint_d
+
+# zsh
+
+ln -s "$(dirname "$(realpath "$0")")/.zshrc" "$HOME/.zshrc"
+source "$HOME/.zshrc"
 
 # vim
 

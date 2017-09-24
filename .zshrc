@@ -67,9 +67,10 @@ alias -g NUL='> /dev/null 2>&1'
 alias ag="ag --smart-case"
 alias cp='cp -i'
 alias doco='docker-compose'
+alias dodn='docker-compose down --volumes --remove-orphans'
+alias doup='docker-compose up --build --force-recreate'
 alias doce='docker-compose exec'
 alias docl='docker-compose logs -f'
-alias docr='docker-compose restart'
 alias dorm='docker rm $(docker ps -aq); docker rmi $(docker images -q); docker volume rm $(docker volume ls -qf dangling=true)'
 alias g="HOME=$DOTDIR git"
 alias gb='bulk git'
@@ -78,7 +79,6 @@ alias jshint="HOME=$DOTDIR jshint"
 alias mkdir='mkdir -p'
 alias mv='mv -i'
 alias nr='npm run'
-alias rm='trash'
 alias tmux="tmux -2 -f $DOTDIR/.tmux.conf"
 alias tree='tree --dirsfirst -alACFI "bower_*|jspm_*|node_*|.git*|.svn"'
 alias vi='vim'
@@ -143,19 +143,20 @@ PS1="$PS1%{%k%f%} "
 export PS1
 
 # Plugins
-[ -f "$DOTDIR/.zsh/bundle/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ] \
-    && source "$DOTDIR/.zsh/bundle/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+[ -f "$HOME/.config/up/up.sh" ] \
+    && source "$HOME/.config/up/up.sh"
 
-[ -f "${HOME}/.config/up/up.sh" ] \
-    && source "${HOME}/.config/up/up.sh"
+[ -f "$HOME/.fzf.zsh" ] \
+    && source "$HOME/.fzf.zsh"
 
-[ -f "$HOME/.iterm2_shell_integration.zsh" ] \
-    && source "${HOME}/.iterm2_shell_integration.zsh"
-
-[ -f "$HOME/.travis/travis.sh" ] \
-    && source "${HOME}/.travis/travis.sh"
+[ -f "$HOME/.nvm/nvm.sh" ] \
+    && source "$HOME/.nvm/nvm.sh"
 
 [ -f "$HOME/.profile" ] \
-    && source "${HOME}/.profile"
+    && source "$HOME/.profile"
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f "$HOME/.travis/travis.sh" ] \
+    && source "$HOME/.travis/travis.sh"
+
+[ -f "$DOTDIR/.zsh/bundle/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ] \
+    && source "$DOTDIR/.zsh/bundle/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
