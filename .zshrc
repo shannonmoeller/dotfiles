@@ -143,6 +143,9 @@ PS1="$PS1%{%k%f%} "
 export PS1
 
 # Plugins
+[ -f "$DOTDIR/.zsh/bundle/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ] \
+    && source "$DOTDIR/.zsh/bundle/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+
 [ -f "$HOME/.config/up/up.sh" ] \
     && source "$HOME/.config/up/up.sh"
 
@@ -157,6 +160,3 @@ export PS1
 
 [ -f "$HOME/.travis/travis.sh" ] \
     && source "$HOME/.travis/travis.sh"
-
-[ -f "$DOTDIR/.zsh/bundle/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ] \
-    && source "$DOTDIR/.zsh/bundle/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
