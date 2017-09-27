@@ -31,10 +31,10 @@ case $(uname) in
     CYGWIN*) ;&
     Linux)
         export LS_COLORS="di=01;34:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=01;05;37;41:mi=01;05;37;41:su=37;41:sg=30;43:tw=30;42:ow=34;42:st=37;44:ex=01;32"
-    ;;
+        ;;
     Darwin)
         export LSCOLORS="ExGxFxDxCxDxDxhbhdacEc"
-    ;;
+        ;;
 esac
 
 # Settings
@@ -93,10 +93,10 @@ case $(uname) in
     CYGWIN*) ;&
     Linux)
         alias ll='ls -AFhl --color --group-directories-first'
-    ;;
+        ;;
     Darwin)
         alias ll='CLICOLOR_FORCE=1 ls -AFGhl | grep "^d\|total" && CLICOLOR_FORCE=1 ls -AFGl | grep -v "^d\|total"'
-    ;;
+        ;;
 esac
 
 # Functions
@@ -118,30 +118,6 @@ zstyle ':completion:*' special-dirs true
 compdef gb=git
 compdef xv=vim
 
-# Prompt
-PS1_HOSTCOLOR='%{%K{154}%F{22}%}'
-PS1_HOSTNAME=' %M '
-PS1_USERCOLOR='%{%K{31}%F{255}%}'
-PS1_USERNAME=' %n '
-PS1_CURRCOLOR='%{%K{236}%F{252}%}'
-PS1_CURRPATH=' %3c '
-
-if [ -n "$SSH_TTY" ]; then
-    PS1_HOSTCOLOR='%{%K{202}%F{184}%}'
-fi
-
-if [ -n "$TMUX" ]; then
-    PS1_HOSTNAME=' '
-    PS1_USERNAME=''
-    PS1_CURRPATH=' %5c '
-fi
-
-PS1="$PS1_HOSTCOLOR$PS1_HOSTNAME"
-PS1="$PS1$PS1_USERCOLOR$PS1_USERNAME"
-PS1="$PS1$PS1_CURRCOLOR$PS1_CURRPATH"
-PS1="$PS1%{%k%f%} "
-export PS1
-
 # Plugins
 [ -f "$DOTDIR/.zsh/bundle/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ] \
     && source "$DOTDIR/.zsh/bundle/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
@@ -160,3 +136,6 @@ export PS1
 
 [ -f "$HOME/.travis/travis.sh" ] \
     && source "$HOME/.travis/travis.sh"
+
+autoload -U promptinit; promptinit
+prompt pure

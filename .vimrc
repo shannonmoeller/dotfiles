@@ -8,27 +8,28 @@ filetype off
 
 " Plugins
 call plug#begin('$DOTDIR/.vim/plugins')
-    Plug 'SirVer/ultisnips'
-    Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer' }
-    Plug 'cyphell/htmllint'
-    Plug 'editorconfig/editorconfig-vim'
-    Plug 'grensjo/tmuxline.vim'
-    Plug 'jistr/vim-nerdtree-tabs'
-    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-    Plug 'junegunn/fzf.vim'
-    Plug 'nathanaelkane/vim-indent-guides'
-    Plug 'scrooloose/nerdtree'
-    Plug 'shannonmoeller/vim-monokai256'
-    Plug 'sheerun/vim-polyglot'
-    Plug 'ternjs/tern_for_vim'
-    Plug 'terryma/vim-multiple-cursors'
-    Plug 'tomtom/tcomment_vim'
-    Plug 'tpope/vim-repeat'
-    Plug 'tpope/vim-surround'
-    Plug 'vim-airline/vim-airline'
-    Plug 'vim-airline/vim-airline-themes'
-    Plug 'vim-scripts/CSSMinister'
-    Plug 'vim-syntastic/syntastic'
+Plug 'Chiel92/vim-autoformat'
+Plug 'SirVer/ultisnips'
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer' }
+Plug 'cyphell/htmllint'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'grensjo/tmuxline.vim'
+Plug 'jistr/vim-nerdtree-tabs'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'scrooloose/nerdtree'
+Plug 'shannonmoeller/vim-monokai256'
+Plug 'sheerun/vim-polyglot'
+Plug 'ternjs/tern_for_vim'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'tomtom/tcomment_vim'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-scripts/CSSMinister'
+Plug 'vim-syntastic/syntastic'
 call plug#end()
 
 " Settings
@@ -113,6 +114,7 @@ hi TrailingSpace ctermbg=199
 autocmd InsertEnter * match TrailingSpace /\s\+\%#\@<!$/
 autocmd InsertLeave * match TrailingSpace /\s\+$/
 
+autocmd BufWritePre * :Autoformat
 autocmd BufNewFile,BufRead * :IndentGuidesEnable
 
 " Macros
