@@ -66,28 +66,32 @@ alias -g LR='| less -RF'
 alias -g NUL='> /dev/null 2>&1'
 alias ag="ag --smart-case"
 alias cp='cp -i'
-alias doco='docker-compose'
-alias dodn='docker-compose down --volumes --remove-orphans'
-alias doup='docker-compose up --build --force-recreate'
 alias doce='docker-compose exec'
+alias doco='docker-compose'
 alias docl='docker-compose logs -f'
+alias dodn='docker-compose down --volumes --remove-orphans'
 alias dorm='docker rm $(docker ps -aq); docker rmi $(docker images -q); docker volume rm $(docker volume ls -qf dangling=true)'
+alias doup='docker-compose up --build --force-recreate'
 alias g="HOME=$DOTDIR git"
 alias gb='bulk git'
 alias git="HOME=$DOTDIR git"
 alias jshint="HOME=$DOTDIR jshint"
 alias mkdir='mkdir -p'
 alias mv='mv -i'
+alias no="say -v Daniel i will not now, nor ever, do that"
+alias nope="say -v Daniel so sorry"
 alias nr='npm run'
+alias ok="say -v Daniel as you wish, sir"
 alias tmux="tmux -2 -f $DOTDIR/.tmux.conf"
 alias tree='tree --dirsfirst -alACFI "bower_*|jspm_*|node_*|.git*|.svn"'
 alias vi='vim'
 alias vim='vim -O'
-alias viml='vim -O $(eval ${$(fc -l -1)[2,-1]} -l)'
 alias vimi='vim -O $(eval ${$(fc -l -1)[2,-1]})'
+alias viml='vim -O $(eval ${$(fc -l -1)[2,-1]} -l)'
 alias xd='tmux detach'
 alias xn='tmux neww'
 alias xr='tmux attach -d || tmux'
+alias yep="say -v Daniel all done"
 
 case $(uname) in
     CYGWIN*) ;&

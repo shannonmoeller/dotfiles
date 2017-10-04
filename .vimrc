@@ -114,8 +114,8 @@ hi TrailingSpace ctermbg=199
 autocmd InsertEnter * match TrailingSpace /\s\+\%#\@<!$/
 autocmd InsertLeave * match TrailingSpace /\s\+$/
 
-autocmd BufWritePre * :Autoformat
 autocmd BufNewFile,BufRead * :IndentGuidesEnable
+autocmd BufWritePre *.css,*.html,*.js{,on,x} :Autoformat
 
 " Macros
 runtime macros/matchit.vim
