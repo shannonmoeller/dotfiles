@@ -113,6 +113,10 @@ rn () { a="$1"; shift; b="$1"; shift; for i in "$@"; do mv $i ${i//$a/$b}; done 
 rl () { for i in "$@"; do mv "$i" "${i:l}"; done }
 xv () { tmux neww "$EDITOR $*" }
 
+# Prompt
+autoload -U promptinit && promptinit
+prompt pure
+
 # Completion
 autoload -U compinit && compinit -i
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
@@ -138,8 +142,9 @@ compdef xv=vim
 [ -f "$HOME/.profile" ] \
     && source "$HOME/.profile"
 
-[ -f "$HOME/.travis/travis.sh" ] \
-    && source "$HOME/.travis/travis.sh"
+[ -x "$(command -v brew)" ] \
+    && brew analytics off 2>&1 >/dev/null
 
-autoload -U promptinit; promptinit
-prompt pure
+[ -x "$(command -v rbenv)" ] \
+    && eval "$(rbenv init -)"
+

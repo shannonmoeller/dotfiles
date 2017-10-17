@@ -13,11 +13,13 @@ Plug 'SirVer/ultisnips'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer' }
 Plug 'cyphell/htmllint'
 Plug 'editorconfig/editorconfig-vim'
+Plug 'ervandew/supertab'
 Plug 'grensjo/tmuxline.vim'
 Plug 'jistr/vim-nerdtree-tabs'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'nathanaelkane/vim-indent-guides'
+Plug 'prettier/vim-prettier', { 'do': 'npm install' }
 Plug 'scrooloose/nerdtree'
 Plug 'shannonmoeller/vim-monokai256'
 Plug 'sheerun/vim-polyglot'
@@ -83,12 +85,34 @@ let g:indent_guides_auto_colors = 0
 let g:indent_guides_guide_size = 1
 let g:javascript_plugin_jsdoc = 1
 let g:polyglot_disabled = ['yaml']
+let g:prettier#autoformat = 0
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_javascript_eslint_exec = 'eslint_d'
-let g:syntastic_html_checkers = ['htmlhint']
+let g:syntastic_html_checkers = ['htmllint']
 let g:tmuxline_powerline_separators = 0
 
+" make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
+
+" better key bindings for UltiSnipsExpandTrigger
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+
 " Mapping
+command Q q
+command QA qa
+command Qa qa
+command W w
+command WA wa
+command Wa wa
+command WQ wq
+command Wq wq
+command WQA wqa
+command WQa wqa
+command Wqa wqa
 nnoremap <c-p> :Files<CR>
 nnoremap <c-f> :Ag<CR>
 nnoremap <silent> <Leader><Space> :sil %s/\s\+$//<CR>
@@ -115,7 +139,10 @@ autocmd InsertEnter * match TrailingSpace /\s\+\%#\@<!$/
 autocmd InsertLeave * match TrailingSpace /\s\+$/
 
 autocmd BufNewFile,BufRead * :IndentGuidesEnable
-autocmd BufWritePre *.css,*.html,*.js{,on,x} :Autoformat
+
+" Formatting
+autocmd BufWritePre *.css,*.js,*.json,*.jsx Autoformat
+" autocmd BufWritePre *.css,*.graphql,*.js,*.json,*.jsx,*.less,*.mjs,*.scss,*.ts,*.tsx PrettierAsync
 
 " Macros
 runtime macros/matchit.vim
