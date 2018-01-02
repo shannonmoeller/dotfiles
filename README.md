@@ -6,11 +6,11 @@ recommend forking rather than cloning.
 ## Install
 
 1. Clone the repo.
-2. Create a symlink in your home directory to the `.zshrc` file in the repo.
-3. Restart your shell, or log out then in again.
+2. Read `install.sh` entirely.
+3. Run `install.sh` at your discretion.
 
 ----
 
-© 2015 Shannon Moeller <me@shannonmoeller.com>
+© 2017 Shannon Moeller <me@shannonmoeller.com>
 
 Licensed under [MIT](http://shannonmoeller.com/mit.txt)
