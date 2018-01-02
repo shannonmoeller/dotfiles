@@ -2,7 +2,7 @@
     a = add -A :/
     ba = !git branch | ag
     bc = !git branch | sed -n '/^*/s/^* //gp'
-    bl = !git for-each-ref refs/heads refs/remotes/origin --format='%(HEAD) %(color:red)%(refname:short)%(color:reset)^%(color:yellow)%(objectname:short)%(color:reset)^%(color:green)(%(committerdate:local))%(color:reset)^%(authoremail)^%(contents:subject)' | column -t -s '^'
+    bl = !git for-each-ref refs/heads refs/remotes/origin --color=always --format='%(HEAD) %(color:red)%(refname:short)%(color:reset)^%(color:yellow)%(objectname:short)%(color:reset)^%(color:green)(%(committerdate:local))%(color:reset)^%(authoremail)^%(contents:subject)' | column -t -s '^'
     br = branch
     bv = branch -avv
     cm = commit -am

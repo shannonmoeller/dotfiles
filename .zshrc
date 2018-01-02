@@ -18,6 +18,7 @@ export PATH
 
 # Environment
 export EDITOR='vim'
+# export EDITOR='code'
 export FZF_DEFAULT_COMMAND='ag -g ""'
 export HISTFILE="$DOTDIR"'/.zhistory'
 export HISTSIZE=80
@@ -26,6 +27,7 @@ export SAVEHIST=10000
 export TERM='xterm-256color'
 export VIMINIT="so $DOTDIR/.vimrc"
 export VISUAL='vim -O'
+# export VISUAL='code'
 
 case $(uname) in
     CYGWIN*) ;&
@@ -84,10 +86,15 @@ alias nr='npm run'
 alias ok="say -v Daniel as you wish, sir"
 alias tmux="tmux -2 -f $DOTDIR/.tmux.conf"
 alias tree='tree --dirsfirst -alACFI "bower_*|jspm_*|node_*|.git*|.svn"'
+alias t='tree -L'
 alias vi='vim'
 alias vim='vim -O'
 alias vimi='vim -O $(eval ${$(fc -l -1)[2,-1]})'
 alias viml='vim -O $(eval ${$(fc -l -1)[2,-1]} -l)'
+# alias vi='code'
+# alias vim='code'
+# alias vimi='code $(eval ${$(fc -l -1)[2,-1]})'
+# alias viml='code $(eval ${$(fc -l -1)[2,-1]} -l)'
 alias xd='tmux detach'
 alias xn='tmux neww'
 alias xr='tmux attach -d || tmux'
@@ -104,7 +111,6 @@ case $(uname) in
 esac
 
 # Functions
-bulk () { for d in *; do [[ -d $d ]] || continue; printf "\e[48;5;236;38;5;252m$d \e[38;5;161m\$ \e[0m $*\n"; ( cd $d; eval $* ); done }
 cf () { cd $(dirname $(readlink $1)) }
 fd () { find -L ${2:-.} -type d -iregex ".*\($1\)[^/]*" | ag -v '(.git/|.svn/)' }
 ff () { find -L ${2:-.} -type f -iregex ".*\($1\)[^/]*" | ag -v '(.git/|svn/$)' }
@@ -125,6 +131,9 @@ zstyle ':completion:*' menu select=2
 zstyle ':completion:*' special-dirs true
 compdef gb=git
 compdef xv=vim
+
+# Functions
+autoload -U zargs
 
 # Plugins
 [ -f "$DOTDIR/.zsh/bundle/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ] \
@@ -148,3 +157,5 @@ compdef xv=vim
 [ -x "$(command -v rbenv)" ] \
     && eval "$(rbenv init -)"
 
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

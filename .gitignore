@@ -51,6 +51,7 @@ Library/
 
 *.swo
 *.swp
+*.v8flags*
 *.vi
 *~
 .netrwhist

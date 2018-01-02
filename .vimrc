@@ -11,15 +11,15 @@ call plug#begin('$DOTDIR/.vim/plugins')
 Plug 'Chiel92/vim-autoformat'
 Plug 'SirVer/ultisnips'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer' }
-Plug 'cyphell/htmllint'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'ervandew/supertab'
+Plug 'flowtype/vim-flow'
 Plug 'grensjo/tmuxline.vim'
 Plug 'jistr/vim-nerdtree-tabs'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'nathanaelkane/vim-indent-guides'
-Plug 'prettier/vim-prettier', { 'do': 'npm install' }
+" Plug 'prettier/vim-prettier', { 'do': 'npm install' }
 Plug 'scrooloose/nerdtree'
 Plug 'shannonmoeller/vim-monokai256'
 Plug 'sheerun/vim-polyglot'
@@ -31,7 +31,8 @@ Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-scripts/CSSMinister'
-Plug 'vim-syntastic/syntastic'
+" Plug 'vim-syntastic/syntastic'
+Plug 'w0rp/ale'
 call plug#end()
 
 " Settings
@@ -70,10 +71,16 @@ set wildmode=longest:full
 " Plugin Settings
 let c_minlines=1024
 let html_wrong_comments=1
+let g:ale_fix_on_save = 1
+let g:ale_fixers = { 'css': ['prettier', 'stylelint'], 'javascript': ['prettier', 'eslint'] }
+let g:ale_javascript_prettier_use_local_config = 1
+let g:ale_sign_column_always = 1
 let g:EditorConfig_core_mode = 'external_command'
+let g:NERDTreeCascadeSingleChildDir=0
 let g:NERDTreeMinimalUI = 1
 let g:NERDTreeShowHidden = 1
 let g:NERDTreeWinSize = 32
+let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_buffers = 0
 let g:airline#extensions#tabline#left_sep = ' '
@@ -86,9 +93,9 @@ let g:indent_guides_guide_size = 1
 let g:javascript_plugin_jsdoc = 1
 let g:polyglot_disabled = ['yaml']
 let g:prettier#autoformat = 0
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_javascript_eslint_exec = 'eslint_d'
-let g:syntastic_html_checkers = ['htmllint']
+" let g:syntastic_javascript_checkers = ['eslint']
+" let g:syntastic_javascript_eslint_exec = 'eslint_d'
+" let g:syntastic_html_checkers = ['htmllint']
 let g:tmuxline_powerline_separators = 0
 
 " make YCM compatible with UltiSnips (using supertab)
@@ -141,8 +148,8 @@ autocmd InsertLeave * match TrailingSpace /\s\+$/
 autocmd BufNewFile,BufRead * :IndentGuidesEnable
 
 " Formatting
-autocmd BufWritePre *.css,*.js,*.json,*.jsx Autoformat
-" autocmd BufWritePre *.css,*.graphql,*.js,*.json,*.jsx,*.less,*.mjs,*.scss,*.ts,*.tsx PrettierAsync
+" autocmd BufWritePre *.css,*.js,*.json,*.jsx Autoformat
+" autocmd BufWritePre *.css,*.graphql,*.js,*.jsx,*.less,*.mjs,*.scss,*.ts,*.tsx Prettier
 
 " Macros
 runtime macros/matchit.vim
