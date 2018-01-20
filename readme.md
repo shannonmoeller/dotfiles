@@ -11,6 +11,4 @@ recommend forking rather than cloning.
 
 ----
 
-© 2017 Shannon Moeller <me@shannonmoeller.com>
-
-Licensed under [MIT](http://shannonmoeller.com/mit.txt)
+MIT © [Shannon Moeller](http://shannonmoeller.com)
