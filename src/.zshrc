@@ -11,7 +11,7 @@ export PATH
 
 export EDITOR='vim'
 export FZF_DEFAULT_COMMAND='ag -g ""'
-export HISTFILE="$DOTDIR"'/.zhistory'
+export HISTFILE="$HOME"'/.zhistory'
 export HISTSIZE=80
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
@@ -85,6 +85,7 @@ alias xr='tmux attach -d || tmux'
 
 # Functions
 
+bulk () { for d in *; do [[ -d $d ]] || continue; printf "\e[48;5;236;38;5;252m$d \e[38;5;161m\$ \e[0m $*\n"; ( cd $d; eval $* ); done }
 cf () { cd $(dirname $(readlink $1)) }
 fd () { find -L ${2:-.} -type d -iregex ".*\($1\)[^/]*" | ag -v '(.git/|.svn/)' }
 ff () { find -L ${2:-.} -type f -iregex ".*\($1\)[^/]*" | ag -v '(.git/|svn/$)' }
