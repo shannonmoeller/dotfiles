@@ -9,6 +9,7 @@ filetype off
 " Plugins
 call plug#begin('$DOTDIR/.vim/plugins')
 Plug 'Chiel92/vim-autoformat'
+Plug 'Quramy/vim-js-pretty-template'
 Plug 'SirVer/ultisnips'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer' }
 Plug 'editorconfig/editorconfig-vim'
@@ -92,7 +93,7 @@ let g:indent_guides_auto_colors = 0
 let g:indent_guides_guide_size = 1
 let g:javascript_plugin_jsdoc = 1
 let g:polyglot_disabled = ['yaml']
-let g:prettier#autoformat = 0
+" let g:prettier#autoformat = 0
 " let g:syntastic_javascript_checkers = ['eslint']
 " let g:syntastic_javascript_eslint_exec = 'eslint_d'
 " let g:syntastic_html_checkers = ['htmllint']
@@ -147,9 +148,16 @@ autocmd InsertLeave * match TrailingSpace /\s\+$/
 
 autocmd BufNewFile,BufRead * :IndentGuidesEnable
 
+" Template Literal Syntax
+call jspretmpl#register_tag('html', 'html')
+call jspretmpl#register_tag('css', 'css')
+call jspretmpl#register_tag('sql', 'sql')
+autocmd BufNewFile,BufRead *.js JsPreTmpl html
+
 " Formatting
 " autocmd BufWritePre *.css,*.js,*.json,*.jsx Autoformat
 " autocmd BufWritePre *.css,*.graphql,*.js,*.jsx,*.less,*.mjs,*.scss,*.ts,*.tsx Prettier
 
 " Macros
 runtime macros/matchit.vim
+

@@ -136,8 +136,8 @@ compdef xv=vim
 autoload -U zargs
 
 # Plugins
-[ -f "$DOTDIR/.zsh/bundle/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ] \
-    && source "$DOTDIR/.zsh/bundle/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+[ -f "$HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ] \
+    && source "$HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
 [ -f "$HOME/.config/up/up.sh" ] \
     && source "$HOME/.config/up/up.sh"
@@ -157,5 +157,22 @@ autoload -U zargs
 [ -x "$(command -v rbenv)" ] \
     && eval "$(rbenv init -)"
 
+autoload -U add-zsh-hook
+load-nvmrc() {
+    local node_version="$(nvm version)"
+    local nvmrc_path="$(nvm_find_nvmrc)"
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+    if [ -n "$nvmrc_path" ]; then
+        local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
+
+        if [ "$nvmrc_node_version" = "N/A" ]; then
+            nvm install
+        elif [ "$nvmrc_node_version" != "$node_version/" ]; then
+            nvm use
+        fi
+    elif [ "$(nvm version default)" != "$node_version/" ]; then
+        nvm use default
+    fi
+}
+add-zsh-hook chpwd load-nvmrc
+load-nvmrc
