@@ -1,0 +1,10 @@
+bower_components
+coverage
+dist
+node_modules
+.git
+.idea
+.log
+.nyc_output
+.swp
+.vscode
