@@ -39,7 +39,6 @@ nvm alias default lts/*
 npm install -g diff-so-fancy
 npm install -g editorconfig
 npm install -g npm-check-updates
-npm install -g npmrc
 npm install -g pure-prompt
 npm install -g run-headless
 npm install -g say-repl
