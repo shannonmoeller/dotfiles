@@ -99,8 +99,11 @@ xv () { tmux neww "$EDITOR $*" }
 [ -f "${HOMEBREW_PREFIX}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ] \
     && source "${HOMEBREW_PREFIX}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
-[ -f "$HOME/.nvm/nvm.sh" ] \
-    && source "$HOME/.nvm/nvm.sh"
+[ -f "$NVM_DIR/nvm.sh" ] \
+    && source "$NVM_DIR/nvm.sh"
+
+[ -s "$NVM_DIR/bash_completion" ] \
+    && source "$NVM_DIR/bash_completion"
 
 # [ -f "$HOME/.config/bulk/bulk.sh" ] \
 #     && source "$HOME/.config/bulk/bulk.sh"
@@ -119,6 +122,3 @@ xv () { tmux neww "$EDITOR $*" }
 
 [ -x "$(command -v rbenv)" ] \
     && eval "$(rbenv init -)"
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
