@@ -60,11 +60,11 @@ case $(uname) in
     CYGWIN*) ;&
     Linux)
         export LS_COLORS="di=01;34:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=01;05;37;41:mi=01;05;37;41:su=37;41:sg=30;43:tw=30;42:ow=34;42:st=37;44:ex=01;32"
-	alias ll='ls -AFhl --color --group-directories-first'
+        alias ll='ls -AFhl --color --group-directories-first'
         ;;
     Darwin)
         export LSCOLORS="ExGxFxDxCxDxDxhbhdacEc"
-	alias ll='CLICOLOR_FORCE=1 ls -AFGhl | grep "^d\|total" && CLICOLOR_FORCE=1 ls -AFGl | grep -v "^d\|total"'
+        alias ll='CLICOLOR_FORCE=1 ls -AFGhl | grep "^d\|total" && CLICOLOR_FORCE=1 ls -AFGl | grep -v "^d\|total"'
         ;;
 esac
 
@@ -85,8 +85,7 @@ alias xr='tmux attach -d || tmux'
 
 # Functions
 
-bulk () { for d in *; do [[ -d $d ]] || continue; printf "\e[48;5;236;38;5;252m$d \e[38;5;161m\$ \e[0m $*\n"; ( cd $d; eval $* ); done }
-cf () { cd $(dirname $(readlink $1)) }
+bulk () { for d in *; do [[ -d $d ]] || continue; printf "\n\e[34m./$d \e[35m❯ \e[32m$* \e[0m\n"; ( cd $d; eval $* ); done }
 fd () { find -L ${2:-.} -type d -iregex ".*\($1\)[^/]*" | ag -v '(.git/|.svn/)' }
 ff () { find -L ${2:-.} -type f -iregex ".*\($1\)[^/]*" | ag -v '(.git/|svn/$)' }
 md () { mkdir -p $@ && cd $_ }
@@ -96,14 +95,20 @@ xv () { tmux neww "$EDITOR $*" }
 
 # Plugins
 
-[ -f "${HOMEBREW_PREFIX}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ] \
-    && source "${HOMEBREW_PREFIX}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+[ -x "$(command -v brew)" ] \
+    && brew analytics off 2>&1 >/dev/null
 
-[ -f "$NVM_DIR/nvm.sh" ] \
-    && source "$NVM_DIR/nvm.sh"
+[ -x "$(command -v rbenv)" ] \
+    && eval "$(rbenv init -)"
 
-[ -s "$NVM_DIR/bash_completion" ] \
-    && source "$NVM_DIR/bash_completion"
+[ -f "$(brew --prefix zsh-syntax-highlighting)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ] \
+    && source "$(brew --prefix zsh-syntax-highlighting)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+
+[ -f "$HOME/.nvm/nvm.sh" ] \
+    && source "$HOME/.nvm/nvm.sh"
+
+[ -s "$HOME/.nvm/bash_completion" ] \
+    && source "$HOME/.nvm/bash_completion"
 
 # [ -f "$HOME/.config/bulk/bulk.sh" ] \
 #     && source "$HOME/.config/bulk/bulk.sh"
@@ -116,9 +121,3 @@ xv () { tmux neww "$EDITOR $*" }
 
 [ -f "$HOME/.profile" ] \
     && source "$HOME/.profile"
-
-[ -x "$(command -v brew)" ] \
-    && brew analytics off 2>&1 >/dev/null
-
-[ -x "$(command -v rbenv)" ] \
-    && eval "$(rbenv init -)"
