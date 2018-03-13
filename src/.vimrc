@@ -47,10 +47,12 @@ Plug 'flowtype/vim-flow'
 Plug 'jistr/vim-nerdtree-tabs'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'junegunn/goyo.vim'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'scrooloose/nerdtree'
 Plug 'shannonmoeller/vim-monokai256'
 Plug 'sheerun/vim-polyglot'
+Plug 'sindresorhus/focus', {'rtp': 'vim'}
 Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tomtom/tcomment_vim'
@@ -59,6 +61,8 @@ Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'w0rp/ale'
+Plug 'xolox/vim-colorscheme-switcher'
+Plug 'xolox/vim-misc'
 call plug#end()
 
 let g:EditorConfig_core_mode = 'external_command'
@@ -89,6 +93,8 @@ let g:indent_guides_guide_size = 1
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
 let g:neocomplete#sources#syntax#min_keyword_length = 3
+let g:colorscheme_switcher_exclude = ['focus-light']
+let g:colorscheme_switcher_exclude_builtins = 1
 
 function! Multiple_cursors_before()
     exe 'NeoCompleteLock'
@@ -117,8 +123,8 @@ nnoremap <c-p> :Files<CR>
 nnoremap <silent> <Leader><Space> :sil %s/\s\+$//<CR>
 nnoremap <silent> <Leader>l :syntax sync fromstart<CR>
 nnoremap <silent> <Leader>n :NERDTreeTabsToggle<CR>
-nnoremap <silent> <Leader>p :set paste!<CR>
 nnoremap <silent> <Leader>w :set wrap!<CR>
+nnoremap <silent> <Leader>z :NextColorScheme <bar> :Goyo<CR>
 nnoremap Y y$
 vmap < <gv
 vmap > >gv
@@ -137,3 +143,8 @@ autocmd BufNewFile,BufRead * :IndentGuidesEnable
 
 " Macros
 runtime macros/matchit.vim
+
+" Jump to last position
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
