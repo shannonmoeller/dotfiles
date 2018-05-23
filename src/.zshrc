@@ -64,7 +64,7 @@ case $(uname) in
         ;;
     Darwin)
         export LSCOLORS="ExGxFxDxCxDxDxhbhdacEc"
-        alias ll='CLICOLOR_FORCE=1 ls -AFGhl | grep "^d\|total" && CLICOLOR_FORCE=1 ls -AFGl | grep -v "^d\|total"'
+        alias ll='CLICOLOR_FORCE=1 ls -AFGhl | grep "^d\|total" && CLICOLOR_FORCE=1 ls -AFGhl | grep -v "^d\|total"'
         ;;
 esac
 

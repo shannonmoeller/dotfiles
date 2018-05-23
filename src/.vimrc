@@ -41,6 +41,7 @@ set wildmode=longest:full
 " Plugins
 
 call plug#begin('$HOME/.vim/plugins')
+Plug 'Raimondi/delimitMate'
 Plug 'Shougo/neocomplete.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'flowtype/vim-flow'
@@ -58,6 +59,7 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
+Plug 'vim-scripts/CSSMinister'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'w0rp/ale'
@@ -70,8 +72,8 @@ let g:NERDTreeCascadeSingleChildDir=0
 let g:NERDTreeMinimalUI = 1
 let g:NERDTreeShowHidden = 1
 let g:airline#extensions#ale#enabled = 1
-let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#close_symbol = '×'
+let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_alt_sep = ' '
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#show_buffers = 0
@@ -87,14 +89,15 @@ let g:ale_fixers = { 'css': ['prettier', 'stylelint'], 'javascript': ['prettier'
 let g:ale_javascript_prettier_use_local_config = 1
 let g:ale_lint_delay = 500
 let g:ale_sign_column_always = 1
+let g:colorscheme_switcher_exclude = ['focus-light']
+let g:colorscheme_switcher_exclude_builtins = 1
+let g:flow#showquickfix = 0
 let g:fzf_history_dir = '~/.local/share/fzf-history'
 let g:indent_guides_auto_colors = 0
 let g:indent_guides_guide_size = 1
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
 let g:neocomplete#sources#syntax#min_keyword_length = 3
-let g:colorscheme_switcher_exclude = ['focus-light']
-let g:colorscheme_switcher_exclude_builtins = 1
 
 function! Multiple_cursors_before()
     exe 'NeoCompleteLock'
@@ -121,11 +124,14 @@ command WQa wqa
 command Wqa wqa
 nnoremap <c-p> :Files<CR>
 nnoremap <silent> <Leader><Space> :sil %s/\s\+$//<CR>
+nnoremap <silent> <Leader>f :Goyo<CR>
 nnoremap <silent> <Leader>l :syntax sync fromstart<CR>
 nnoremap <silent> <Leader>n :NERDTreeTabsToggle<CR>
+nnoremap <silent> <Leader>s :set spell!<CR>
 nnoremap <silent> <Leader>w :set wrap!<CR>
 nnoremap <silent> <Leader>z :NextColorScheme <bar> :Goyo<CR>
 nnoremap Y y$
+imap <expr> <cr> pumvisible() ? "\<c-y>" : "<Plug>delimitMateCR"
 vmap < <gv
 vmap > >gv
 
@@ -141,10 +147,10 @@ autocmd InsertEnter * match TrailingSpace /\s\+\%#\@<!$/
 autocmd InsertLeave * match TrailingSpace /\s\+$/
 autocmd BufNewFile,BufRead * :IndentGuidesEnable
 
-" Macros
-runtime macros/matchit.vim
-
 " Jump to last position
 if has("autocmd")
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
+
+" Macros
+runtime macros/matchit.vim
