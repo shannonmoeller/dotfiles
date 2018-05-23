@@ -5,8 +5,8 @@ recommend forking rather than cloning.
 
 ## Install
 
-1. Clone the repo.
-2. Read `install.sh` entirely.
+1. Fork and clone your own copy of the repo.
+2. Read the `install.sh` and `install-*.sh` files entirely.
 3. Run `install.sh` at your discretion.
 
 ----
