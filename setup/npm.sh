@@ -1,5 +1,5 @@
 #!/usr/bin/env zsh
-set -ex
+set -x
 
 npm install -g diff-so-fancy
 npm install -g editorconfig

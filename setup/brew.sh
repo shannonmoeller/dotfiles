@@ -1,5 +1,5 @@
 #!/usr/bin/env zsh
-set -ex
+set -x
 
 brew update
 brew install cmake

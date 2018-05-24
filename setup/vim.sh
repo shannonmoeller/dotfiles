@@ -1,5 +1,5 @@
 #!/usr/bin/env zsh
-set -ex
+set -x
 
 curl --create-dirs -o "$HOME/.vim/autoload/plug.vim" https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
