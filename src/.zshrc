@@ -13,6 +13,7 @@ export EDITOR='vim'
 export FZF_DEFAULT_COMMAND='ag -g ""'
 export HISTFILE="$HOME"'/.zhistory'
 export HISTSIZE=80
+export HOMEBREW_NO_ANALYTICS=1
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export LESSHISTFILE='/dev/null'
@@ -94,9 +95,6 @@ rl () { for i in "$@"; do mv "$i" "${i:l}"; done }
 xv () { tmux neww "$EDITOR $*" }
 
 # Plugins
-
-[ -x "$(command -v brew)" ] \
-    && brew analytics off 2>&1 >/dev/null
 
 [ -x "$(command -v rbenv)" ] \
     && eval "$(rbenv init -)"

@@ -43,8 +43,10 @@ set wildmode=longest:full
 call plug#begin('$HOME/.vim/plugins')
 Plug 'Raimondi/delimitMate'
 Plug 'Shougo/neocomplete.vim'
+" Plug 'SirVer/ultisnips'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'flowtype/vim-flow'
+" Plug 'honza/vim-snippets'
 Plug 'jistr/vim-nerdtree-tabs'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -71,6 +73,7 @@ let g:EditorConfig_core_mode = 'external_command'
 let g:NERDTreeCascadeSingleChildDir=0
 let g:NERDTreeMinimalUI = 1
 let g:NERDTreeShowHidden = 1
+let g:UltiSnipsExpandTrigger="<c-e>"
 let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#tabline#close_symbol = '×'
 let g:airline#extensions#tabline#enabled = 1
@@ -91,6 +94,7 @@ let g:ale_lint_delay = 500
 let g:ale_sign_column_always = 1
 let g:colorscheme_switcher_exclude = ['focus-light']
 let g:colorscheme_switcher_exclude_builtins = 1
+let g:flow#omnifunc = 0
 let g:flow#showquickfix = 0
 let g:fzf_history_dir = '~/.local/share/fzf-history'
 let g:indent_guides_auto_colors = 0
