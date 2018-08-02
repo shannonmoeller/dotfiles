@@ -1,6 +1,11 @@
 " ~/.vimrc
 " vim: set filetype=vim:
 
+" https://github.com/vim/vim/issues/3117#issuecomment-402622616
+if has('python3')
+  silent! python3 1
+endif
+
 " Environment
 
 set directory='~/tmp,/var/tmp,/tmp'
