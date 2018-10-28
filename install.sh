@@ -3,9 +3,7 @@ set -x
 
 # dotfiles
 
-for file in $(ls -d src/.*); do
-	ln -s "$PWD/$file" "$HOME/$(basename "$file")"
-done
+./setup/dotfiles.sh
 
 # bin
 

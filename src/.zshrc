@@ -21,6 +21,8 @@ export SAVEHIST=10000
 export TERM='xterm-256color'
 export VISUAL='vim -O'
 
+fpath=("$HOME/.zfunctions" $fpath)
+
 setopt autocd
 setopt autolist
 setopt automenu
@@ -99,7 +101,8 @@ xv () { tmux neww "$EDITOR $*" }
 [ -x "$(command -v rbenv)" ] \
     && eval "$(rbenv init -)"
 
-[ -f "$(brew --prefix zsh-syntax-highlighting)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ] \
+[ -x "$(command -v brew)" ] \
+    && [ -f "$(brew --prefix zsh-syntax-highlighting)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ] \
     && source "$(brew --prefix zsh-syntax-highlighting)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
 [ -f "$HOME/.nvm/nvm.sh" ] \
@@ -119,3 +122,5 @@ xv () { tmux neww "$EDITOR $*" }
 
 [ -f "$HOME/.profile" ] \
     && source "$HOME/.profile"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
