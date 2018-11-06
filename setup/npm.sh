@@ -13,3 +13,7 @@ npm install -g say-repl
 npm install -g serve
 npm install -g stylelint
 npm install -g vmd
+
+if [[ "$(uname)" == Linux ]]; then
+    mkdir ~/.zfunctions
+fi

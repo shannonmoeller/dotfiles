@@ -9,18 +9,26 @@ set -x
 
 ./setup/bin.sh
 
-# brew
+# apt-get
 
-if ! [[ -x "$(command -v brew 2>/dev/null)" ]]; then
-    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+if [[ "$(uname)" == Linux ]]; then
+    ./setup/apt.sh
 fi
 
-./setup/brew.sh
+# brew
+
+if [[ "$(uname)" == Darwin ]]; then
+    if ! [[ -x "$(command -v brew 2>/dev/null)" ]]; then
+        /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    fi
+
+    ./setup/brew.sh
+fi
 
 # node
 
 if ! [[ -x "$(command -v nvm 2>/dev/null)" ]]; then
-    /usr/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/creationix/nvm/master/install.sh)"
+    /usr/bin/env bash -c "$(curl -fsSL https://raw.githubusercontent.com/creationix/nvm/master/install.sh)"
 fi
 
 if ! [[ -x "$(command -v npm 2>/dev/null)" ]]; then
