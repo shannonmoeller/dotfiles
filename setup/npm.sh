@@ -1,6 +1,10 @@
 #!/usr/bin/env zsh
 set -x
 
+if [[ "$(uname)" == Linux ]]; then
+    mkdir ~/.zfunctions
+fi
+
 npm install -g diff-so-fancy
 npm install -g editorconfig
 npm install -g eslint
@@ -13,7 +17,3 @@ npm install -g say-repl
 npm install -g serve
 npm install -g stylelint
 npm install -g vmd
-
-if [[ "$(uname)" == Linux ]]; then
-    mkdir ~/.zfunctions
-fi
