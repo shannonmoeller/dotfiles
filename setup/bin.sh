@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env bash
 set -x
 
 curl --create-dirs -o "$HOME/.config/bulk/bulk.sh" https://raw.githubusercontent.com/shannonmoeller/bulk/master/bulk.sh
