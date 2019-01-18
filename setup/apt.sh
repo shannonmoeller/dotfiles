@@ -2,7 +2,6 @@
 set -x
 
 sudo apt-get install curl
-sudo apt-get install fzf
 sudo apt-get install silversearcher-ag
 sudo apt-get install tmux
 sudo apt-get install tree

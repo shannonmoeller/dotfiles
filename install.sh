@@ -22,7 +22,15 @@ if [[ "$(uname)" == Darwin ]]; then
         /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
     fi
 
-    ./setup/brew.sh
+    ./setup/homebrew.sh
+fi
+
+if [[ "$(uname)" == Linux ]]; then
+    if ! [[ -x "$(command -v brew 2>/dev/null)" ]]; then
+        sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
+    fi
+
+    ./setup/linuxbrew.sh
 fi
 
 # node

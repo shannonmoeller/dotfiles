@@ -5,6 +5,7 @@
 
 PATH="$PATH:$HOME/bin:$HOME/sbin"
 PATH="$PATH:$HOME/.brew/bin"
+PATH="$PATH:/home/linuxbrew/.linuxbrew/bin"
 PATH="$PATH:/usr/local/bin:/usr/bin:/bin"
 PATH="$PATH:/usr/local/sbin:/usr/sbin:/sbin"
 export PATH
@@ -88,7 +89,6 @@ alias xr='tmux attach -d || tmux'
 
 # Functions
 
-bulk () { for d in *; do [[ -d $d ]] || continue; printf "\n\e[34m./$d \e[35m❯ \e[32m$* \e[0m\n"; ( cd $d; eval $* ); done }
 fd () { find -L ${2:-.} -type d -iregex ".*\($1\)[^/]*" | ag -v '(.git/|.svn/)' }
 ff () { find -L ${2:-.} -type f -iregex ".*\($1\)[^/]*" | ag -v '(.git/|svn/$)' }
 md () { mkdir -p $@ && cd $_ }
@@ -108,11 +108,11 @@ xv () { tmux neww "$EDITOR $*" }
 [ -f "$HOME/.nvm/nvm.sh" ] \
     && source "$HOME/.nvm/nvm.sh"
 
-[ -s "$HOME/.nvm/bash_completion" ] \
+[ -f "$HOME/.nvm/bash_completion" ] \
     && source "$HOME/.nvm/bash_completion"
 
-# [ -f "$HOME/.config/bulk/bulk.sh" ] \
-#     && source "$HOME/.config/bulk/bulk.sh"
+[ -f "$HOME/.config/bulk/bulk.sh" ] \
+    && source "$HOME/.config/bulk/bulk.sh"
 
 [ -f "$HOME/.config/up/up.sh" ] \
     && source "$HOME/.config/up/up.sh"
@@ -122,5 +122,3 @@ xv () { tmux neww "$EDITOR $*" }
 
 [ -f "$HOME/.profile" ] \
     && source "$HOME/.profile"
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
