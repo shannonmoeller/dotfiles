@@ -54,12 +54,14 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'jistr/vim-nerdtree-tabs'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-" Plug 'lifepillar/vim-mucomplete'
+Plug 'junegunn/goyo.vim'
+Plug 'lifepillar/vim-mucomplete'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'pangloss/vim-javascript'
 Plug 'scrooloose/nerdtree'
 Plug 'shannonmoeller/vim-monokai256'
 Plug 'sindresorhus/focus', {'rtp': 'vim'}
+Plug 'solarnz/thrift.vim'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-repeat'
@@ -68,6 +70,8 @@ Plug 'vim-scripts/CSSMinister'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'w0rp/ale'
+Plug 'xolox/vim-colorscheme-switcher'
+Plug 'xolox/vim-misc'
 call plug#end()
 
 let g:EditorConfig_core_mode = 'external_command'
@@ -92,11 +96,13 @@ let g:ale_completion_enabled = 1
 let g:ale_fix_on_save = 1
 let g:ale_fixers = { 'css': ['prettier', 'stylelint'], 'javascript': ['prettier', 'eslint'] }
 let g:ale_sign_column_always = 1
+let g:colorscheme_switcher_exclude = ['focus-light']
+let g:colorscheme_switcher_exclude_builtins = 1
 let g:fzf_history_dir = '~/.local/share/fzf-history'
 let g:indent_guides_auto_colors = 0
 let g:indent_guides_guide_size = 1
 let g:javascript_plugin_flow = 1
-" let g:mucomplete#enable_auto_at_startup = 1
+let g:mucomplete#enable_auto_at_startup = 0
 
 " Mapping
 
@@ -118,10 +124,31 @@ nnoremap <silent> <Leader>l :syntax sync fromstart<CR>
 nnoremap <silent> <Leader>n :NERDTreeTabsToggle<CR>
 nnoremap <silent> <Leader>s :set spell!<CR>
 nnoremap <silent> <Leader>w :set wrap!<CR>
+nnoremap <silent> <Leader>c :NextColorScheme<CR>
+nnoremap <silent> <Leader>z :Goyo<CR>
 nnoremap Y y$
 imap <expr> <cr> pumvisible() ? "\<c-y>" : "<Plug>delimitMateCR"
 vmap < <gv
 vmap > >gv
+
+function! s:goyo_enter()
+  set noshowmode
+  set noshowcmd
+  set scrolloff=999
+  ALEDisable
+  call xolox#colorscheme_switcher#switch_to('focus-dark')
+endfunction
+
+function! s:goyo_leave()
+  set showmode
+  set showcmd
+  set scrolloff=0
+  call xolox#colorscheme_switcher#switch_to('monokai256')
+  ALEEnable
+endfunction
+
+autocmd! User GoyoEnter nested call <SID>goyo_enter()
+autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
 " Theme
 
