@@ -35,6 +35,16 @@ setopt nocaseglob
 setopt nocheckjobs
 setopt nohup
 
+# Plugins
+
+source ~/.zplug/init.zsh
+
+zplug "mafredri/zsh-async", from:github
+zplug "sindresorhus/pure", use:pure.zsh, from:github, as:theme
+zplug "zsh-users/zsh-syntax-highlighting", defer:2
+zplug check || zplug install
+zplug load
+
 # Mapping
 
 bindkey -e
@@ -46,9 +56,6 @@ bindkey 'eOF'  end-of-line
 bindkey 'e[F'  end-of-line
 
 # Theme
-
-autoload -U promptinit && promptinit
-prompt pure
 
 autoload -U compinit && compinit -i
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
@@ -101,24 +108,16 @@ xv () { tmux neww "$EDITOR $*" }
 [ -x "$(command -v rbenv)" ] \
     && eval "$(rbenv init -)"
 
-[ -x "$(command -v brew)" ] \
-    && [ -f "$(brew --prefix zsh-syntax-highlighting)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ] \
-    && source "$(brew --prefix zsh-syntax-highlighting)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-
 [ -f "$HOME/.nvm/nvm.sh" ] \
     && source "$HOME/.nvm/nvm.sh"
 
 [ -f "$HOME/.nvm/bash_completion" ] \
     && source "$HOME/.nvm/bash_completion"
 
-[ -f "$HOME/.config/bulk/bulk.sh" ] \
-    && source "$HOME/.config/bulk/bulk.sh"
-
 [ -f "$HOME/.config/up/up.sh" ] \
     && source "$HOME/.config/up/up.sh"
 
-[ -f "$HOME/.fzf.zsh" ] \
-    && source "$HOME/.fzf.zsh"
-
 [ -f "$HOME/.profile" ] \
     && source "$HOME/.profile"
+
+s -f ~/.fzf.zsh ] && source ~/.fzf.zsh
