@@ -33,6 +33,7 @@ set noshowmode
 set novisualbell
 set nowrap
 set number
+set omnifunc=ale#completion#OmniFunc
 set shiftwidth=4
 set showcmd
 set showtabline=2
@@ -74,7 +75,6 @@ Plug 'xolox/vim-colorscheme-switcher'
 Plug 'xolox/vim-misc'
 call plug#end()
 
-let g:EditorConfig_core_mode = 'external_command'
 let g:NERDTreeCascadeSingleChildDir=0
 let g:NERDTreeMinimalUI = 1
 let g:NERDTreeShowHidden = 1
@@ -102,7 +102,7 @@ let g:fzf_history_dir = '~/.local/share/fzf-history'
 let g:indent_guides_auto_colors = 0
 let g:indent_guides_guide_size = 1
 let g:javascript_plugin_flow = 1
-let g:mucomplete#enable_auto_at_startup = 0
+let g:mucomplete#enable_auto_at_startup = 1
 
 " Mapping
 
@@ -130,6 +130,16 @@ nnoremap Y y$
 imap <expr> <cr> pumvisible() ? "\<c-y>" : "<Plug>delimitMateCR"
 vmap < <gv
 vmap > >gv
+
+function! Multiple_cursors_before()
+  MUcompleteAutoOff
+  ALEDisableBuffer
+endfunction
+
+function! Multiple_cursors_after()
+  ALEEnableBuffer
+  MUcompleteAutoOn
+endfunction
 
 function! s:goyo_enter()
   set noshowmode
