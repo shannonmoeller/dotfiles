@@ -119,4 +119,4 @@ xv () { tmux neww "$EDITOR $*" }
 [ -f "$HOME/.profile" ] \
     && source "$HOME/.profile"
 
-s -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

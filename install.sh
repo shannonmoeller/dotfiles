@@ -41,8 +41,8 @@ fi
 
 if ! [[ -x "$(command -v npm 2>/dev/null)" ]]; then
     [ -f "$HOME/.nvm/nvm.sh" ] && source "$HOME/.nvm/nvm.sh"
-    nvm install lts/*
-    nvm alias default lts/*
+    nvm install 'lts/*'
+    nvm alias default 'lts/*'
 fi
 
 ./setup/npm.sh
