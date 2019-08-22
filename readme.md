@@ -1,7 +1,6 @@
-# dotfiles
+# .files 📂
 
-My personal dotfiles, public for convenience and reference. If you like what you see, I'd
-recommend forking rather than cloning.
+My personal dotfiles. Public for convenience and reference.
 
 ## Install
 
