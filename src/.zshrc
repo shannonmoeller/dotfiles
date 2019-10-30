@@ -5,11 +5,13 @@
 
 PATH="$PATH:$HOME/bin:$HOME/sbin"
 PATH="$PATH:$HOME/.brew/bin"
+PATH="$PATH:$HOME/.volta/bin"
 PATH="$PATH:/home/linuxbrew/.linuxbrew/bin"
 PATH="$PATH:/usr/local/bin:/usr/bin:/bin"
 PATH="$PATH:/usr/local/sbin:/usr/sbin:/sbin"
 export PATH
 
+export DISABLE_OPENCOLLECTIVE=true
 export EDITOR='vim'
 export FZF_DEFAULT_COMMAND='ag -g ""'
 export HISTFILE="$HOME"'/.zhistory'
@@ -18,6 +20,7 @@ export HOMEBREW_NO_ANALYTICS=1
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export LESSHISTFILE='/dev/null'
+export OPEN_SOURCE_CONTRIBUTOR=true
 export SAVEHIST=10000
 export TERM='xterm-256color'
 export VISUAL='vim -O'
@@ -107,11 +110,8 @@ xv () { tmux neww "$EDITOR $*" }
 [ -x "$(command -v rbenv)" ] \
     && eval "$(rbenv init -)"
 
-[ -f "$HOME/.nvm/nvm.sh" ] \
-    && source "$HOME/.nvm/nvm.sh"
-
-[ -f "$HOME/.nvm/bash_completion" ] \
-    && source "$HOME/.nvm/bash_completion"
+[ -f "$HOME/.volta/load.sh" ] \
+    && source "$HOME/.volta/load.sh"
 
 [ -f "$HOME/.config/up/up.sh" ] \
     && source "$HOME/.config/up/up.sh"

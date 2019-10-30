@@ -35,17 +35,11 @@ fi
 
 # node
 
-if ! [[ -x "$(command -v nvm 2>/dev/null)" ]]; then
-    /usr/bin/env bash -c "$(curl -fsSL https://raw.githubusercontent.com/creationix/nvm/master/install.sh)"
+if ! [[ -x "$(command -v volta 2>/dev/null)" ]]; then
+    /usr/bin/env bash -c "$(curl -fsSL https://get.volta.sh)"
 fi
 
-if ! [[ -x "$(command -v npm 2>/dev/null)" ]]; then
-    [ -f "$HOME/.nvm/nvm.sh" ] && source "$HOME/.nvm/nvm.sh"
-    nvm install 'lts/*'
-    nvm alias default 'lts/*'
-fi
-
-./setup/npm.sh
+./setup/volta.sh
 
 # vim
 
