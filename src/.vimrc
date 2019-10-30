@@ -57,13 +57,14 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'lifepillar/vim-mucomplete'
+Plug 'mg979/vim-visual-multi'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'pangloss/vim-javascript'
 Plug 'scrooloose/nerdtree'
 Plug 'shannonmoeller/vim-monokai256'
 Plug 'sindresorhus/focus', {'rtp': 'vim'}
 Plug 'solarnz/thrift.vim'
-Plug 'terryma/vim-multiple-cursors'
+" Plug 'terryma/vim-multiple-cursors'
 Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
@@ -131,15 +132,15 @@ imap <expr> <cr> pumvisible() ? "\<c-y>" : "<Plug>delimitMateCR"
 vmap < <gv
 vmap > >gv
 
-function! Multiple_cursors_before()
-  MUcompleteAutoOff
-  ALEDisableBuffer
-endfunction
-
-function! Multiple_cursors_after()
-  ALEEnableBuffer
-  MUcompleteAutoOn
-endfunction
+" function! Multiple_cursors_before()
+"   ALEDisableBuffer
+"   MUcompleteAutoOff
+" endfunction
+"
+" function! Multiple_cursors_after()
+"   MUcompleteAutoOn
+"   ALEEnableBuffer
+" endfunction
 
 function! s:goyo_enter()
   set noshowmode
@@ -168,9 +169,10 @@ color monokai256
 let &showbreak='└ '
 
 hi TrailingSpace ctermbg=199
+autocmd BufNewFile,BufRead * :IndentGuidesEnable
+autocmd BufNewFile,BufRead *.{ts,tsx} set filetype=javascript
 autocmd InsertEnter * match TrailingSpace /\s\+\%#\@<!$/
 autocmd InsertLeave * match TrailingSpace /\s\+$/
-autocmd BufNewFile,BufRead * :IndentGuidesEnable
 autocmd InsertEnter * let lwd = getcwd() | set autochdir
 autocmd InsertLeave * set noautochdir | execute 'cd' fnameescape(lwd)
 
