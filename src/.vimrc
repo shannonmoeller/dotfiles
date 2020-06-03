@@ -51,6 +51,7 @@ set wildmode=longest:full
 call plug#begin('$HOME/.vim/plugins')
 Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'Raimondi/delimitMate'
+Plug 'dense-analysis/ale'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'jistr/vim-nerdtree-tabs'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -60,6 +61,7 @@ Plug 'lifepillar/vim-mucomplete'
 Plug 'mg979/vim-visual-multi'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'pangloss/vim-javascript'
+" Plug 'prettier/vim-prettier'
 Plug 'scrooloose/nerdtree'
 Plug 'shannonmoeller/vim-monokai256'
 Plug 'sindresorhus/focus', {'rtp': 'vim'}
@@ -71,7 +73,6 @@ Plug 'tpope/vim-surround'
 Plug 'vim-scripts/CSSMinister'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'w0rp/ale'
 Plug 'xolox/vim-colorscheme-switcher'
 Plug 'xolox/vim-misc'
 call plug#end()
@@ -95,7 +96,7 @@ let g:airline#extensions#taboo#enabled = 0
 let g:airline_theme = 'powerlineish'
 let g:ale_completion_enabled = 1
 let g:ale_fix_on_save = 1
-let g:ale_fixers = { 'css': ['prettier', 'stylelint'], 'javascript': ['prettier', 'eslint'] }
+let g:ale_fixers = { 'css': ['stylelint', 'prettier'], 'javascript': ['eslint', 'prettier'] }
 let g:ale_sign_column_always = 1
 let g:colorscheme_switcher_exclude = ['focus-light']
 let g:colorscheme_switcher_exclude_builtins = 1
