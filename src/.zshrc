@@ -30,6 +30,7 @@ fpath=("$HOME/.zfunctions" $fpath)
 setopt autocd
 setopt autolist
 setopt automenu
+setopt chaselinks
 setopt extendedglob
 setopt histignorealldups
 setopt incappendhistory
