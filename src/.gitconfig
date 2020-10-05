@@ -8,6 +8,7 @@
     cm = commit -am
     co = checkout
     df = diff --color --ignore-space-change
+    dh = diff --color --ignore-space-change HEAD
     dn = diff --name-only
     dt = difftool --ignore-space-change
     la = !git log --oneline | ack -i
@@ -60,3 +61,5 @@
     email = me@shannonmoeller.com
 [include]
     path = ~/.gitconfig_profile
+[pull]
+	rebase = false

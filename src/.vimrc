@@ -61,12 +61,10 @@ Plug 'lifepillar/vim-mucomplete'
 Plug 'mg979/vim-visual-multi'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'pangloss/vim-javascript'
-" Plug 'prettier/vim-prettier'
 Plug 'scrooloose/nerdtree'
 Plug 'shannonmoeller/vim-monokai256'
 Plug 'sindresorhus/focus', {'rtp': 'vim'}
 Plug 'solarnz/thrift.vim'
-" Plug 'terryma/vim-multiple-cursors'
 Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
@@ -97,6 +95,7 @@ let g:airline_theme = 'powerlineish'
 let g:ale_completion_enabled = 1
 let g:ale_fix_on_save = 1
 let g:ale_fixers = { 'css': ['stylelint', 'prettier'], 'javascript': ['eslint', 'prettier'] }
+let g:ale_linters_ignore = { 'javascript': ['tsserver'], 'javascriptreact': ['tsserver'] }
 let g:ale_sign_column_always = 1
 let g:colorscheme_switcher_exclude = ['focus-light']
 let g:colorscheme_switcher_exclude_builtins = 1
@@ -120,7 +119,6 @@ command WQA wqa
 command WQa wqa
 command Wqa wqa
 nnoremap <C-p> :Files<CR>
-nnoremap <C-]> :ALEGoToDefinitionInVSplit<CR>
 nnoremap <silent> <Leader><Space> :sil %s/\s\+$//<CR>
 nnoremap <silent> <Leader>l :syntax sync fromstart<CR>
 nnoremap <silent> <Leader>n :NERDTreeTabsToggle<CR>
@@ -129,19 +127,11 @@ nnoremap <silent> <Leader>w :set wrap!<CR>
 nnoremap <silent> <Leader>c :NextColorScheme<CR>
 nnoremap <silent> <Leader>z :Goyo<CR>
 nnoremap Y y$
-imap <expr> <cr> pumvisible() ? "\<c-y>" : "<Plug>delimitMateCR"
+nnoremap gd :ALEGoToDefinition -vsplit<CR>
+nnoremap gn :NERDTreeFind<CR>
+" imap <expr> <cr> pumvisible() ? "\<c-y>" : "<Plug>delimitMateCR"
 vmap < <gv
 vmap > >gv
-
-" function! Multiple_cursors_before()
-"   ALEDisableBuffer
-"   MUcompleteAutoOff
-" endfunction
-"
-" function! Multiple_cursors_after()
-"   MUcompleteAutoOn
-"   ALEEnableBuffer
-" endfunction
 
 function! s:goyo_enter()
   set noshowmode

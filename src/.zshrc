@@ -120,4 +120,7 @@ xv () { tmux neww "$EDITOR $*" }
 [ -f "$HOME/.profile" ] \
     && source "$HOME/.profile"
 
+[ -f "$HOME/.zshrc_corp" ] \
+    && source "$HOME/.zshrc_corp"
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
