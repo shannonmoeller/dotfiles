@@ -6,6 +6,7 @@
 PATH="$PATH:$HOME/bin:$HOME/sbin"
 PATH="$PATH:$HOME/.brew/bin"
 PATH="$PATH:$HOME/.volta/bin"
+PATH="$PATH:$HOME/.yarn/bin"
 PATH="$PATH:/home/linuxbrew/.linuxbrew/bin"
 PATH="$PATH:/usr/local/bin:/usr/bin:/bin"
 PATH="$PATH:/usr/local/sbin:/usr/sbin:/sbin"
@@ -110,9 +111,6 @@ xv () { tmux neww "$EDITOR $*" }
 
 [ -x "$(command -v rbenv)" ] \
     && eval "$(rbenv init -)"
-
-[ -f "$HOME/.volta/load.sh" ] \
-    && source "$HOME/.volta/load.sh"
 
 [ -f "$HOME/.config/up/up.sh" ] \
     && source "$HOME/.config/up/up.sh"
