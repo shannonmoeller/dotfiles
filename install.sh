@@ -35,11 +35,17 @@ fi
 
 # node
 
-if ! [[ -x "$(command -v volta 2>/dev/null)" ]]; then
-    /usr/bin/env bash -c "$(curl -fsSL https://get.volta.sh)"
+if ! [[ -x "$(command -v fnm 2>/dev/null)" ]]; then
+    /usr/bin/env bash -c "$(curl -fsSL https://fnm.vercel.app/install)"
 fi
 
-./setup/volta.sh
+./setup/npm.sh
+
+# if ! [[ -x "$(command -v volta 2>/dev/null)" ]]; then
+#     /usr/bin/env bash -c "$(curl -fsSL https://get.volta.sh)"
+# fi
+#
+# ./setup/volta.sh
 
 # vim
 

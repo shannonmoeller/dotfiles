@@ -5,7 +5,7 @@
 
 PATH="$PATH:$HOME/bin:$HOME/sbin"
 PATH="$PATH:$HOME/.brew/bin"
-PATH="$PATH:$HOME/.volta/bin"
+# PATH="$PATH:$HOME/.volta/bin"
 PATH="$PATH:$HOME/.yarn/bin"
 PATH="$PATH:/home/linuxbrew/.linuxbrew/bin"
 PATH="$PATH:/usr/local/bin:/usr/bin:/bin"
@@ -109,6 +109,9 @@ xv () { tmux neww "$EDITOR $*" }
 
 # Plugins
 
+[ -x "$(command -v fnm)" ] \
+    && eval "$(fnm env)"
+
 [ -x "$(command -v rbenv)" ] \
     && eval "$(rbenv init -)"
 
@@ -122,3 +125,28 @@ xv () { tmux neww "$EDITOR $*" }
     && source "$HOME/.zshrc_corp"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+FNM_USING_LOCAL_VERSION=0
+
+_find_up() {
+	path=$(pwd)
+	while [[ "$path" != "" && ! -e "$path/$1" ]]; do
+		path=${path%/*}
+	done
+	echo "$path"
+}
+
+_fnm_hook() {
+	nvmrc_path=$(_find_up .nvmrc | tr -d '[:space:]')
+	if [ -n "$nvmrc_path" ]; then
+		FNM_USING_LOCAL_VERSION=1
+		nvm_version="$(cat $nvmrc_path/.nvmrc)"
+		fnm --log-level=quiet use $nvm_version
+	elif [ $FNM_USING_LOCAL_VERSION -eq 1 ]; then
+		FNM_USING_LOCAL_VERSION=0
+		fnm --log-level=quiet use default
+	fi
+}
+
+autoload -U add-zsh-hook
+add-zsh-hook chpwd _fnm_hook && _fnm_hook
