@@ -39,15 +39,25 @@ setopt interactivecomments
 setopt nocaseglob
 setopt nocheckjobs
 setopt nohup
+setopt prompt_subst
 
 # Plugins
 
 source ~/.zplug/init.zsh
 zplug "mafredri/zsh-async", from:github
-zplug "sindresorhus/pure", use:pure.zsh, from:github, as:theme
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug check || zplug install
 zplug load
+
+# Prompt
+
+autoload -Uz vcs_info
+precmd() { vcs_info }
+zstyle ':vcs_info:git:*' formats '%b'
+[[ $SSH_CONNECTION ]] && local ssh_info='%F{8}%n@%m%f '
+export PROMPT='
+${ssh_info}%F{blue}%~%f ${vcs_info_msg_0_}
+%(?.%F{cyan}.%F{red})❯%f '
 
 # Mapping
 
