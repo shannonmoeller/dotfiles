@@ -36,7 +36,7 @@ fi
 # node
 
 if ! [[ -x "$(command -v fnm 2>/dev/null)" ]]; then
-    /usr/bin/env bash -c "$(curl -fsSL https://fnm.vercel.app/install)" -- --skip-shell
+    /usr/bin/env bash -c "$(curl -fsSL https://fnm.vercel.app/install)"
 fi
 
 ./setup/npm.sh
