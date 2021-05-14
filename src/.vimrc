@@ -67,6 +67,7 @@ Plug 'shannonmoeller/vim-monokai256'
 Plug 'sindresorhus/focus', {'rtp': 'vim'}
 Plug 'solarnz/thrift.vim'
 Plug 'tomtom/tcomment_vim'
+Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'vim-scripts/CSSMinister'
@@ -96,7 +97,7 @@ let g:airline_theme = 'powerlineish'
 let g:ale_completion_enabled = 1
 let g:ale_fix_on_save = 1
 let g:ale_fixers = { 'css': ['stylelint', 'prettier'], 'javascript': ['eslint', 'prettier'] }
-let g:ale_linters = { 'css': ['stylelint'], 'javascript': ['eslint'] }
+let g:ale_linters = { 'css': ['stylelint'], 'javascript': ['eslint', 'flow-language-server'] }
 let g:ale_sign_column_always = 1
 let g:colorscheme_switcher_exclude = ['focus-light']
 let g:colorscheme_switcher_exclude_builtins = 1
@@ -106,20 +107,14 @@ let g:indent_guides_guide_size = 1
 let g:javascript_plugin_flow = 1
 let g:mucomplete#enable_auto_at_startup = 1
 
-if !empty(findfile('.pnp.cjs', '.;'))
-  let g:ale_linters = { 'css': ['stylelint'], 'javascript': ['eslint', 'flow-language-server'] }
-
+let s:sdks = finddir('.yarn/sdks', ';')
+if !empty(s:sdks)
   let g:ale_javascript_eslint_use_global = 1
-  let g:ale_javascript_eslint_executable = 'yarn'
-  let g:ale_javascript_eslint_options = 'exec eslint'
-
+  let g:ale_javascript_eslint_executable = s:sdks . '/eslint/bin/eslint.js'
   let g:ale_javascript_flow_ls_use_global = 1
-  let g:ale_javascript_flow_ls_executable = 'yarn'
-  let g:ale_javascript_flow_ls_options = 'exec flow'
-
+  let g:ale_javascript_flow_ls_executable = s:sdks . '/flow-bin/cli.js'
   let g:ale_javascript_prettier_use_global = 1
-  let g:ale_javascript_prettier_executable = 'yarn'
-  let g:ale_javascript_prettier_options = 'exec prettier'
+  let g:ale_javascript_prettier_executable = s:sdks . '/prettier/index.js'
 endif
 
 " Mapping

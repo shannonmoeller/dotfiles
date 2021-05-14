@@ -52,11 +52,16 @@ zplug load
 # Prompt
 
 autoload -Uz vcs_info
-precmd() { vcs_info }
+precmd() {
+    vcs_info
+    precmd() {
+        vcs_info
+        echo
+    }
+}
 zstyle ':vcs_info:git:*' formats '%b'
 [[ $SSH_CONNECTION ]] && local ssh_info='%F{8}%n@%m%f '
-export PROMPT='
-${ssh_info}%F{blue}%~%f ${vcs_info_msg_0_}
+export PROMPT='${ssh_info}%F{blue}%~%f ${vcs_info_msg_0_}
 %(?.%F{cyan}.%F{red})❯%f '
 
 # Mapping
@@ -127,6 +132,9 @@ xv () { tmux neww "$EDITOR $*" }
 
 [ -f "$HOME/.config/up/up.sh" ] \
     && source "$HOME/.config/up/up.sh"
+
+[ -f "$HOME/.config/z/z.sh" ] \
+    && source "$HOME/.config/z/z.sh"
 
 [ -f "$HOME/.profile" ] \
     && source "$HOME/.profile"
