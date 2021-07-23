@@ -5,7 +5,7 @@
 
 PATH="$PATH:$HOME/bin:$HOME/sbin"
 PATH="$PATH:$HOME/.brew/bin"
-# PATH="$PATH:$HOME/.volta/bin"
+PATH="$PATH:$HOME/.fnm"
 PATH="$PATH:$HOME/.yarn/bin"
 PATH="$PATH:/home/linuxbrew/.linuxbrew/bin"
 PATH="$PATH:/usr/local/bin:/usr/bin:/bin"
@@ -44,7 +44,10 @@ setopt prompt_subst
 # Plugins
 
 source ~/.zplug/init.zsh
-zplug "mafredri/zsh-async", from:github
+zplug 'zplug/zplug', hook-build:'zplug --self-manage'
+zplug "mafredri/zsh-async"
+zplug "rupa/z", use:"z.sh"
+zplug "shannonmoeller/up", use:"up.sh"
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug check || zplug install
 zplug load
@@ -130,11 +133,8 @@ xv () { tmux neww "$EDITOR $*" }
 [ -x "$(command -v rbenv)" ] \
     && eval "$(rbenv init -)"
 
-[ -f "$HOME/.config/up/up.sh" ] \
-    && source "$HOME/.config/up/up.sh"
-
-[ -f "$HOME/.config/z/z.sh" ] \
-    && source "$HOME/.config/z/z.sh"
+[ -f "$HOME/.fzf.zsh" ] \
+    && source "$HOME/.fzf.zsh"
 
 [ -f "$HOME/.profile" ] \
     && source "$HOME/.profile"
@@ -142,28 +142,22 @@ xv () { tmux neww "$EDITOR $*" }
 [ -f "$HOME/.zshrc_corp" ] \
     && source "$HOME/.zshrc_corp"
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-FNM_USING_LOCAL_VERSION=0
-
-_find_up() {
-	path=$(pwd)
-	while [[ "$path" != "" && ! -e "$path/$1" ]]; do
-		path=${path%/*}
-	done
-	echo "$path"
-}
-
+__fnm_nvm_path="init"
 _fnm_hook() {
-	nvmrc_path=$(_find_up .nvmrc | tr -d '[:space:]')
-	if [ -n "$nvmrc_path" ]; then
-		FNM_USING_LOCAL_VERSION=1
-		nvm_version="$(cat $nvmrc_path/.nvmrc)"
-		fnm --log-level=quiet use $nvm_version
-	elif [ $FNM_USING_LOCAL_VERSION -eq 1 ]; then
-		FNM_USING_LOCAL_VERSION=0
-		fnm --log-level=quiet use default
-	fi
+    local nvm_path=$PWD
+
+    while [[ "$nvm_path" != "" && ! -e "$nvm_path/.nvmrc" ]]; do
+        nvm_path=${nvm_path%/*}
+    done
+
+    if [[ "$nvm_path" != "$__fnm_nvm_path" ]]; then
+        if [[ -z "$nvm_path" ]]; then
+            fnm use --log-level quiet default
+        else
+            fnm use --log-level quiet $(cat "$nvm_path/.nvmrc")
+        fi
+        __fnm_nvm_path="$nvm_path"
+    fi
 }
 
 autoload -U add-zsh-hook

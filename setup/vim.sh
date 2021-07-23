@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -x
 
-curl --create-dirs -o "$HOME/.vim/autoload/plug.vim" https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+if ! [ -e "$HOME/.vim/autoload/plug.vim" ]; then
+    curl --create-dirs -o "$HOME/.vim/autoload/plug.vim" https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+fi
 
 vim +PlugInstall +qa

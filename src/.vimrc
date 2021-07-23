@@ -55,7 +55,7 @@ Plug 'Raimondi/delimitMate'
 Plug 'dense-analysis/ale'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'jistr/vim-nerdtree-tabs'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all --no-update-rc' }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'lifepillar/vim-mucomplete'
@@ -105,6 +105,7 @@ let g:fzf_history_dir = '~/.local/share/fzf-history'
 let g:indent_guides_auto_colors = 0
 let g:indent_guides_guide_size = 1
 let g:javascript_plugin_flow = 1
+let g:javascript_plugin_jsdoc = 1
 let g:mucomplete#enable_auto_at_startup = 1
 
 let s:sdks = finddir('.yarn/sdks', ';')
@@ -139,8 +140,11 @@ nnoremap <silent> <Leader>w :set wrap!<CR>
 nnoremap <silent> <Leader>c :NextColorScheme<CR>
 nnoremap <silent> <Leader>z :Goyo<CR>
 nnoremap Y y$
-nnoremap gd :ALEGoToDefinition -vsplit<CR>
 nnoremap gn :NERDTreeFind<CR>
+nnoremap g] :ALEGoToDefinition<CR>
+nnoremap gi :ALEGoToDefinition -split<CR>
+nnoremap gs :ALEGoToDefinition -vsplit<CR>
+nnoremap gt :ALEGoToDefinition -tab<CR>
 " imap <expr> <cr> pumvisible() ? "\<c-y>" : "<Plug>delimitMateCR"
 vmap < <gv
 vmap > >gv

@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -x
 
+[ "$(uname)" != Linux ] && exit
+
 sudo apt-get update
 sudo apt-get install -y build-essential
 sudo apt-get install -y curl
