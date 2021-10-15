@@ -5,7 +5,6 @@
 
 PATH="$PATH:$HOME/bin:$HOME/sbin"
 PATH="$PATH:$HOME/.brew/bin"
-PATH="$PATH:$HOME/.fnm"
 PATH="$PATH:$HOME/.yarn/bin"
 PATH="$PATH:/home/linuxbrew/.linuxbrew/bin"
 PATH="$PATH:/usr/local/bin:/usr/bin:/bin"
@@ -48,24 +47,10 @@ zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 zplug "mafredri/zsh-async"
 zplug "rupa/z", use:"z.sh"
 zplug "shannonmoeller/up", use:"up.sh"
+zplug "sindresorhus/pure", use:"pure.zsh", from:"github", as:"theme"
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug check || zplug install
 zplug load
-
-# Prompt
-
-autoload -Uz vcs_info
-precmd() {
-    vcs_info
-    precmd() {
-        vcs_info
-        echo
-    }
-}
-zstyle ':vcs_info:git:*' formats '%b'
-[[ $SSH_CONNECTION ]] && local ssh_info='%F{8}%n@%m%f '
-export PROMPT='${ssh_info}%F{blue}%~%f ${vcs_info_msg_0_}
-%(?.%F{cyan}.%F{red})❯%f '
 
 # Mapping
 
@@ -94,11 +79,11 @@ case $(uname) in
     Linux)
         export LS_COLORS="di=01;34:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=01;05;37;41:mi=01;05;37;41:su=37;41:sg=30;43:tw=30;42:ow=34;42:st=37;44:ex=01;32"
         alias ll='ls -AFhlv --color --group-directories-first'
-        ;;
+    ;;
     Darwin)
         export LSCOLORS="ExGxFxDxCxDxDxhbhdacEc"
         alias ll='CLICOLOR_FORCE=1 ls -AFGhl | grep "^d\|total" && CLICOLOR_FORCE=1 ls -AFGhl | grep -v "^d\|total"'
-        ;;
+    ;;
 esac
 
 alias ag="ag --smart-case"
@@ -118,12 +103,12 @@ alias xr='tmux attach -d || tmux'
 
 # Functions
 
-fd () { find -L ${2:-.} -type d -iregex ".*\($1\)[^/]*" | ag -v '(.git/|.svn/)' }
-ff () { find -L ${2:-.} -type f -iregex ".*\($1\)[^/]*" | ag -v '(.git/|svn/$)' }
-md () { mkdir -p $@ && cd $_ }
-rn () { a="$1"; shift; b="$1"; shift; for i in "$@"; do mv $i ${i//$a/$b}; done }
-rl () { for i in "$@"; do mv "$i" "${i:l}"; done }
-xv () { tmux neww "$EDITOR $*" }
+fd() { find -L ${2:-.} -type d -iregex ".*\($1\)[^/]*" | ag -v '(.git/|.svn/)' }
+ff() { find -L ${2:-.} -type f -iregex ".*\($1\)[^/]*" | ag -v '(.git/|svn/$)' }
+md() { mkdir -p $@ && cd $_ }
+rn() { a="$1"; shift; b="$1"; shift; for i in "$@"; do mv $i ${i//$a/$b}; done }
+rl() { for i in "$@"; do mv "$i" "${i:l}"; done }
+xv() { tmux neww "$EDITOR $*" }
 
 # Plugins
 
