@@ -21,6 +21,7 @@ export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export LESSHISTFILE='/dev/null'
 export OPEN_SOURCE_CONTRIBUTOR=true
+export PURE_CMD_MAX_EXEC_TIME=0
 export SAVEHIST=10000
 export TERM='xterm-256color'
 export VISUAL='vim -O'
@@ -51,6 +52,10 @@ zplug "sindresorhus/pure", use:"pure.zsh", from:"github", as:"theme"
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug check || zplug install
 zplug load
+
+# Prompt
+
+zstyle :prompt:pure:prompt:success color green
 
 # Mapping
 
