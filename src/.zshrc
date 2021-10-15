@@ -45,17 +45,13 @@ setopt prompt_subst
 
 source ~/.zplug/init.zsh
 zplug 'zplug/zplug', hook-build:'zplug --self-manage'
-zplug "mafredri/zsh-async"
-zplug "rupa/z", use:"z.sh"
-zplug "shannonmoeller/up", use:"up.sh"
-zplug "sindresorhus/pure", use:"pure.zsh", from:"github", as:"theme"
-zplug "zsh-users/zsh-syntax-highlighting", defer:2
+zplug 'mafredri/zsh-async'
+zplug 'rupa/z', use:'z.sh'
+zplug 'shannonmoeller/up', use:'up.sh'
+zplug 'sindresorhus/pure', use:'pure.zsh', from:'github', as:'theme'
+zplug 'zsh-users/zsh-syntax-highlighting', defer:2
 zplug check || zplug install
 zplug load
-
-# Prompt
-
-zstyle :prompt:pure:prompt:success color green
 
 # Mapping
 
@@ -69,6 +65,7 @@ bindkey 'e[F'  end-of-line
 
 # Theme
 
+zstyle ':prompt:pure:prompt:success' color green
 autoload -U compinit && compinit -i
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
