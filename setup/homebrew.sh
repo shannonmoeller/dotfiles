@@ -10,6 +10,7 @@ fi
 brew update
 brew install cmake
 brew install coreutils
+brew install fzf
 brew install hub
 brew install macvim
 brew install reattach-to-user-namespace
