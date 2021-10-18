@@ -5,6 +5,7 @@
 
 PATH="$PATH:$HOME/bin:$HOME/sbin"
 PATH="$PATH:$HOME/.brew/bin"
+PATH="$PATH:$HOME/.fnm"
 PATH="$PATH:$HOME/.yarn/bin"
 PATH="$PATH:/home/linuxbrew/.linuxbrew/bin"
 PATH="$PATH:/usr/local/bin:/usr/bin:/bin"
