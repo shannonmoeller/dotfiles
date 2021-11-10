@@ -5,7 +5,6 @@ set -x
 ./setup/bin.sh
 
 ./setup/apt.sh
-./setup/linuxbrew.sh
 ./setup/homebrew.sh
 ./setup/npm.sh
 ./setup/tmux.sh
