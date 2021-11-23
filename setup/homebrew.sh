@@ -10,7 +10,6 @@ brew update
 if [ "$(uname)" == Darwin ]; then
     brew install cmake
     brew install coreutils
-    brew install fzf
     brew install hub
     brew install macvim
     brew install reattach-to-user-namespace
@@ -20,7 +19,6 @@ if [ "$(uname)" == Darwin ]; then
 fi
 
 if [ "$(uname)" == Linux ]; then
-    brew install fzf
     brew install hub
 fi
 
