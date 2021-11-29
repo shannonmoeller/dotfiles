@@ -114,11 +114,12 @@ if !empty(s:sdks)
   let g:ale_linters = { 'javascript': ['eslint', 'flow-language-server'], 'json': [] }
   let g:ale_javascript_eslint_use_global = 1
   let g:ale_javascript_eslint_executable = 'eslint_d'
-  let g:ale_javascript_eslint_options = '--eslint-path=' . s:sdks . '/eslint/lib/api.js'
+  let g:ale_javascript_eslint_options = '--eslint-path="' . s:sdks . '/eslint/lib/api.js"'
   let g:ale_javascript_flow_ls_use_global = 1
   let g:ale_javascript_flow_ls_executable = s:sdks . '/flow-bin/cli.js'
   let g:ale_javascript_prettier_use_global = 1
-  let g:ale_javascript_prettier_executable = 'prettier_d_slim'
+  let g:ale_javascript_prettier_executable = 'prettier_d'
+  let g:ale_javascript_prettier_options = '--prettier-path="' . s:sdks . '/prettier/index.js"'
 endif
 
 " Mapping
