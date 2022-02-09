@@ -15,11 +15,14 @@ fi
 npm install -g diff-so-fancy
 npm install -g eslint
 npm install -g eslint_d
+npm install -g eslint-config-prettier
 npm install -g livery
 npm install -g npm-check-updates
 npm install -g npmrc
 npm install -g prettier
 npm install -g prettier_d_slim
 npm install -g stylelint
+npm install -g stylelint_d
+npm install -g stylelint-config-prettier
 npm install -g stylelint-config-recommended
 npm install -g vercel

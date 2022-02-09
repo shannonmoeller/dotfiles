@@ -97,7 +97,10 @@ let g:airline_theme = 'powerlineish'
 let g:ale_completion_enabled = 1
 let g:ale_fix_on_save = 1
 let g:ale_fixers = { 'css': ['stylelint', 'prettier'], 'html': ['prettier'], 'javascript': ['eslint', 'prettier'], 'json': ['prettier'] }
-let g:ale_linters = { 'css': ['stylelint'], 'javascript': ['eslint'], 'json': [] }
+let g:ale_linters = { 'css': ['stylelint'], 'javascript': ['tsserver', 'eslint'], 'json': [] }
+let g:ale_css_stylelint_executable = 'stylelint_d'
+let g:ale_javascript_eslint_executable = 'eslint_d'
+" let g:ale_javascript_prettier_executable = 'prettier_d'
 let g:ale_sign_column_always = 1
 let g:colorscheme_switcher_exclude = ['focus-light']
 let g:colorscheme_switcher_exclude_builtins = 1
@@ -113,7 +116,6 @@ if !empty(s:sdks)
   let g:ale_fixers = { 'javascript': ['eslint'], 'json': ['prettier'] }
   let g:ale_linters = { 'javascript': ['eslint', 'flow-language-server'], 'json': [] }
   let g:ale_javascript_eslint_use_global = 1
-  let g:ale_javascript_eslint_executable = 'eslint_d'
   let g:ale_javascript_eslint_options = '--eslint-path="' . s:sdks . '/eslint/lib/api.js"'
   let g:ale_javascript_flow_ls_use_global = 1
   let g:ale_javascript_flow_ls_executable = s:sdks . '/flow-bin/cli.js'

@@ -2,7 +2,7 @@
 set -x
 shopt -s nullglob
 
-DIR="$(dirname "$(dirname "${BASH_SOURCE[0]}")")"
+DIR="$(dirname "$(dirname "$(realpath $0)")")"
 
 mkdir -p "$HOME/bin"
 curl -o "$HOME/bin/bulk" https://raw.githubusercontent.com/shannonmoeller/bulk/master/bulk.sh

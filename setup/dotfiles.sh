@@ -2,7 +2,7 @@
 set -x
 shopt -s nullglob
 
-DIR="$(dirname "$(dirname "${BASH_SOURCE[0]}")")"
+DIR="$(dirname "$(dirname "$(realpath $0)")")"
 
 for file in "$DIR"/src/*; do
     if [ -f "$file" ]; then
