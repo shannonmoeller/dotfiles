@@ -18,7 +18,6 @@ set completeopt-=preview
 set expandtab
 set formatoptions+=croj
 set guioptions=
-set hidden
 set hlsearch
 set ignorecase
 set incsearch
@@ -28,6 +27,7 @@ set linebreak
 set mouse=a
 set nocursorcolumn
 set nocursorline
+set nohidden
 set noerrorbells
 set noshowmode
 set novisualbell
@@ -50,7 +50,10 @@ set wildmode=longest:full
 " Plugins
 
 call plug#begin('$HOME/.vim/plugins')
+Plug 'Asheq/close-buffers.vim'
 Plug 'MaxMEllon/vim-jsx-pretty'
+Plug 'PhilRunninger/nerdtree-buffer-ops'
+Plug 'PhilRunninger/nerdtree-visual-selection'
 Plug 'Raimondi/delimitMate'
 Plug 'dense-analysis/ale'
 Plug 'editorconfig/editorconfig-vim'
@@ -63,6 +66,7 @@ Plug 'mg979/vim-visual-multi'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'pangloss/vim-javascript'
 Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree-project-plugin'
 Plug 'shannonmoeller/vim-monokai256'
 Plug 'sindresorhus/focus', { 'rtp': 'vim' }
 Plug 'solarnz/thrift.vim'
@@ -79,6 +83,7 @@ call plug#end()
 
 let g:NERDTreeCascadeSingleChildDir=0
 let g:NERDTreeMinimalUI = 1
+let g:NERDTreeShowBookmarks=1
 let g:NERDTreeShowHidden = 1
 let g:UltiSnipsExpandTrigger="<c-e>"
 let g:airline#extensions#ale#enabled = 1
@@ -116,7 +121,7 @@ if !empty(s:sdks)
   let g:ale_fixers = { 'javascript': ['eslint'], 'json': ['prettier'] }
   let g:ale_linters = { 'javascript': ['eslint', 'flow-language-server'], 'json': [] }
   let g:ale_javascript_eslint_use_global = 1
-  let g:ale_javascript_eslint_options = '--eslint-path="' . s:sdks . '/eslint/lib/api.js"'
+  let g:ale_javascript_eslint_options = '--eslint-path=' . s:sdks . '/eslint/lib/api.js'
   let g:ale_javascript_flow_ls_use_global = 1
   let g:ale_javascript_flow_ls_executable = s:sdks . '/flow-bin/cli.js'
   let g:ale_javascript_prettier_use_global = 1
@@ -141,7 +146,9 @@ nnoremap <C-p> :Files<CR>
 nnoremap <silent> <Leader><Space> :sil %s/\s\+$//<CR>
 nnoremap <silent> <Leader>l :syntax sync fromstart<CR>
 nnoremap <silent> <Leader>n :NERDTreeTabsToggle<CR>
+nnoremap <silent> <Leader>q :Bdelete hidden<CR>
 nnoremap <silent> <Leader>s :set spell!<CR>
+nnoremap <silent> <Leader>t :ALEHover<CR>
 nnoremap <silent> <Leader>w :set wrap!<CR>
 nnoremap <silent> <Leader>c :NextColorScheme<CR>
 nnoremap <silent> <Leader>z :Goyo<CR>
@@ -196,3 +203,9 @@ endif
 
 " Macros
 runtime macros/matchit.vim
+
+" Netrw
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 2
+let g:netrw_altv = 1
+" nnoremap <silent> <Leader>n :10Lex<CR>
