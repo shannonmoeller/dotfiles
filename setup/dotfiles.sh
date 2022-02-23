@@ -2,6 +2,10 @@
 set -x
 shopt -s nullglob
 
-for file in src/.[[:lower:]]*; do
-	ln -s "$PWD/$file" "$HOME/$(basename "$file")"
+DIR="$(dirname "$(dirname "$(realpath $0)")")"
+
+for file in "$DIR"/src/*; do
+    if [ -f "$file" ]; then
+        ln -s "$file" "$HOME/$(basename "$file")"
+    fi
 done
