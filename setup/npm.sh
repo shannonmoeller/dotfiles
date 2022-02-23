@@ -17,4 +17,4 @@ npm install -g npmrc
 npm install -g prettier
 npm install -g stylelint
 npm install -g stylelint-config-recommended
-npm instlal -g vercel
+npm install -g vercel
