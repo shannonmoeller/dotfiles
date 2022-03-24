@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -x
+shopt -s dotglob
 shopt -s nullglob
 
 DIR="$(dirname "$(dirname "$(realpath $0)")")"
