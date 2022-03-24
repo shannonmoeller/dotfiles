@@ -4,7 +4,7 @@ set -x
 VERSION="${1:-16}"
 
 if ! [ -x "$(command -v fnm 2>/dev/null)" ]; then
-    /usr/bin/env bash -c "$(curl -fsSL https://fnm.vercel.app/install)" -- --skip-shell
+    curl -fsSL https://fnm.vercel.app/install | /usr/bin/env bash -s -- --force-install --skip-shell
 fi
 
 if ! [ -x "$(command -v npm 2>/dev/null)" ]; then

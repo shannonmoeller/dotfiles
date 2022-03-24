@@ -1,7 +1,14 @@
 # ~/.zshrc
 # vim: set filetype=zsh:
 
+autoload -Uz compinit && compinit -i
+
+[ -f "$HOME/.profile" ] \
+    && source "$HOME/.profile"
+
 # Environment
+
+fpath=("$HOME/.zfunctions" $fpath)
 
 PATH="$PATH:$HOME/bin:$HOME/sbin"
 PATH="$PATH:$HOME/.brew/bin"
@@ -26,8 +33,6 @@ export PURE_CMD_MAX_EXEC_TIME=0
 export SAVEHIST=10000
 export TERM='xterm-256color'
 export VISUAL='vim -O'
-
-fpath=("$HOME/.zfunctions" $fpath)
 
 setopt autocd
 setopt autolist
@@ -67,7 +72,6 @@ bindkey 'e[F'  end-of-line
 # Theme
 
 zstyle ':prompt:pure:prompt:success' color green
-autoload -U compinit && compinit -i
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 zstyle ':completion:*' menu select=2
@@ -123,9 +127,6 @@ xv() { tmux neww "$EDITOR $*" }
 
 [ -f "$HOME/.fzf.zsh" ] \
     && source "$HOME/.fzf.zsh"
-
-[ -f "$HOME/.profile" ] \
-    && source "$HOME/.profile"
 
 [ -f "$HOME/.zshrc_corp" ] \
     && source "$HOME/.zshrc_corp"
