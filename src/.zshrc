@@ -51,6 +51,7 @@ setopt prompt_subst
 
 source ~/.zplug/init.zsh
 zplug 'zplug/zplug', hook-build:'zplug --self-manage'
+zplug 'junegunn/fzf', use:"shell/*.zsh"
 zplug 'mafredri/zsh-async'
 zplug 'rupa/z', use:'z.sh'
 zplug 'shannonmoeller/up', use:'up.sh'
@@ -124,9 +125,6 @@ xv() { tmux neww "$EDITOR $*" }
 
 [ -x "$(command -v rbenv)" ] \
     && eval "$(rbenv init -)"
-
-[ -f "$HOME/.fzf.zsh" ] \
-    && source "$HOME/.fzf.zsh"
 
 [ -f "$HOME/.zshrc_corp" ] \
     && source "$HOME/.zshrc_corp"
