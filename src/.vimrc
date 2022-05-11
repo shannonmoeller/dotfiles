@@ -72,6 +72,7 @@ Plug 'sindresorhus/focus', { 'rtp': 'vim' }
 Plug 'solarnz/thrift.vim'
 Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-markdown'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'vim-scripts/CSSMinister'
@@ -79,6 +80,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'xolox/vim-colorscheme-switcher'
 Plug 'xolox/vim-misc'
+Plug 'xolox/vim-session'
 call plug#end()
 
 let g:NERDTreeCascadeSingleChildDir=0
@@ -112,9 +114,17 @@ let g:colorscheme_switcher_exclude_builtins = 1
 let g:fzf_history_dir = '~/.local/share/fzf-history'
 let g:indent_guides_auto_colors = 0
 let g:indent_guides_guide_size = 1
+let g:markdown_fenced_languages = ['css', 'flow=javascript', 'html', 'javascript', 'js=javascript', 'json=javascript', 'jsx=javascript', 'ts=javascript', 'xml']
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 2
+let g:netrw_altv = 1
 let g:javascript_plugin_flow = 1
 let g:javascript_plugin_jsdoc = 1
 let g:mucomplete#enable_auto_at_startup = 1
+let g:session_autoload = 'no'
+let g:session_autosave = 'yes'
+let g:session_autosave_silent = 1
+let g:session_verbose_messages = 0
 
 let s:sdks = finddir('.yarn/sdks', ';')
 if !empty(s:sdks)
@@ -146,8 +156,10 @@ nnoremap <C-p> :Files<CR>
 nnoremap <silent> <Leader><Space> :sil %s/\s\+$//<CR>
 nnoremap <silent> <Leader>l :syntax sync fromstart<CR>
 nnoremap <silent> <Leader>n :NERDTreeTabsToggle<CR>
+nnoremap <silent> <Leader>p :set spell!<CR>
 nnoremap <silent> <Leader>q :Bdelete hidden<CR>
-nnoremap <silent> <Leader>s :set spell!<CR>
+nnoremap <silent> <Leader>sr :exec 'OpenSession' xolox#misc#str#slug(getcwd())<CR><CR>
+nnoremap <silent> <Leader>ss :exec 'SaveSession' xolox#misc#str#slug(getcwd())<CR><CR>
 nnoremap <silent> <Leader>t :ALEHover<CR>
 nnoremap <silent> <Leader>w :set wrap!<CR>
 nnoremap <silent> <Leader>c :NextColorScheme<CR>
@@ -178,8 +190,8 @@ function! s:goyo_leave()
   ALEEnable
 endfunction
 
-autocmd! User GoyoEnter nested call <SID>goyo_enter()
-autocmd! User GoyoLeave nested call <SID>goyo_leave()
+" autocmd! User GoyoEnter nested call <SID>goyo_enter()
+" autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
 " Theme
 
@@ -203,9 +215,3 @@ endif
 
 " Macros
 runtime macros/matchit.vim
-
-" Netrw
-let g:netrw_liststyle = 3
-let g:netrw_browse_split = 2
-let g:netrw_altv = 1
-" nnoremap <silent> <Leader>n :10Lex<CR>
