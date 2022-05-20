@@ -54,7 +54,6 @@ Plug 'Asheq/close-buffers.vim'
 Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'PhilRunninger/nerdtree-buffer-ops'
 Plug 'PhilRunninger/nerdtree-visual-selection'
-Plug 'Raimondi/delimitMate'
 Plug 'dense-analysis/ale'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'jistr/vim-nerdtree-tabs'
@@ -170,7 +169,6 @@ nnoremap g] :ALEGoToDefinition<CR>
 nnoremap gi :ALEGoToDefinition -split<CR>
 nnoremap gs :ALEGoToDefinition -vsplit<CR>
 nnoremap gt :ALEGoToDefinition -tab<CR>
-" imap <expr> <cr> pumvisible() ? "\<c-y>" : "<Plug>delimitMateCR"
 vmap < <gv
 vmap > >gv
 
@@ -190,8 +188,8 @@ function! s:goyo_leave()
   ALEEnable
 endfunction
 
-" autocmd! User GoyoEnter nested call <SID>goyo_enter()
-" autocmd! User GoyoLeave nested call <SID>goyo_leave()
+autocmd! User GoyoEnter nested call <SID>goyo_enter()
+autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
 " Theme
 
