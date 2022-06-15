@@ -3,13 +3,19 @@ set -x
 
 VERSION="${1:-16}"
 
+if [ -d "$NVM_DIR" ]; then
+    rm -rf "$NVM_DIR"
+fi
+
 if ! [ -x "$(command -v fnm 2>/dev/null)" ]; then
     curl -fsSL https://fnm.vercel.app/install | /usr/bin/env bash -s -- --force-install --skip-shell
 fi
 
 if ! [ -x "$(command -v npm 2>/dev/null)" ]; then
-    fnm install "$VERSION"
-    fnm use "$VERSION"
+    eval "$("$HOME/.fnm/fnm" env)"
+    "$HOME/.fnm/fnm" install "$VERSION"
+    "$HOME/.fnm/fnm" default "$VERSION"
+    "$HOME/.fnm/fnm" use "$VERSION"
 fi
 
 npm install -g diff-so-fancy
