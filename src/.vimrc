@@ -8,7 +8,7 @@ endif
 
 " Environment
 
-set directory='~/tmp,/var/tmp,/tmp'
+set directory='~/tmp//,/var/tmp//,/tmp//'
 filetype off
 
 set backspace=2

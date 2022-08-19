@@ -3,10 +3,6 @@ set -x
 
 VERSION="${1:-16}"
 
-if [ -d "$NVM_DIR" ]; then
-    rm -rf "$NVM_DIR"
-fi
-
 if ! [ -x "$(command -v fnm 2>/dev/null)" ]; then
     curl -fsSL https://fnm.vercel.app/install | /usr/bin/env bash -s -- --force-install --skip-shell
 fi
