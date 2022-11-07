@@ -13,7 +13,7 @@ filetype off
 
 set backspace=2
 set colorcolumn=80
-set completeopt+=menuone,noselect
+set completeopt+=menuone,noinsert,noselect
 set completeopt-=preview
 set expandtab
 set formatoptions+=croj
@@ -34,6 +34,7 @@ set novisualbell
 set nowrap
 set number
 set omnifunc=ale#completion#OmniFunc
+set regexpengine=2
 set shiftwidth=4
 set shortmess+=c
 set showcmd
@@ -50,33 +51,33 @@ set wildmode=longest:full
 " Plugins
 
 call plug#begin('$HOME/.vim/plugins')
-Plug 'Asheq/close-buffers.vim'
-Plug 'MaxMEllon/vim-jsx-pretty'
-Plug 'PhilRunninger/nerdtree-buffer-ops'
-Plug 'PhilRunninger/nerdtree-visual-selection'
+Plug 'asheq/close-buffers.vim'
 Plug 'dense-analysis/ale'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'jistr/vim-nerdtree-tabs'
-Plug 'junegunn/fzf'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'lifepillar/vim-mucomplete'
+Plug 'maxmellon/vim-jsx-pretty'
 Plug 'mg979/vim-visual-multi'
 Plug 'nathanaelkane/vim-indent-guides'
-Plug 'pangloss/vim-javascript'
+Plug 'peitalin/vim-jsx-typescript'
+Plug 'philrunninger/nerdtree-buffer-ops'
+Plug 'philrunninger/nerdtree-visual-selection'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdtree-project-plugin'
+Plug 'shannonmoeller/vim-javascript'
 Plug 'shannonmoeller/vim-monokai256'
 Plug 'sindresorhus/focus', { 'rtp': 'vim' }
 Plug 'solarnz/thrift.vim'
 Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-markdown'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
-Plug 'vim-scripts/CSSMinister'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-scripts/cssminister'
 Plug 'xolox/vim-colorscheme-switcher'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-session'
@@ -102,8 +103,8 @@ let g:airline#extensions#taboo#enabled = 0
 let g:airline_theme = 'powerlineish'
 let g:ale_completion_enabled = 1
 let g:ale_fix_on_save = 1
-let g:ale_fixers = { 'css': ['stylelint', 'prettier'], 'html': ['prettier'], 'javascript': ['eslint', 'prettier'], 'json': ['prettier'] }
-let g:ale_linters = { 'css': ['stylelint'], 'html': [], 'javascript': ['tsserver', 'eslint'], 'json': [] }
+let g:ale_fixers = { 'css': ['stylelint', 'prettier'], 'html': ['prettier'], 'javascript': ['eslint', 'prettier'], 'json': ['prettier'], 'typescript': ['eslint', 'prettier'], 'typescriptreact': ['eslint', 'prettier'] }
+let g:ale_linters = { 'css': ['stylelint'], 'html': [], 'javascript': ['eslint', 'tsserver'], 'json': [], 'typescript': ['eslint', 'tsserver'], 'typescriptreact': ['eslint', 'tsserver'] }
 let g:ale_css_stylelint_executable = 'stylelint_d'
 let g:ale_javascript_eslint_executable = 'eslint_d'
 " let g:ale_javascript_prettier_executable = 'prettier_d'
@@ -113,7 +114,6 @@ let g:colorscheme_switcher_exclude_builtins = 1
 let g:fzf_history_dir = '~/.local/share/fzf-history'
 let g:indent_guides_auto_colors = 0
 let g:indent_guides_guide_size = 1
-let g:markdown_fenced_languages = ['css', 'flow=javascript', 'html', 'javascript', 'js=javascript', 'json=javascript', 'jsx=javascript', 'ts=javascript', 'xml']
 let g:netrw_liststyle = 3
 let g:netrw_browse_split = 2
 let g:netrw_altv = 1
@@ -124,18 +124,21 @@ let g:session_autoload = 'no'
 let g:session_autosave = 'yes'
 let g:session_autosave_silent = 1
 let g:session_verbose_messages = 0
+let g:vim_markdown_fenced_languages = ['css', 'flow=javascript', 'html', 'javascript', 'js=javascript', 'json=javascript', 'jsx=javascript', 'typescript', 'ts=typescript', 'tsx=typescriptreact', 'xml']
 
 let s:sdks = finddir('.yarn/sdks', ';')
 if !empty(s:sdks)
-  let g:ale_fixers = { 'javascript': ['eslint'], 'json': ['prettier'] }
-  let g:ale_linters = { 'javascript': ['eslint', 'flow-language-server'], 'json': [] }
+  let g:ale_fixers = { 'javascript': ['eslint'], 'json': ['prettier'], 'typescript': ['eslint'], 'typescriptreact': ['eslint'] }
+  let g:ale_linters = { 'javascript': ['eslint', 'flow-language-server'], 'json': [], 'typescript': ['eslint', 'tsserver'], 'typescriptreact': ['eslint', 'tsserver'] }
   let g:ale_javascript_eslint_use_global = 1
-  let g:ale_javascript_eslint_options = '--eslint-path=' . s:sdks . '/eslint/lib/api.js'
+  let g:ale_javascript_eslint_options = '--eslint-path="' . s:sdks . '/eslint/lib/api.js"'
   let g:ale_javascript_flow_ls_use_global = 1
   let g:ale_javascript_flow_ls_executable = s:sdks . '/flow-bin/cli.js'
   let g:ale_javascript_prettier_use_global = 1
   let g:ale_javascript_prettier_executable = 'prettier_d'
   let g:ale_javascript_prettier_options = '--prettier-path="' . s:sdks . '/prettier/index.js"'
+  let g:ale_javascript_tsserver_use_global = 1
+  let g:ale_typescript_tsserver_executable = s:sdks . '/typescript/bin/tsserver'
 endif
 
 " Mapping
@@ -200,7 +203,6 @@ let &showbreak='└ '
 
 hi TrailingSpace ctermbg=199
 autocmd BufNewFile,BufRead * :IndentGuidesEnable
-autocmd BufNewFile,BufRead *.{ts,tsx} set filetype=javascript
 autocmd InsertEnter * match TrailingSpace /\s\+\%#\@<!$/
 autocmd InsertLeave * match TrailingSpace /\s\+$/
 autocmd InsertEnter * let lwd = getcwd() | set autochdir

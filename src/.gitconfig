@@ -65,4 +65,4 @@
     name = Shannon Moeller
     email = me@shannonmoeller.com
 [include]
-    path = ~/.gitconfig_profile
+    path = ~/.gitconfig_corp
