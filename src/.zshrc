@@ -12,6 +12,7 @@ fpath=("$HOME/.zfunctions" $fpath)
 
 PATH="$PATH:$HOME/bin:$HOME/sbin"
 PATH="$PATH:$HOME/.brew/bin"
+PATH="$PATH:$HOME/.deno/bin"
 PATH="$PATH:$HOME/.fnm"
 PATH="$PATH:$HOME/.yarn/bin"
 PATH="$PATH:/home/linuxbrew/.linuxbrew/bin"
