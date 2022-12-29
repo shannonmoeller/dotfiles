@@ -12,7 +12,7 @@ set directory='~/tmp//,/var/tmp//,/tmp//'
 filetype off
 
 set backspace=2
-set colorcolumn=81
+set colorcolumn=81,161
 set completeopt+=menuone,noinsert,noselect
 set completeopt-=preview
 set expandtab
