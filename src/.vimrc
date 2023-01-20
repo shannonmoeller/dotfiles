@@ -130,15 +130,31 @@ let s:sdks = finddir('.yarn/sdks', ';')
 if !empty(s:sdks)
   let g:ale_fixers = { 'javascript': ['eslint'], 'json': ['prettier'], 'typescript': ['eslint'], 'typescriptreact': ['eslint'] }
   let g:ale_linters = { 'javascript': ['eslint', 'flow-language-server'], 'json': [], 'typescript': ['eslint', 'tsserver'], 'typescriptreact': ['eslint', 'tsserver'] }
-  let g:ale_javascript_eslint_use_global = 1
-  let g:ale_javascript_eslint_options = '--eslint-path="' . s:sdks . '/eslint/lib/api.js"'
-  let g:ale_javascript_flow_ls_use_global = 1
-  let g:ale_javascript_flow_ls_executable = s:sdks . '/flow-bin/cli.js'
-  let g:ale_javascript_prettier_use_global = 1
-  let g:ale_javascript_prettier_executable = 'prettier_d'
-  let g:ale_javascript_prettier_options = '--prettier-path="' . s:sdks . '/prettier/index.js"'
-  let g:ale_javascript_tsserver_use_global = 1
-  let g:ale_typescript_tsserver_executable = s:sdks . '/typescript/bin/tsserver'
+
+  let s:sdks_eslint = finddir('.yarn/sdks/eslint', ';')
+  if !empty(s:sdks_eslint)
+    let g:ale_javascript_eslint_use_global = 1
+    let g:ale_javascript_eslint_options = '--eslint-path="' . s:sdks_eslint . '/lib/api.js"'
+  endif
+
+  let s:sdks_flow = finddir('.yarn/sdks/flow-bin', ';')
+  if !empty(s:sdks_flow)
+    let g:ale_javascript_flow_ls_use_global = 1
+    let g:ale_javascript_flow_ls_executable = s:sdks_flow . '/cli.js'
+  endif
+
+  let s:sdks_prettier = finddir('.yarn/sdks/prettier', ';')
+  if !empty(s:sdks_prettier)
+    let g:ale_javascript_prettier_use_global = 1
+    let g:ale_javascript_prettier_executable = 'prettier_d'
+    let g:ale_javascript_prettier_options = '--prettier-path="' . s:sdks_prettier . '/index.js"'
+  endif
+
+  let s:sdks_typescript = finddir('.yarn/sdks/typescript', ';')
+  if !empty(s:sdks_typescript)
+    let g:ale_javascript_tsserver_use_global = 1
+    let g:ale_typescript_tsserver_executable = s:sdks_typescript . '/bin/tsserver'
+  endif
 endif
 
 " Mapping
