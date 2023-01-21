@@ -121,6 +121,9 @@ xv() { tmux neww "$EDITOR $*" }
 
 # Plugins
 
+[ -x "$(command -v /opt/homebrew/bin/brew)" ] \
+    && eval "$(/opt/homebrew/bin/brew shellenv)"
+
 [ -x "$(command -v fnm)" ] \
     && eval "$(fnm env)"
 
