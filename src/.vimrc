@@ -109,6 +109,7 @@ let g:ale_css_stylelint_executable = 'stylelint_d'
 let g:ale_javascript_eslint_executable = 'eslint_d'
 " let g:ale_javascript_prettier_executable = 'prettier_d'
 let g:ale_sign_column_always = 1
+let g:ale_virtualtext_cursor = 0
 let g:colorscheme_switcher_exclude = ['focus-light']
 let g:colorscheme_switcher_exclude_builtins = 1
 let g:fzf_history_dir = '~/.local/share/fzf-history'
@@ -130,6 +131,7 @@ let s:sdks = finddir('.yarn/sdks', ';')
 if !empty(s:sdks)
   let g:ale_fixers = { 'javascript': ['eslint'], 'json': ['prettier'], 'typescript': ['eslint'], 'typescriptreact': ['eslint'] }
   let g:ale_linters = { 'javascript': ['eslint', 'flow-language-server'], 'json': [], 'typescript': ['eslint', 'tsserver'], 'typescriptreact': ['eslint', 'tsserver'] }
+  " let g:ale_linters = { 'javascript': ['eslint', 'flow-language-server'], 'json': [], 'typescript': ['eslint'], 'typescriptreact': ['eslint'] }
 
   let s:sdks_eslint = finddir('.yarn/sdks/eslint', ';')
   if !empty(s:sdks_eslint)
