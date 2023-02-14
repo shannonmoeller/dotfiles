@@ -8,10 +8,10 @@ if ! [ -x "$(command -v fnm 2>/dev/null)" ]; then
 fi
 
 if ! [ -x "$(command -v npm 2>/dev/null)" ]; then
-    eval "$("$HOME/.fnm/fnm" env)"
-    "$HOME/.fnm/fnm" install "$VERSION"
-    "$HOME/.fnm/fnm" default "$VERSION"
-    "$HOME/.fnm/fnm" use "$VERSION"
+    eval "$("$HOME/.local/share/fnm" env)"
+    "$HOME/.local/share/fnm" install "$VERSION"
+    "$HOME/.local/share/fnm" default "$VERSION"
+    "$HOME/.local/share/fnm" use "$VERSION"
 fi
 
 npm install -g diff-so-fancy
