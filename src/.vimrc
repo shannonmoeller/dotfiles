@@ -110,6 +110,7 @@ let g:ale_javascript_eslint_executable = 'eslint_d'
 " let g:ale_javascript_prettier_executable = 'prettier_d'
 let g:ale_sign_column_always = 1
 let g:ale_virtualtext_cursor = 0
+let g:ale_virtualtext_delay = 99999
 let g:colorscheme_switcher_exclude = ['focus-light']
 let g:colorscheme_switcher_exclude_builtins = 1
 let g:fzf_history_dir = '~/.local/share/fzf-history'
@@ -212,6 +213,13 @@ endfunction
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
+function! s:syn_group()
+  let l:s = synID(line('.'), col('.'), 1)
+  echo synIDattr(l:s, 'name') . ' -> ' . synIDattr(synIDtrans(l:s), 'name')
+endfun
+
+nnoremap <silent> <Leader>m :call <SID>syn_group()<CR>
+
 " Theme
 
 syntax on
@@ -233,3 +241,6 @@ endif
 
 " Macros
 runtime macros/matchit.vim
+
+
+

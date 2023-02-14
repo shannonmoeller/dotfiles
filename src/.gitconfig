@@ -22,6 +22,7 @@
     po = push origin
     pot = !git push origin && git push origin --tags
     ra = commit --amend --reset-author
+    rc = rebase --continue
     rhh = reset --hard HEAD
     rpo = remote prune origin
     rv = remote -v
