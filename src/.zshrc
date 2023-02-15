@@ -11,7 +11,6 @@ autoload -Uz compinit && compinit -i
 fpath=("$HOME/.zfunctions" $fpath)
 
 PATH="$PATH:$HOME/bin:$HOME/sbin"
-PATH="$PATH:$HOME/.brew/bin"
 PATH="$PATH:$HOME/.deno/bin"
 PATH="$PATH:$HOME/.local/share/fnm"
 PATH="$PATH:$HOME/.yarn/bin"
@@ -21,7 +20,6 @@ export PATH
 
 export DISABLE_OPENCOLLECTIVE=true
 export EDITOR='vim'
-export FZF_DEFAULT_COMMAND='ag -g ""'
 export HISTFILE="$HOME/.zhistory"
 export HISTSIZE=80
 export HOMEBREW_NO_ANALYTICS=1
@@ -111,8 +109,8 @@ alias xr='tmux attach -d || tmux'
 
 # Functions
 
-fd() { find -L ${2:-.} -type d -iregex ".*\($1\)[^/]*" | ag -v '(.git/|.svn/)' }
-ff() { find -L ${2:-.} -type f -iregex ".*\($1\)[^/]*" | ag -v '(.git/|svn/$)' }
+# fd() { find -L ${2:-.} -type d -iregex ".*\($1\)[^/]*" | ag -v '(.git/|.svn/)' }
+# ff() { find -L ${2:-.} -type f -iregex ".*\($1\)[^/]*" | ag -v '(.git/|svn/$)' }
 md() { mkdir -p $@ && cd $_ }
 rn() { a="$1"; shift; b="$1"; shift; for i in "$@"; do mv $i ${i//$a/$b}; done }
 rl() { for i in "$@"; do mv "$i" "${i:l}"; done }
