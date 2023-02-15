@@ -14,7 +14,6 @@ PATH="$PATH:$HOME/bin:$HOME/sbin"
 PATH="$PATH:$HOME/.brew/bin"
 PATH="$PATH:$HOME/.deno/bin"
 PATH="$PATH:$HOME/.yarn/bin"
-PATH="$PATH:/home/linuxbrew/.linuxbrew/bin"
 PATH="$PATH:/usr/local/bin:/usr/bin:/bin"
 PATH="$PATH:/usr/local/sbin:/usr/sbin:/sbin"
 export PATH
@@ -152,3 +151,31 @@ _fnm_hook() {
 
 autoload -U add-zsh-hook
 add-zsh-hook chpwd _fnm_hook && _fnm_hook
+
+_fzf_compgen_path() {
+  fd --hidden --follow --exclude "{.git,.svn,coverage}" . "$1"
+}
+
+_fzf_compgen_dir() {
+  fd --type d --hidden --follow --exclude "{.git,.svn,coverage}" . "$1"
+}
+
+_fzf_comprun() {
+  local command=$1
+  shift
+
+  case "$command" in
+    cd)
+        fzf --preview 'tree -C -L 2 {} | head -200' "$@"
+    ;;
+    export|unset)
+        fzf --preview "eval 'echo \$'{}" "$@"
+    ;;
+    ssh)
+        fzf --preview 'dig {}' "$@"
+    ;;
+    *)
+        fzf --preview 'bat -n --color=always {}' "$@"
+    ;;
+  esac
+}

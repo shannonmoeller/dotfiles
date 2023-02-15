@@ -55,7 +55,7 @@ Plug 'asheq/close-buffers.vim'
 Plug 'dense-analysis/ale'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'jistr/vim-nerdtree-tabs'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'lifepillar/vim-mucomplete'

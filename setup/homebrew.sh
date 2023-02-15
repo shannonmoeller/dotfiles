@@ -8,8 +8,11 @@ if ! [ -x "$(command -v brew 2>/dev/null)" ]; then
 fi
 
 brew update
+brew install bat
 brew install cmake
 brew install coreutils
+brew install fd
+brew install fzf
 brew install hub
 brew install macvim
 brew install reattach-to-user-namespace

@@ -4,8 +4,11 @@ set -x
 [ "$(uname)" != Linux ] && exit
 
 sudo apt-get update
+sudo apt-get install -y bat
 sudo apt-get install -y build-essential
 sudo apt-get install -y curl
+sudo apt-get install -y fd-find
+sudo apt-get install -y fzf
 sudo apt-get install -y mosh
 sudo apt-get install -y silversearcher-ag
 sudo apt-get install -y tmux
