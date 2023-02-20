@@ -20,6 +20,8 @@ export PATH
 
 export DISABLE_OPENCOLLECTIVE=true
 export EDITOR='vim'
+export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export HISTFILE="$HOME/.zhistory"
 export HISTSIZE=80
 export HOMEBREW_NO_ANALYTICS=1
@@ -60,7 +62,6 @@ zplug load
 
 # Mapping
 
-bindkey -e
 bindkey 'e[1~' beginning-of-line
 bindkey 'e[H'  beginning-of-line
 bindkey 'eOH'  beginning-of-line
@@ -118,17 +119,20 @@ xv() { tmux neww "$EDITOR $*" }
 
 # Plugins
 
+## homebrew
+
 [ -x "$(command -v /opt/homebrew/bin/brew)" ] \
     && eval "$(/opt/homebrew/bin/brew shellenv)"
 
-[ -x "$(command -v fnm)" ] \
-    && eval "$(fnm env)"
+## ruby
 
 [ -x "$(command -v rbenv)" ] \
     && eval "$(rbenv init -)"
 
-[ -f "$HOME/.zshrc_corp" ] \
-    && source "$HOME/.zshrc_corp"
+## fnm
+
+[ -x "$(command -v fnm)" ] \
+    && eval "$(fnm env)"
 
 __fnm_nvm_path="init"
 _fnm_hook() {
@@ -151,12 +155,14 @@ _fnm_hook() {
 autoload -U add-zsh-hook
 add-zsh-hook chpwd _fnm_hook && _fnm_hook
 
+## fzf
+
 _fzf_compgen_path() {
-  fd --hidden --follow --exclude "{.git,.svn,coverage}" . "$1"
+  fd --follow . "$1"
 }
 
 _fzf_compgen_dir() {
-  fd --type d --hidden --follow --exclude "{.git,.svn,coverage}" . "$1"
+  fd --type d --follow . "$1"
 }
 
 _fzf_comprun() {
@@ -178,3 +184,8 @@ _fzf_comprun() {
     ;;
   esac
 }
+
+## corporate
+
+[ -f "$HOME/.zshrc_corp" ] \
+    && source "$HOME/.zshrc_corp"
