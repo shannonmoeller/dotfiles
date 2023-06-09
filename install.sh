@@ -6,7 +6,7 @@ set -x
 
 ./setup/apt.sh
 ./setup/homebrew.sh
-./setup/npm.sh
+./setup/node.sh
 ./setup/tmux.sh
 ./setup/vim.sh
 ./setup/zsh.sh

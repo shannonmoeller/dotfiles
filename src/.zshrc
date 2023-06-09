@@ -12,7 +12,7 @@ fpath=("$HOME/.zfunctions" $fpath)
 
 PATH="$PATH:$HOME/bin:$HOME/sbin"
 PATH="$PATH:$HOME/.deno/bin"
-PATH="$PATH:$HOME/.local/share/fnm"
+PATH="$PATH:$HOME/.pyenv/bin"
 PATH="$PATH:$HOME/.yarn/bin"
 PATH="$PATH:/usr/local/bin:/usr/bin:/bin"
 PATH="$PATH:/usr/local/sbin:/usr/sbin:/sbin"
@@ -62,9 +62,11 @@ zplug load
 
 # Mapping
 
+bindkey "^A"   vi-beginning-of-line
 bindkey 'e[1~' beginning-of-line
 bindkey 'e[H'  beginning-of-line
 bindkey 'eOH'  beginning-of-line
+bindkey "^E"   vi-end-of-line
 bindkey 'e[4~' end-of-line
 bindkey 'eOF'  end-of-line
 bindkey 'e[F'  end-of-line
@@ -129,31 +131,41 @@ xv() { tmux neww "$EDITOR $*" }
 [ -x "$(command -v rbenv)" ] \
     && eval "$(rbenv init -)"
 
-## fnm
+## node
 
-[ -x "$(command -v fnm)" ] \
-    && eval "$(fnm env)"
+[ -f "$HOME/.nvm/nvm.sh" ] \
+    && source "$HOME/.nvm/nvm.sh"
 
-__fnm_nvm_path="init"
-_fnm_hook() {
-    local nvm_path=$PWD
+[ -f "$HOME/.nvm/bash_completion" ] \
+    && source "$HOME/.nvm/bash_completion"
 
-    while [[ "$nvm_path" != "" && ! -e "$nvm_path/.nvmrc" ]]; do
-        nvm_path=${nvm_path%/*}
-    done
+_load_nvmrc() {
+    local nvmrc_path
+    nvmrc_path="$(nvm_find_nvmrc)"
 
-    if [[ "$nvm_path" != "$__fnm_nvm_path" ]]; then
-        if [[ -z "$nvm_path" ]]; then
-            fnm use --log-level quiet default
-        else
-            fnm use --log-level quiet $(cat "$nvm_path/.nvmrc")
+    if [ -n "$nvmrc_path" ]; then
+        local nvmrc_node_version
+        nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
+
+        if [ "$nvmrc_node_version" = "N/A" ]; then
+            nvm install --reinstall-packages-from=default
+        elif [ "$nvmrc_node_version" != "$(nvm version)" ]; then
+            nvm use --silent
         fi
-        __fnm_nvm_path="$nvm_path"
+    elif [ -n "$(PWD=$OLDPWD nvm_find_nvmrc)" ] && [ "$(nvm version)" != "$(nvm version default)" ]; then
+        nvm use --silent default
     fi
 }
 
 autoload -U add-zsh-hook
-add-zsh-hook chpwd _fnm_hook && _fnm_hook
+add-zsh-hook chpwd _load_nvmrc && _load_nvmrc
+
+## python
+
+eval "$(pyenv init -)"
+
+[ -x "$(command -v pyenv)" ] \
+    && eval "$(pyenv init -)"
 
 ## fzf
 
@@ -170,18 +182,10 @@ _fzf_comprun() {
   shift
 
   case "$command" in
-    cd)
-        fzf --preview 'tree -C -L 2 {} | head -200' "$@"
-    ;;
-    export|unset)
-        fzf --preview "eval 'echo \$'{}" "$@"
-    ;;
-    ssh)
-        fzf --preview 'dig {}' "$@"
-    ;;
-    *)
-        fzf --preview 'bat -n --color=always {}' "$@"
-    ;;
+    cd) fzf --preview 'tree -C -L 2 {} | head -200' "$@" ;;
+    export|unset) fzf --preview "eval 'echo \$'{}" "$@" ;;
+    ssh) fzf --preview 'dig {}' "$@" ;;
+    *) fzf --preview 'bat -n --color=always {}' "$@" ;;
   esac
 }
 
