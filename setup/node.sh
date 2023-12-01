@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -x
 
-VERSION="${1:-18}"
+VERSION="${1:-20}"
 
 if ! [ -x "$(command -v nvm 2>/dev/null)" ]; then
     PROFILE=/dev/null bash -c 'curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | /usr/bin/env bash'
