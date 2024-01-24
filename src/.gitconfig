@@ -2,9 +2,9 @@
     a = add -A :/
     ba = !git branch | ag
     bc = !git branch | sed -n '/^*/s/^* //gp'
-    bl = !git branch -avv --color=always --format='%(HEAD) %(if)%(HEAD)%(then)%(color:green)%(end)%(if)%(upstream:remoteref)%(then)%(else)%(color:red)%(end)%(refname:short)%(color:reset)^%(color:yellow)%(objectname:short)%(color:reset)^%(color:green)(%(committerdate:local))%(color:reset)^%(authoremail)^%(if)%(upstream)%(then)[%(color:blue)%(upstream:short)%(color:reset): %(upstream:track,nobracket)]%(else) %(end)^%(contents:subject)' | column -t -s '^'
     br = branch
     bv = branch -avv
+    bvv = branch -avv --color=always --format='%(HEAD) %(if)%(HEAD)%(then)%(color:bold green)%(end)%(if:equals=refs/remotes)%(refname:rstrip=-2)%(then)%(color:red)%(end)%(refname:short)%(color:reset) %(if)%(upstream)%(then)[%(color:blue)%(upstream:short)%(color:reset)%(if)%(upstream:track)%(then): %(upstream:track,nobracket)%(end)]%(end)\n\t%(color:yellow)%(objectname:short)%(color:reset) %(color:green)(%(committerdate:local))%(color:reset) %(authoremail)\n\t- %(contents:subject)'
     cm = commit -am
     co = checkout
     df = diff --color --ignore-space-change
