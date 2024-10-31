@@ -33,7 +33,7 @@ set noshowmode
 set novisualbell
 set nowrap
 set number
-set omnifunc=ale#completion#OmniFunc
+" set omnifunc=ale#completion#OmniFunc
 set regexpengine=2
 set shiftwidth=4
 set shortmess+=c
@@ -101,16 +101,32 @@ let g:airline#extensions#tabline#show_tab_type = 0
 let g:airline#extensions#tabline#show_tabs = 1
 let g:airline#extensions#taboo#enabled = 0
 let g:airline_theme = 'powerlineish'
+let g:ale_completion_delay = 500
 let g:ale_completion_enabled = 1
+let g:ale_completion_max_suggestions = 20
+let g:ale_completion_tsserver_remove_warnings = 1
 let g:ale_fix_on_save = 1
-let g:ale_fixers = { 'css': ['stylelint', 'prettier'], 'html': ['prettier'], 'javascript': ['eslint', 'prettier'], 'json': ['prettier'], 'typescript': ['eslint', 'prettier'], 'typescriptreact': ['eslint', 'prettier'] }
-let g:ale_linters = { 'css': ['stylelint'], 'html': [], 'javascript': ['eslint', 'tsserver'], 'json': [], 'typescript': ['eslint', 'tsserver'], 'typescriptreact': ['eslint', 'tsserver'] }
+let g:ale_fixers = {
+  \'css': ['stylelint', 'prettier'],
+  \'html': ['prettier'],
+  \'javascript': ['eslint', 'prettier'],
+  \'json': ['prettier'],
+  \'typescript': ['eslint', 'prettier'],
+  \'typescriptreact': ['eslint', 'prettier'],
+  \}
+let g:ale_linters = {
+  \'css': ['stylelint'],
+  \'html': [],
+  \'javascript': ['eslint', 'tsserver'],
+  \'json': [],
+  \'typescript': ['eslint', 'tsserver'],
+  \'typescriptreact': ['eslint', 'tsserver'],
+  \}
 let g:ale_css_stylelint_executable = 'stylelint_d'
 let g:ale_javascript_eslint_executable = 'eslint_d'
 " let g:ale_javascript_prettier_executable = 'prettier_d'
 let g:ale_sign_column_always = 1
-let g:ale_virtualtext_cursor = 0
-let g:ale_virtualtext_delay = 99999
+let g:ale_virtualtext_delay = 500
 let g:colorscheme_switcher_exclude = ['focus-light']
 let g:colorscheme_switcher_exclude_builtins = 1
 let g:fzf_history_dir = '~/.local/share/fzf-history'
@@ -119,31 +135,31 @@ let g:indent_guides_guide_size = 1
 let g:netrw_liststyle = 3
 let g:netrw_browse_split = 2
 let g:netrw_altv = 1
-let g:javascript_plugin_flow = 1
 let g:javascript_plugin_jsdoc = 1
 let g:mucomplete#enable_auto_at_startup = 1
 let g:session_autoload = 'no'
 let g:session_autosave = 'yes'
 let g:session_autosave_silent = 1
 let g:session_verbose_messages = 0
-let g:vim_markdown_fenced_languages = ['css', 'flow=javascript', 'html', 'javascript', 'js=javascript', 'json=javascript', 'jsx=javascript', 'typescript', 'ts=typescript', 'tsx=typescriptreact', 'xml']
+let g:vim_markdown_fenced_languages = [
+  \'css',
+  \'html',
+  \'javascript',
+  \'js=javascript',
+  \'json=javascript',
+  \'jsx=javascript',
+  \'typescript',
+  \'ts=typescript',
+  \'tsx=typescriptreact',
+  \'xml',
+  \]
 
 let s:sdks = finddir('.yarn/sdks', ';')
 if !empty(s:sdks)
-  let g:ale_fixers = { 'javascript': ['eslint'], 'json': ['prettier'], 'typescript': ['eslint'], 'typescriptreact': ['eslint'] }
-  let g:ale_linters = { 'javascript': ['eslint', 'flow-language-server'], 'json': [], 'typescript': ['eslint', 'tsserver'], 'typescriptreact': ['eslint', 'tsserver'] }
-  " let g:ale_linters = { 'javascript': ['eslint', 'flow-language-server'], 'json': [], 'typescript': ['eslint'], 'typescriptreact': ['eslint'] }
-
   let s:sdks_eslint = finddir('.yarn/sdks/eslint', ';')
   if !empty(s:sdks_eslint)
     let g:ale_javascript_eslint_use_global = 1
     let g:ale_javascript_eslint_options = '--eslint-path="' . s:sdks_eslint . '/lib/api.js"'
-  endif
-
-  let s:sdks_flow = finddir('.yarn/sdks/flow-bin', ';')
-  if !empty(s:sdks_flow)
-    let g:ale_javascript_flow_ls_use_global = 1
-    let g:ale_javascript_flow_ls_executable = s:sdks_flow . '/cli.js'
   endif
 
   let s:sdks_prettier = finddir('.yarn/sdks/prettier', ';')
@@ -241,6 +257,3 @@ endif
 
 " Macros
 runtime macros/matchit.vim
-
-
-
