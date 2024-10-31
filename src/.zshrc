@@ -162,31 +162,29 @@ add-zsh-hook chpwd _load_nvmrc && _load_nvmrc
 
 ## python
 
-eval "$(pyenv init -)"
-
 [ -x "$(command -v pyenv)" ] \
     && eval "$(pyenv init -)"
 
 ## fzf
 
 _fzf_compgen_path() {
-  fd --follow . "$1"
+    fd --follow . "$1"
 }
 
 _fzf_compgen_dir() {
-  fd --type d --follow . "$1"
+    fd --type d --follow . "$1"
 }
 
 _fzf_comprun() {
-  local command=$1
-  shift
+    local command=$1
+    shift
 
-  case "$command" in
-    cd) fzf --preview 'tree -C -L 2 {} | head -200' "$@" ;;
-    export|unset) fzf --preview "eval 'echo \$'{}" "$@" ;;
-    ssh) fzf --preview 'dig {}' "$@" ;;
-    *) fzf --preview 'bat -n --color=always {}' "$@" ;;
-  esac
+    case "$command" in
+        cd) fzf --preview 'tree -C -L 2 {} | head -200' "$@" ;;
+        export|unset) fzf --preview "eval 'echo \$'{}" "$@" ;;
+        ssh) fzf --preview 'dig {}' "$@" ;;
+        *) fzf --preview 'bat -n --color=always {}' "$@" ;;
+    esac
 }
 
 ## corporate
