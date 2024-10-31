@@ -21,6 +21,7 @@ npm install -g npm-check-updates
 npm install -g npmrc
 npm install -g prettier
 npm install -g prettier_d_slim
+npm install -g sort-package-json
 npm install -g stylelint
 npm install -g stylelint_d
 npm install -g stylelint-config-recommended
