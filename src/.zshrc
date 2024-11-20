@@ -81,7 +81,7 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 zstyle ':completion:*' menu select=2
 zstyle ':completion:*' special-dirs true
 compdef gb=git
-compdef xv=vim
+compdef xv=nvim
 
 # Aliases
 
@@ -105,17 +105,17 @@ alias mkdir='mkdir -p'
 alias mv='mv -i'
 alias tree='tree --dirsfirst -ACFIal "bower_*|jspm_*|node_*|.git*|.svn"'
 alias t='tree -L'
-alias vi='vim'
-alias vim='vim -O'
-alias vimi='vim -O $(eval ${$(fc -l -1)[2,-1]})'
-alias viml='vim -O $(eval ${$(fc -l -1)[2,-1]} -l)'
+alias v='nvim'
+alias vi='nvim'
+alias vim='nvim -O'
+alias vimi='nvim -O $(eval ${$(fc -l -1)[2,-1]})'
+alias viml='nvim -O $(eval ${$(fc -l -1)[2,-1]} -l)'
+alias vv="vim -O"
 alias xd='tmux detach'
 alias xr='tmux attach -d || tmux'
 
 # Functions
 
-# fd() { find -L ${2:-.} -type d -iregex ".*\($1\)[^/]*" | ag -v '(.git/|.svn/)' }
-# ff() { find -L ${2:-.} -type f -iregex ".*\($1\)[^/]*" | ag -v '(.git/|svn/$)' }
 md() { mkdir -p $@ && cd $_ }
 rn() { a="$1"; shift; b="$1"; shift; for i in "$@"; do mv $i ${i//$a/$b}; done }
 rl() { for i in "$@"; do mv "$i" "${i:l}"; done }

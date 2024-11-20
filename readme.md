@@ -8,6 +8,6 @@ My personal dotfiles. Public for convenience and reference.
 2. Read the `install.sh` and `setup/*.sh` files entirely.
 3. Run `install.sh` at your discretion.
 
-----
+---
 
-MIT © [Shannon Moeller](http://shannonmoeller.com)
+MIT © [Shannon Moeller](https://shannonmoeller.com)

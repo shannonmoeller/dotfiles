@@ -10,3 +10,7 @@ for file in "$DIR"/src/*; do
         ln -s "$file" "$HOME/$(basename "$file")"
     fi
 done
+
+for file in "$DIR"/src/.config/*; do
+    ln -s "$file" "$HOME/.config/$(basename "$file")"
+done
