@@ -5,12 +5,9 @@ shopt -s nullglob
 
 DIR="$(dirname "$(dirname "$(realpath $0)")")"
 
-for file in "$DIR"/src/*; do
-    if [ -f "$file" ]; then
-        ln -s "$file" "$HOME/$(basename "$file")"
-    fi
-done
-
-for file in "$DIR"/src/.config/*; do
-    ln -s "$file" "$HOME/.config/$(basename "$file")"
+for SRC in "${DIR}"/src/*; do
+  DEST="${HOME}/$(basename "${SRC}")"
+  if [[ -f "${SRC}" ]] && [[ ! -e "${DEST}" ]]; then
+    ln -s "${SRC}" "${DEST}"
+  fi
 done

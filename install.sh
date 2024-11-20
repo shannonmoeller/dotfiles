@@ -3,6 +3,7 @@ set -x
 
 ./setup/dotfiles.sh
 ./setup/bin.sh
+./setup/config.sh
 
 ./setup/apt.sh
 ./setup/homebrew.sh

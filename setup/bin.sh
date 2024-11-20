@@ -4,12 +4,13 @@ shopt -s nullglob
 
 DIR="$(dirname "$(dirname "$(realpath $0)")")"
 
-mkdir -p "$HOME/bin"
-curl -o "$HOME/bin/bulk" https://raw.githubusercontent.com/shannonmoeller/bulk/master/bulk.sh
-chmod +x "$HOME/bin/bulk"
+mkdir -p "${HOME}/bin"
+curl -o "${HOME}/bin/bulk" https://raw.githubusercontent.com/shannonmoeller/bulk/master/bulk.sh
+chmod +x "${HOME}/bin/bulk"
 
-for file in "$DIR"/src/bin/*; do
-    if [ -f "$file" ]; then
-        ln -s "$file" "$HOME/bin/$(basename "$file")"
-    fi
+for SRC in "${DIR}"/src/.bin/*; do
+  DEST="${HOME}/.bin/$(basename "${SRC}")"
+  if [[ -f "${SRC}" ]] && [[ ! -e "${DEST}" ]]; then
+    ln -s "${SRC}" "${DEST}"
+  fi
 done
