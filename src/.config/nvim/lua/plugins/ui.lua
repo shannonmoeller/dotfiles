@@ -1,15 +1,26 @@
 return {
-  { "editorconfig/editorconfig-vim" },
-  { "Mofiqul/vscode.nvim" },
   {
     "akinsho/bufferline.nvim",
     enabled = false,
+  },
+  {
+    "editorconfig/editorconfig-vim",
   },
   {
     "folke/noice.nvim",
     opts = {
       cmdline = {
         view = "cmdline",
+      },
+    },
+  },
+  {
+    "Mofiqul/vscode.nvim",
+    opts = {
+      transparent = true,
+      group_overrides = {
+        NeoTreeExpander = { fg = "#D4D4D4" },
+        NeoTreeIndentMarker = { fg = "#373737" },
       },
     },
   },
