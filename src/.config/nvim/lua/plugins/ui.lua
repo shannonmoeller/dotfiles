@@ -19,8 +19,10 @@ return {
     opts = {
       transparent = true,
       group_overrides = {
+        IblIndent = { fg = "#222222" },
+        IblScope = { fg = "#D4D4D4" },
         NeoTreeExpander = { fg = "#D4D4D4" },
-        NeoTreeIndentMarker = { fg = "#373737" },
+        NeoTreeIndentMarker = { fg = "#222222" },
       },
     },
   },
