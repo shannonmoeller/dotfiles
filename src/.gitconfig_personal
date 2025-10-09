@@ -20,10 +20,12 @@
     pl = pull
     ps = push
     po = push origin
+    pob = !git push origin "$(git rev-parse --abbrev-ref HEAD)"
     pot = !git push origin && git push origin --tags
     ra = commit --amend --reset-author
     rc = rebase --continue
     rhh = reset --hard HEAD
+    rpk = repack -adf
     rpo = remote prune origin
     rv = remote -v
     sh = stash
@@ -37,6 +39,8 @@
     ue = config user.email
     up = !git pull && git submodule update --init --recursive
     wc = whatchanged
+[checkout]
+    workers = 0
 [color]
     ui = auto
 [color "diff-highlight"]
@@ -45,17 +49,26 @@
     newNormal = green bold
     newHighlight = green bold 22
 [core]
+    commitGraph = true
     excludesfile = .gitignore
+    fsmonitor = true
     ignorecase = false
     pager = diff-so-fancy | less --tabs=4 -RFX
 [diff]
     tool = vimdiff
+[feature]
+    manyFiles = true
 [fetch]
     prune = true
 [grep]
     extendedRegexp = true
+[init]
+    defaultBranch = main
 [log]
     date = iso-local
+[pack]
+    usePathWalk = true
+    writeReverseIndex = true
 [pager]
     difftool =
 [pull]
@@ -67,5 +80,3 @@
 [user]
     name = Shannon Moeller
     email = me@shannonmoeller.com
-[include]
-    path = ~/.gitconfig_corp
