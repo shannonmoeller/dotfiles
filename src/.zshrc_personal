@@ -19,7 +19,7 @@ PATH="$PATH:/usr/local/sbin:/usr/sbin:/sbin"
 export PATH
 
 export DISABLE_OPENCOLLECTIVE=true
-export EDITOR='nvim'
+export EDITOR='vim'
 export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export HISTFILE="$HOME/.zhistory"
@@ -35,7 +35,7 @@ export OPEN_SOURCE_CONTRIBUTOR=true
 export PURE_CMD_MAX_EXEC_TIME=0
 export SAVEHIST=10000
 export TERM='xterm-256color'
-export VISUAL='nvim -O'
+export VISUAL='vim -O'
 
 setopt autocd
 setopt autolist
@@ -82,7 +82,7 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 zstyle ':completion:*' menu select=2
 zstyle ':completion:*' special-dirs true
 compdef gb=git
-compdef xv=nvim
+compdef xv=vim
 
 # Aliases
 
@@ -94,11 +94,11 @@ alias mkdir='mkdir -p'
 alias mv='mv -i'
 alias tree='tree --dirsfirst -ACFIal "bower_*|jspm_*|node_*|.git*|.svn"'
 alias t='tree -L'
-alias v='nvim'
-alias vi='nvim'
-alias vim='nvim -O'
-alias vimi='nvim -O $(eval ${$(fc -l -1)[2,-1]})'
-alias viml='nvim -O $(eval ${$(fc -l -1)[2,-1]} -l)'
+alias v='vim'
+alias vi='vim'
+alias vim='vim -O'
+alias vimi='vim -O $(eval ${$(fc -l -1)[2,-1]})'
+alias viml='nim -O $(eval ${$(fc -l -1)[2,-1]} -l)'
 alias vv="vim -O"
 alias xd='tmux detach'
 alias xr='tmux attach -d || tmux'
@@ -131,33 +131,6 @@ xv() { tmux neww "$EDITOR $*" }
 
 [ -f "$HOME/.config/vite-plus/env" ] \
     && source "$HOME/.config/vite-plus/env"
-
-# [ -f "$HOME/.nvm/nvm.sh" ] \
-#     && source "$HOME/.nvm/nvm.sh"
-
-# [ -f "$HOME/.nvm/bash_completion" ] \
-#     && source "$HOME/.nvm/bash_completion"
-
-# _load_nvmrc() {
-#     local nvmrc_path
-#     nvmrc_path="$(nvm_find_nvmrc)"
-
-#     if [ -n "$nvmrc_path" ]; then
-#         local nvmrc_node_version
-#         nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
-
-#         if [ "$nvmrc_node_version" = "N/A" ]; then
-#             nvm install --reinstall-packages-from=default
-#         elif [ "$nvmrc_node_version" != "$(nvm version)" ]; then
-#             nvm use --silent
-#         fi
-#     elif [ -n "$(PWD=$OLDPWD nvm_find_nvmrc)" ] && [ "$(nvm version)" != "$(nvm version default)" ]; then
-#         nvm use --silent default
-#     fi
-# }
-
-# autoload -U add-zsh-hook
-# add-zsh-hook chpwd _load_nvmrc && _load_nvmrc
 
 ## python
 

@@ -54,19 +54,15 @@ call plug#begin('$HOME/.vim/plugins')
 Plug 'asheq/close-buffers.vim'
 Plug 'dense-analysis/ale'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'jistr/vim-nerdtree-tabs'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'lifepillar/vim-mucomplete'
+Plug 'lambdalisue/vim-fern'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'mg979/vim-visual-multi'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'peitalin/vim-jsx-typescript'
-Plug 'philrunninger/nerdtree-buffer-ops'
-Plug 'philrunninger/nerdtree-visual-selection'
-Plug 'scrooloose/nerdtree'
-Plug 'scrooloose/nerdtree-project-plugin'
 Plug 'shannonmoeller/vim-javascript'
 Plug 'shannonmoeller/vim-monokai256'
 Plug 'sindresorhus/focus', { 'rtp': 'vim' }
@@ -83,10 +79,6 @@ Plug 'xolox/vim-misc'
 Plug 'xolox/vim-session'
 call plug#end()
 
-let g:NERDTreeCascadeSingleChildDir=0
-let g:NERDTreeMinimalUI = 1
-let g:NERDTreeShowBookmarks=1
-let g:NERDTreeShowHidden = 1
 let g:UltiSnipsExpandTrigger="<c-e>"
 let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#tabline#close_symbol = '×'
@@ -132,9 +124,11 @@ let g:colorscheme_switcher_exclude_builtins = 1
 let g:fzf_history_dir = '~/.local/share/fzf-history'
 let g:indent_guides_auto_colors = 0
 let g:indent_guides_guide_size = 1
-let g:netrw_liststyle = 3
-let g:netrw_browse_split = 2
 let g:netrw_altv = 1
+let g:netrw_banner = 0
+let g:netrw_browse_split = 4
+let g:netrw_liststyle = 3
+let g:netrw_winsize = -25
 let g:javascript_plugin_jsdoc = 1
 let g:mucomplete#enable_auto_at_startup = 1
 let g:session_autoload = 'no'
@@ -192,7 +186,7 @@ command Wqa wqa
 nnoremap <C-p> :Files<CR>
 nnoremap <silent> <Leader><Space> :sil %s/\s\+$//<CR>
 nnoremap <silent> <Leader>l :syntax sync fromstart<CR>
-nnoremap <silent> <Leader>n :NERDTreeTabsToggle<CR>
+nnoremap <silent> <Leader>n :Lexplore<CR>
 nnoremap <silent> <Leader>p :set spell!<CR>
 nnoremap <silent> <Leader>q :Bdelete hidden<CR>
 nnoremap <silent> <Leader>sr :exec 'OpenSession' xolox#misc#str#slug(getcwd())<CR><CR>
@@ -202,7 +196,6 @@ nnoremap <silent> <Leader>w :set wrap!<CR>
 nnoremap <silent> <Leader>c :NextColorScheme<CR>
 nnoremap <silent> <Leader>z :Goyo<CR>
 nnoremap Y y$
-nnoremap gn :NERDTreeFind<CR>
 nnoremap g] :ALEGoToDefinition<CR>
 nnoremap gi :ALEGoToDefinition -split<CR>
 nnoremap gs :ALEGoToDefinition -vsplit<CR>
