@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+node "$(dirname "$(realpath $0)")/node/$(basename "$(realpath $0)").mjs" "$@"

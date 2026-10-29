@@ -36,6 +36,7 @@
     ss = status -s
     st = status
     sw = show --ignore-space-change
+    t = upstream-tree
     ue = config user.email
     up = !git pull && git submodule update --init --recursive
     wc = whatchanged

@@ -19,7 +19,7 @@ PATH="$PATH:/usr/local/sbin:/usr/sbin:/sbin"
 export PATH
 
 export DISABLE_OPENCOLLECTIVE=true
-export EDITOR='vim'
+export EDITOR='nvim'
 export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export HISTFILE="$HOME/.zhistory"
@@ -35,7 +35,7 @@ export OPEN_SOURCE_CONTRIBUTOR=true
 export PURE_CMD_MAX_EXEC_TIME=0
 export SAVEHIST=10000
 export TERM='xterm-256color'
-export VISUAL='vim -O'
+export VISUAL='nvim -O'
 
 setopt autocd
 setopt autolist
@@ -129,32 +129,35 @@ xv() { tmux neww "$EDITOR $*" }
 
 ## node
 
-[ -f "$HOME/.nvm/nvm.sh" ] \
-    && source "$HOME/.nvm/nvm.sh"
+[ -f "$HOME/.config/vite-plus/env" ] \
+    && source "$HOME/.config/vite-plus/env"
 
-[ -f "$HOME/.nvm/bash_completion" ] \
-    && source "$HOME/.nvm/bash_completion"
+# [ -f "$HOME/.nvm/nvm.sh" ] \
+#     && source "$HOME/.nvm/nvm.sh"
 
-_load_nvmrc() {
-    local nvmrc_path
-    nvmrc_path="$(nvm_find_nvmrc)"
+# [ -f "$HOME/.nvm/bash_completion" ] \
+#     && source "$HOME/.nvm/bash_completion"
 
-    if [ -n "$nvmrc_path" ]; then
-        local nvmrc_node_version
-        nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
+# _load_nvmrc() {
+#     local nvmrc_path
+#     nvmrc_path="$(nvm_find_nvmrc)"
 
-        if [ "$nvmrc_node_version" = "N/A" ]; then
-            nvm install --reinstall-packages-from=default
-        elif [ "$nvmrc_node_version" != "$(nvm version)" ]; then
-            nvm use --silent
-        fi
-    elif [ -n "$(PWD=$OLDPWD nvm_find_nvmrc)" ] && [ "$(nvm version)" != "$(nvm version default)" ]; then
-        nvm use --silent default
-    fi
-}
+#     if [ -n "$nvmrc_path" ]; then
+#         local nvmrc_node_version
+#         nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
 
-autoload -U add-zsh-hook
-add-zsh-hook chpwd _load_nvmrc && _load_nvmrc
+#         if [ "$nvmrc_node_version" = "N/A" ]; then
+#             nvm install --reinstall-packages-from=default
+#         elif [ "$nvmrc_node_version" != "$(nvm version)" ]; then
+#             nvm use --silent
+#         fi
+#     elif [ -n "$(PWD=$OLDPWD nvm_find_nvmrc)" ] && [ "$(nvm version)" != "$(nvm version default)" ]; then
+#         nvm use --silent default
+#     fi
+# }
+
+# autoload -U add-zsh-hook
+# add-zsh-hook chpwd _load_nvmrc && _load_nvmrc
 
 ## python
 
